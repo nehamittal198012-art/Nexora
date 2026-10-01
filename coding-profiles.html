@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>NEXORA | Coding Profiles</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <style>
+
+        /* =========================
+           TOP LEFT BACK BUTTON
+        ========================= */
+
+        .back-button{
+            position:fixed;
+            top:20px;
+            left:20px;
+            z-index:1000;
+
+            width:auto;
+            margin:0;
+            padding:8px 12px;
+
+            background:transparent !important;
+            color:#b8bac5 !important;
+
+            border:none !important;
+            box-shadow:none !important;
+
+            font-size:15px;
+            cursor:pointer;
+        }
+
+        .back-button:hover{
+            color:#a78bfa !important;
+            transform:none !important;
+        }
+
+        /* Space below top navigation */
+
+        body{
+            padding-top:65px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+    <!-- =========================
+         TOP LEFT BACK
+    ========================= -->
+
+    <button
+        class="back-button"
+        onclick="window.location.href='dashboard.html'"
+    >
+        ← Back
+    </button>
+
+
+    <!-- =========================
+         LOGO
+    ========================= -->
+
+    <h1>NEXORA 🤖</h1>
+
+
+    <!-- =========================
+         PAGE TITLE
+    ========================= -->
+
+    <h2>🔗 Coding Profile Connection</h2>
+
+
+    <!-- =========================
+         CONNECT PROFILES
+    ========================= -->
+
+    <div class="dashboard-card">
+
+        <h2>Connect Your Coding Profiles</h2>
+
+        <p>
+            Add your public coding profile username or URL.
+            NEXORA will never ask for your platform password.
+        </p>
+
+
+        <!-- LEETCODE -->
+
+        <div class="profile-connect">
+
+            <label>LeetCode</label>
+
+            <input
+                type="text"
+                id="leetcode"
+                placeholder="Username or profile URL"
+            >
+
+            <button onclick="connectProfile('leetcode')">
+                Connect LeetCode
+            </button>
+
+            <p id="leetcodeStatus"></p>
+
+        </div>
+
+
+        <!-- GFG -->
+
+        <div class="profile-connect">
+
+            <label>GeeksforGeeks</label>
+
+            <input
+                type="text"
+                id="gfg"
+                placeholder="Username or profile URL"
+            >
+
+            <button onclick="connectProfile('gfg')">
+                Connect GFG
+            </button>
+
+            <p id="gfgStatus"></p>
+
+        </div>
+
+
+        <!-- HACKERRANK -->
+
+        <div class="profile-connect">
+
+            <label>HackerRank</label>
+
+            <input
+                type="text"
+                id="hackerrank"
+                placeholder="Username or profile URL"
+            >
+
+            <button onclick="connectProfile('hackerrank')">
+                Connect HackerRank
+            </button>
+
+            <p id="hackerrankStatus"></p>
+
+        </div>
+
+
+        <!-- CODECHEF -->
+
+        <div class="profile-connect">
+
+            <label>CodeChef</label>
+
+            <input
+                type="text"
+                id="codechef"
+                placeholder="Username or profile URL"
+            >
+
+            <button onclick="connectProfile('codechef')">
+                Connect CodeChef
+            </button>
+
+            <p id="codechefStatus"></p>
+
+        </div>
+
+
+        <!-- CODEFORCES -->
+
+        <div class="profile-connect">
+
+            <label>Codeforces</label>
+
+            <input
+                type="text"
+                id="codeforces"
+                placeholder="Username or profile URL"
+            >
+
+            <button onclick="connectProfile('codeforces')">
+                Connect Codeforces
+            </button>
+
+            <p id="codeforcesStatus"></p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         CONNECTED PROFILES
+    ========================= -->
+
+    <div class="dashboard-card">
+
+        <h2>✅ Connected Profiles</h2>
+
+        <div id="connectedProfiles">
+
+            <p>No profiles connected yet.</p>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        /* =========================
+           PLATFORMS
+        ========================= */
+
+        const platforms = [
+            "leetcode",
+            "gfg",
+            "hackerrank",
+            "codechef",
+            "codeforces"
+        ];
+
+
+        /* =========================
+           CONNECT PROFILE
+        ========================= */
+
+        function connectProfile(platform) {
+
+            const input =
+                document.getElementById(platform);
+
+            const value =
+                input.value.trim();
+
+
+            if (!value) {
+
+                alert(
+                    "Please enter your username or profile URL."
+                );
+
+                return;
+
+            }
+
+
+            localStorage.setItem(
+                "nexora_" + platform,
+                value
+            );
+
+
+            document.getElementById(
+                platform + "Status"
+            ).textContent =
+                "Profile saved ✓";
+
+
+            document.getElementById(
+                platform + "Status"
+            ).className =
+                "profile-success";
+
+
+            showConnectedProfiles();
+
+        }
+
+
+        /* =========================
+           SHOW CONNECTED PROFILES
+        ========================= */
+
+        function showConnectedProfiles() {
+
+            const container =
+                document.getElementById(
+                    "connectedProfiles"
+                );
+
+
+            container.innerHTML = "";
+
+
+            let connected = 0;
+
+
+            platforms.forEach(
+                function(platform) {
+
+                    const value =
+                        localStorage.getItem(
+                            "nexora_" + platform
+                        );
+
+
+                    if (value) {
+
+                        connected++;
+
+
+                        const item =
+                            document.createElement(
+                                "p"
+                            );
+
+
+                        item.textContent =
+                            "✓ " +
+                            platform.toUpperCase() +
+                            " — " +
+                            value;
+
+
+                        container.appendChild(
+                            item
+                        );
+
+                    }
+
+                }
+            );
+
+
+            if (connected === 0) {
+
+                container.innerHTML =
+                    "<p>No profiles connected yet.</p>";
+
+            }
+
+        }
+
+
+        /* =========================
+           LOAD SAVED PROFILES
+        ========================= */
+
+        platforms.forEach(
+            function(platform) {
+
+                const saved =
+                    localStorage.getItem(
+                        "nexora_" + platform
+                    );
+
+
+                if (saved) {
+
+                    document.getElementById(
+                        platform
+                    ).value = saved;
+
+
+                    document.getElementById(
+                        platform + "Status"
+                    ).textContent =
+                        "Profile saved ✓";
+
+
+                    document.getElementById(
+                        platform + "Status"
+                    ).className =
+                        "profile-success";
+
+                }
+
+            }
+        );
+
+
+        /* =========================
+           INITIAL LOAD
+        ========================= */
+
+        showConnectedProfiles();
+
+    </script>
+
+</body>
+
+</html>

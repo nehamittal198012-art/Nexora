@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>NEXORA | AI Mock Interview</title>
+
+    <link rel="stylesheet" href="style.css">
+
+
+    <style>
+
+        /* =================================
+           AI INTERVIEW ROOM
+        ================================= */
+
+        .interview-page {
+
+            width: 92%;
+            max-width: 1100px;
+
+            margin: auto;
+
+        }
+
+
+        .interview-hero {
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .interview-hero h1 {
+
+            margin-bottom: 10px;
+
+        }
+
+
+        /* =================================
+           SETUP
+        ================================= */
+
+        .setup-card {
+
+            max-width: 800px;
+
+            margin: 30px auto;
+
+            padding: 35px;
+
+        }
+
+
+        .setup-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 20px;
+
+            margin-top: 25px;
+
+        }
+
+
+        .setup-item {
+
+            text-align: left;
+
+        }
+
+
+        .setup-item label {
+
+            display: block;
+
+            color: #f0abfc;
+
+            font-weight: bold;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .setup-item select {
+
+            width: 100%;
+
+            padding: 15px;
+
+            border-radius: 16px;
+
+            background: #160b22;
+
+            color: white;
+
+            border: 1px solid
+                rgba(232,121,249,0.25);
+
+            font-size: 15px;
+
+        }
+
+
+        /* =================================
+           INTERVIEW ROOM
+        ================================= */
+
+        #interviewRoom {
+
+            display: none;
+
+        }
+
+
+        .interview-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .interview-badge {
+
+            display: inline-block;
+
+            padding: 9px 16px;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #6d28d9,
+                    #be185d
+                );
+
+            font-weight: bold;
+
+        }
+
+
+        .question-count {
+
+            color: #e879f9;
+
+            font-weight: bold;
+
+        }
+
+
+        /* =================================
+           PROGRESS
+        ================================= */
+
+        .question-progress {
+
+            width: 100%;
+
+            height: 12px;
+
+            background: #12091b;
+
+            border-radius: 20px;
+
+            padding: 2px;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .question-progress-bar {
+
+            height: 100%;
+
+            width: 20%;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #7e22ce,
+                    #ec4899,
+                    #e879f9
+                );
+
+            transition: 0.4s ease;
+
+        }
+
+
+        /* =================================
+           QUESTION CARD
+        ================================= */
+
+        .question-card {
+
+            padding: 35px;
+
+            text-align: left;
+
+        }
+
+
+        .ai-avatar {
+
+            width: 65px;
+
+            height: 65px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #b967e8,
+                    #7e22ce
+                );
+
+            font-size: 30px;
+
+            margin-bottom: 20px;
+
+            box-shadow:
+                inset 4px 4px 10px
+                rgba(255,255,255,0.2),
+                7px 9px 18px
+                rgba(0,0,0,0.4);
+
+        }
+
+
+        #questionText {
+
+            color: #ffffff;
+
+            font-size: 25px;
+
+            line-height: 1.5;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        #answerBox {
+
+            width: 100%;
+
+            min-height: 170px;
+
+            resize: vertical;
+
+            padding: 18px;
+
+            border-radius: 20px;
+
+            background: #12091b;
+
+            color: white;
+
+            border: 1px solid
+                rgba(232,121,249,0.25);
+
+            outline: none;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 16px;
+
+            line-height: 1.5;
+
+            box-shadow:
+                inset 5px 5px 12px
+                rgba(0,0,0,0.45);
+
+        }
+
+
+        #answerBox:focus {
+
+            border-color:
+                rgba(232,121,249,0.7);
+
+            box-shadow:
+                0 0 18px
+                rgba(232,121,249,0.12),
+                inset 5px 5px 12px
+                rgba(0,0,0,0.45);
+
+        }
+
+
+        .question-actions {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+
+            margin-top: 20px;
+
+        }
+
+
+        /* =================================
+           FEEDBACK
+        ================================= */
+
+        #feedbackCard {
+
+            display: none;
+
+            margin-top: 25px;
+
+        }
+
+
+        .feedback-score {
+
+            text-align: center;
+
+            margin: 20px 0;
+
+        }
+
+
+        .feedback-score strong {
+
+            display: block;
+
+            font-size: 55px;
+
+            color: white;
+
+            text-shadow:
+                0 0 20px
+                rgba(232,121,249,0.4);
+
+        }
+
+
+        .feedback-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 20px;
+
+        }
+
+
+        .feedback-box {
+
+            background:
+                rgba(18,9,27,0.65);
+
+            border-radius: 20px;
+
+            padding: 22px;
+
+            text-align: left;
+
+        }
+
+
+        .feedback-box h3 {
+
+            color: #f0abfc;
+
+            margin-top: 0;
+
+        }
+
+
+        /* =================================
+           FINAL RESULT
+        ================================= */
+
+        #finalResult {
+
+            display: none;
+
+            padding: 35px;
+
+        }
+
+
+        .final-score {
+
+            font-size: 65px;
+
+            font-weight: bold;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    #e879f9,
+                    #c084fc
+                );
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+        }
+
+
+        .final-message {
+
+            max-width: 650px;
+
+            margin: 15px auto 25px;
+
+        }
+
+
+        .loading {
+
+            color: #e879f9;
+
+            font-weight: bold;
+
+        }
+
+
+        .error {
+
+            color: #f9a8d4;
+
+            font-weight: bold;
+
+        }
+
+
+        /* =================================
+           MOBILE
+        ================================= */
+
+        @media (max-width: 700px) {
+
+            .setup-grid,
+            .feedback-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .question-card,
+            .setup-card,
+            #finalResult {
+
+                padding: 24px;
+
+            }
+
+
+            #questionText {
+
+                font-size: 21px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="interview-page">
+
+
+    <!-- =================================
+         HERO
+    ================================= -->
+
+    <div class="interview-hero">
+
+        <h1>
+            🎤 AI Mock Interview
+        </h1>
+
+        <p>
+            Practice real interview questions,
+            receive instant feedback and improve
+            your interview readiness.
+        </p>
+
+    </div>
+
+
+    <!-- =================================
+         SETUP
+    ================================= -->
+
+    <div
+        class="dashboard-card setup-card"
+        id="setupCard"
+    >
+
+        <h2>
+            🚀 Start Your Interview
+        </h2>
+
+        <p>
+            Configure your interview and begin
+            your practice session.
+        </p>
+
+
+        <div class="setup-grid">
+
+
+            <div class="setup-item">
+
+                <label for="role">
+                    🎯 Target Role
+                </label>
+
+                <select id="role">
+
+                    <option value="Software Developer">
+                        Software Developer
+                    </option>
+
+                    <option value="Frontend Developer">
+                        Frontend Developer
+                    </option>
+
+                    <option value="Backend Developer">
+                        Backend Developer
+                    </option>
+
+                    <option value="Data Analyst">
+                        Data Analyst
+                    </option>
+
+                    <option value="AI/ML Engineer">
+                        AI/ML Engineer
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="setup-item">
+
+                <label for="difficulty">
+                    ⚡ Difficulty
+                </label>
+
+                <select id="difficulty">
+
+                    <option value="Easy">
+                        Easy
+                    </option>
+
+                    <option value="Medium" selected>
+                        Medium
+                    </option>
+
+                    <option value="Hard">
+                        Hard
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <br>
+
+
+        <button id="startInterview">
+
+            🎤 Start Interview
+
+        </button>
+
+    </div>
+
+
+    <!-- =================================
+         INTERVIEW ROOM
+    ================================= -->
+
+    <div id="interviewRoom">
+
+
+        <div class="interview-header">
+
+            <span
+                class="interview-badge"
+                id="roleBadge"
+            >
+                Software Developer
+            </span>
+
+
+            <span
+                class="question-count"
+                id="questionCount"
+            >
+                Question 1 of 5
+            </span>
+
+        </div>
+
+
+        <div class="question-progress">
+
+            <div
+                class="question-progress-bar"
+                id="progressBar"
+            ></div>
+
+        </div>
+
+
+        <div
+            class="dashboard-card question-card"
+        >
+
+            <div class="ai-avatar">
+                🤖
+            </div>
+
+
+            <h2 id="questionText">
+                Tell me about yourself.
+            </h2>
+
+
+            <textarea
+                id="answerBox"
+                placeholder="Type your answer here..."
+            ></textarea>
+
+
+            <div class="question-actions">
+
+                <span
+                    class="loading"
+                    id="loadingText"
+                ></span>
+
+
+                <button id="submitAnswer">
+
+                    Submit Answer →
+
+                </button>
+
+            </div>
+
+
+            <p
+                class="error"
+                id="errorText"
+            ></p>
+
+        </div>
+
+
+        <!-- FEEDBACK -->
+
+        <div
+            class="dashboard-card"
+            id="feedbackCard"
+        >
+
+            <h2>
+                🤖 AI Feedback
+            </h2>
+
+
+            <div class="feedback-score">
+
+                <strong id="answerScore">
+                    0
+                </strong>
+
+                <span>
+                    / 100
+                </span>
+
+            </div>
+
+
+            <div class="feedback-grid">
+
+
+                <div class="feedback-box">
+
+                    <h3>
+                        💪 Strength
+                    </h3>
+
+                    <p id="strength">
+                        -
+                    </p>
+
+                </div>
+
+
+                <div class="feedback-box">
+
+                    <h3>
+                        💡 Improvement
+                    </h3>
+
+                    <p id="improvement">
+                        -
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <br>
+
+
+            <button id="nextQuestion">
+
+                Next Question →
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================
+         FINAL RESULT
+    ================================= -->
+
+    <div
+        class="dashboard-card"
+        id="finalResult"
+    >
+
+        <h2>
+            🏆 Interview Completed
+        </h2>
+
+
+        <p>
+            Your overall interview performance
+        </p>
+
+
+        <div
+            class="final-score"
+            id="finalScore"
+        >
+            0/100
+        </div>
+
+
+        <p
+            class="final-message"
+            id="finalMessage"
+        >
+            Great effort! Keep practicing.
+        </p>
+
+
+        <button id="restartInterview">
+
+            🔄 Practice Again
+
+        </button>
+
+
+        <button
+            onclick="window.location.href='progress.html'"
+        >
+
+            📊 View Progress
+
+        </button>
+
+    </div>
+
+
+    <br>
+
+
+    <button
+        onclick="window.location.href='dashboard.html'"
+    >
+
+        ← Back to Dashboard
+
+    </button>
+
+
+</div>
+
+
+<script>
+
+
+/* ==========================================
+   QUESTIONS
+========================================== */
+
+
+const questions = [
+
+    "Tell me about yourself.",
+
+    "What are your strengths?",
+
+    "Explain one project you have worked on.",
+
+    "Why should we hire you?",
+
+    "Where do you see yourself in five years?"
+
+];
+
+
+/* ==========================================
+   STATE
+========================================== */
+
+
+let currentQuestion = 0;
+
+let scores = [];
+
+let selectedRole = "";
+
+let selectedDifficulty = "";
+
+
+/* ==========================================
+   ELEMENTS
+========================================== */
+
+
+const setupCard =
+    document.getElementById(
+        "setupCard"
+    );
+
+
+const interviewRoom =
+    document.getElementById(
+        "interviewRoom"
+    );
+
+
+const finalResult =
+    document.getElementById(
+        "finalResult"
+    );
+
+
+const role =
+    document.getElementById(
+        "role"
+    );
+
+
+const difficulty =
+    document.getElementById(
+        "difficulty"
+    );
+
+
+const questionText =
+    document.getElementById(
+        "questionText"
+    );
+
+
+const answerBox =
+    document.getElementById(
+        "answerBox"
+    );
+
+
+const questionCount =
+    document.getElementById(
+        "questionCount"
+    );
+
+
+const progressBar =
+    document.getElementById(
+        "progressBar"
+    );
+
+
+const roleBadge =
+    document.getElementById(
+        "roleBadge"
+    );
+
+
+const feedbackCard =
+    document.getElementById(
+        "feedbackCard"
+    );
+
+
+const loadingText =
+    document.getElementById(
+        "loadingText"
+    );
+
+
+const errorText =
+    document.getElementById(
+        "errorText"
+    );
+
+
+/* ==========================================
+   START INTERVIEW
+========================================== */
+
+
+document
+    .getElementById("startInterview")
+    .addEventListener(
+        "click",
+        function () {
+
+
+            selectedRole =
+                role.value;
+
+
+            selectedDifficulty =
+                difficulty.value;
+
+
+            currentQuestion = 0;
+
+            scores = [];
+
+
+            setupCard.style.display =
+                "none";
+
+
+            finalResult.style.display =
+                "none";
+
+
+            interviewRoom.style.display =
+                "block";
+
+
+            roleBadge.textContent =
+                "🎯 " +
+                selectedRole;
+
+
+            showQuestion();
+
+
+        }
+    );
+
+
+/* ==========================================
+   SHOW QUESTION
+========================================== */
+
+
+function showQuestion() {
+
+
+    questionText.textContent =
+        questions[currentQuestion];
+
+
+    questionCount.textContent =
+
+        "Question " +
+        (currentQuestion + 1) +
+        " of " +
+        questions.length;
+
+
+    progressBar.style.width =
+
+        (
+            ((currentQuestion + 1) /
+            questions.length) * 100
+        ) +
+        "%";
+
+
+    answerBox.value = "";
+
+
+    feedbackCard.style.display =
+        "none";
+
+
+    errorText.textContent = "";
+
+
+    answerBox.focus();
+
+}
+
+
+/* ==========================================
+   SUBMIT ANSWER
+========================================== */
+
+
+document
+    .getElementById("submitAnswer")
+    .addEventListener(
+        "click",
+        async function () {
+
+
+            const answer =
+                answerBox.value.trim();
+
+
+            if (!answer) {
+
+                alert(
+                    "Please enter your answer first."
+                );
+
+                return;
+
+            }
+
+
+            const submitButton =
+                document.getElementById(
+                    "submitAnswer"
+                );
+
+
+            submitButton.disabled =
+                true;
+
+
+            loadingText.textContent =
+                "🤖 AI is evaluating your answer...";
+
+
+            errorText.textContent = "";
+
+
+            try {
+
+
+                const response =
+                    await fetch(
+                        "https://nexora-u8h2.onrender.com/api/interview",
+                       
+                        {
+
+                            method: "POST",
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json"
+
+                            },
+
+                            body: JSON.stringify({
+
+                                question:
+                                    questions[
+                                        currentQuestion
+                                    ],
+
+                                answer:
+                                    answer,
+
+                                role:
+                                    selectedRole,
+
+                                difficulty:
+                                    selectedDifficulty
+
+                            })
+
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (
+                    !response.ok
+                ) {
+
+                    throw new Error(
+                        data.message ||
+                        "Interview evaluation failed."
+                    );
+
+                }
+
+
+                const score =
+                    Number(data.score) || 0;
+
+
+                scores.push(score);
+
+
+                document.getElementById(
+                    "answerScore"
+                ).textContent =
+                    score;
+
+
+                document.getElementById(
+                    "strength"
+                ).textContent =
+                    data.strength;
+
+
+                document.getElementById(
+                    "improvement"
+                ).textContent =
+                    data.improvement;
+
+
+                feedbackCard.style.display =
+                    "block";
+
+
+                feedbackCard.scrollIntoView({
+
+                    behavior: "smooth"
+
+                });
+
+
+            }
+
+            catch (error) {
+
+
+                console.error(
+                    "Interview API Error:",
+                    error
+                );
+
+
+                errorText.textContent =
+                    "❌ " +
+                    error.message;
+
+            }
+
+
+            finally {
+
+
+                submitButton.disabled =
+                    false;
+
+
+                loadingText.textContent = "";
+
+            }
+
+        }
+    );
+
+
+/* ==========================================
+   NEXT QUESTION
+========================================== */
+
+
+document
+    .getElementById("nextQuestion")
+    .addEventListener(
+        "click",
+        function () {
+
+
+            currentQuestion++;
+
+
+            if (
+                currentQuestion >=
+                questions.length
+            ) {
+
+                finishInterview();
+
+            }
+
+            else {
+
+                showQuestion();
+
+                window.scrollTo({
+
+                    top: 0,
+
+                    behavior: "smooth"
+
+                });
+
+            }
+
+        }
+    );
+
+
+/* ==========================================
+   FINISH INTERVIEW
+========================================== */
+
+
+function finishInterview() {
+
+
+    let total = 0;
+
+
+    scores.forEach(
+        function(score) {
+
+            total += score;
+
+        }
+    );
+
+
+    const average =
+
+        scores.length > 0
+
+            ?
+
+        Math.round(
+            total / scores.length
+        )
+
+            :
+
+        0;
+
+
+    document.getElementById(
+        "finalScore"
+    ).textContent =
+
+        average +
+        "/100";
+
+
+    let message;
+
+
+    if (average >= 80) {
+
+        message =
+            "Excellent practice session. Focus on keeping your answers specific and structured.";
+
+    }
+
+    else if (average >= 60) {
+
+        message =
+            "Good start. More practice and stronger examples can improve your interview performance.";
+
+    }
+
+    else {
+
+        message =
+            "Keep practicing. Try giving longer, clearer answers with specific examples.";
+
+    }
+
+
+    document.getElementById(
+        "finalMessage"
+    ).textContent =
+        message;
+
+
+    localStorage.setItem(
+        "bestInterviewScore",
+        average
+    );
+
+
+    let interviewCount =
+
+        Number(
+            localStorage.getItem(
+                "interviewCount"
+            )
+        ) || 0;
+
+
+    interviewCount++;
+
+
+    localStorage.setItem(
+        "interviewCount",
+        interviewCount
+    );
+
+
+    interviewRoom.style.display =
+        "none";
+
+
+    finalResult.style.display =
+        "block";
+
+
+    finalResult.scrollIntoView({
+
+        behavior: "smooth"
+
+    });
+
+}
+
+
+/* ==========================================
+   RESTART
+========================================== */
+
+
+document
+    .getElementById("restartInterview")
+    .addEventListener(
+        "click",
+        function () {
+
+
+            currentQuestion = 0;
+
+            scores = [];
+
+
+            finalResult.style.display =
+                "none";
+
+
+            setupCard.style.display =
+                "block";
+
+
+            window.scrollTo({
+
+                top: 0,
+
+                behavior: "smooth"
+
+            });
+
+        }
+    );
+
+
+</script>
+
+
+</body>
+
+</html>

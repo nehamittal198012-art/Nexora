@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NEXORA | Achievements</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#171821;
+    color:#f4f3ff;
+    min-height:100vh;
+}
+
+.container{
+    width:92%;
+    max-width:1200px;
+    margin:auto;
+    padding:25px 0 50px;
+}
+
+/* TOPBAR */
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    color:#a78bfa;
+}
+
+.back-btn{
+    border:none;
+    padding:11px 17px;
+    border-radius:12px;
+    background:#242532;
+    color:white;
+    cursor:pointer;
+    box-shadow:
+        6px 6px 12px #0e0f15,
+        -4px -4px 10px #20222d;
+}
+
+.back-btn:hover{
+    background:#8b5cf6;
+}
+
+/* HERO */
+
+.hero{
+    margin-bottom:30px;
+}
+
+.hero h1{
+    font-size:34px;
+    margin-bottom:10px;
+}
+
+.hero p{
+    color:#aaa9b9;
+    line-height:1.6;
+}
+
+/* SUMMARY */
+
+.summary{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    margin-bottom:30px;
+}
+
+.summary-card{
+    background:#1e202a;
+    padding:22px;
+    border-radius:20px;
+    box-shadow:
+        8px 8px 18px #0e0f15,
+        -6px -6px 15px #252734;
+}
+
+.summary-card span{
+    color:#aaa9b9;
+    font-size:14px;
+}
+
+.summary-card strong{
+    display:block;
+    font-size:32px;
+    color:#a78bfa;
+    margin-top:8px;
+}
+
+/* ACHIEVEMENTS */
+
+.achievements{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.achievement{
+    background:#1e202a;
+    padding:24px;
+    border-radius:20px;
+    min-height:190px;
+    box-shadow:
+        8px 8px 18px #0e0f15,
+        -6px -6px 15px #252734;
+
+    transition:.25s;
+}
+
+.achievement:hover{
+    transform:translateY(-4px);
+}
+
+.icon{
+    font-size:42px;
+    margin-bottom:15px;
+}
+
+.achievement h3{
+    margin-bottom:9px;
+}
+
+.achievement p{
+    color:#aaa9b9;
+    line-height:1.5;
+    font-size:14px;
+}
+
+.status{
+    display:inline-block;
+    margin-top:18px;
+    padding:7px 12px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:bold;
+}
+
+/* UNLOCKED */
+
+.unlocked{
+    border:1px solid #8b5cf6;
+}
+
+.unlocked .status{
+    background:#302d46;
+    color:#c4b5fd;
+}
+
+/* LOCKED */
+
+.locked{
+    opacity:.65;
+}
+
+.locked .status{
+    background:#292b38;
+    color:#aaa9b9;
+}
+
+/* MOBILE */
+
+@media(max-width:850px){
+
+    .achievements{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .summary{
+        grid-template-columns:1fr 1fr;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .topbar{
+        align-items:flex-start;
+        gap:15px;
+    }
+
+    .hero h1{
+        font-size:28px;
+    }
+
+    .achievements{
+        grid-template-columns:1fr;
+    }
+
+    .summary{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+<!-- TOPBAR -->
+
+<div class="topbar">
+
+<div class="logo">
+NEXORA
+</div>
+
+<button
+class="back-btn"
+onclick="location.href='dashboard.html'"
+>
+← Back to Dashboard
+</button>
+
+</div>
+
+
+<!-- HERO -->
+
+<div class="hero">
+
+<h1>🏆 Achievements</h1>
+
+<p>
+Complete meaningful preparation activities and unlock achievements
+as you progress toward placement readiness.
+</p>
+
+</div>
+
+
+<!-- SUMMARY -->
+
+<div class="summary">
+
+<div class="summary-card">
+
+<span>Achievements Unlocked</span>
+
+<strong id="unlockedCount">
+0
+</strong>
+
+</div>
+
+
+<div class="summary-card">
+
+<span>Total Achievements</span>
+
+<strong id="totalCount">
+0
+</strong>
+
+</div>
+
+
+<div class="summary-card">
+
+<span>Completion</span>
+
+<strong id="completionPercent">
+0%
+</strong>
+
+</div>
+
+</div>
+
+
+<!-- ACHIEVEMENTS -->
+
+<div
+class="achievements"
+id="achievementContainer"
+>
+</div>
+
+
+</div>
+
+
+<script>
+
+
+/* =========================================
+   HELPER FUNCTIONS
+========================================= */
+
+function getNumber(key){
+
+const value =
+Number(localStorage.getItem(key));
+
+return Number.isFinite(value)
+? value
+: 0;
+
+}
+
+
+function hasValue(key){
+
+const value =
+localStorage.getItem(key);
+
+return value !== null &&
+value !== "" &&
+value !== "0";
+
+}
+
+
+function hasJSON(key){
+
+try{
+
+const value =
+JSON.parse(localStorage.getItem(key));
+
+return value &&
+typeof value === "object";
+
+}
+catch{
+
+return false;
+
+}
+
+}
+
+
+/* =========================================
+   EXISTING NEXORA DATA
+========================================= */
+
+
+/* STREAK */
+
+const streak =
+getNumber("nexoraStreak");
+
+
+/* DSA */
+
+const dsaProgress =
+getNumber("nexoraDSAProgress") ||
+getNumber("nexoraDSAScore") ||
+getNumber("nexoraCodingProgress");
+
+
+/* APTITUDE */
+
+const aptitudeProgress =
+getNumber("nexoraAptitudeProgress") ||
+getNumber("nexoraAptitudeScore");
+
+
+/* CORE */
+
+const coreProgress =
+getNumber("nexoraCoreProgress") ||
+getNumber("nexoraCoreScore");
+
+
+/* RESUME */
+
+const resumeScore =
+getNumber("nexoraResumeScore");
+
+
+/* INTERVIEW */
+
+const interviewScore =
+getNumber("nexoraInterviewScore");
+
+
+const interviewAnalytics =
+hasJSON("nexoraInterviewAnalytics");
+
+
+/* =========================================
+   ACHIEVEMENT DEFINITIONS
+========================================= */
+
+const achievements = [
+
+{
+id:"streak7",
+
+icon:"🔥",
+
+title:"7 Day Streak",
+
+description:
+"Maintain your NEXORA preparation streak for 7 days.",
+
+unlocked:
+streak >= 7
+
+},
+
+
+{
+id:"streak30",
+
+icon:"🔥",
+
+title:"30 Day Streak",
+
+description:
+"Maintain your NEXORA preparation streak for 30 days.",
+
+unlocked:
+streak >= 30
+
+},
+
+
+{
+id:"dsa10",
+
+icon:"🧩",
+
+title:"DSA Starter",
+
+description:
+"Reach 10% DSA preparation progress.",
+
+unlocked:
+dsaProgress >= 10
+
+},
+
+
+{
+id:"dsa50",
+
+icon:"💻",
+
+title:"DSA Explorer",
+
+description:
+"Reach 50% DSA preparation progress.",
+
+unlocked:
+dsaProgress >= 50
+
+},
+
+
+{
+id:"aptitude",
+
+icon:"🎯",
+
+title:"Aptitude Ready",
+
+description:
+"Complete your first meaningful aptitude preparation.",
+
+unlocked:
+aptitudeProgress > 0
+
+},
+
+
+{
+id:"core",
+
+icon:"📚",
+
+title:"Core CS Learner",
+
+description:
+"Start building your Core CS preparation progress.",
+
+unlocked:
+coreProgress > 0
+
+},
+
+
+{
+id:"resume",
+
+icon:"📄",
+
+title:"Resume Analyzer",
+
+description:
+"Analyze your resume using NEXORA Resume Analyzer.",
+
+unlocked:
+resumeScore > 0
+
+},
+
+
+{
+id:"interview",
+
+icon:"🤖",
+
+title:"First AI Interview",
+
+description:
+"Complete your first AI Mock Interview.",
+
+unlocked:
+interviewAnalytics ||
+interviewScore > 0
+
+},
+
+
+{
+id:"interview75",
+
+icon:"⭐",
+
+title:"Interview Performer",
+
+description:
+"Achieve an AI Interview score of 75 or above.",
+
+unlocked:
+interviewScore >= 75
+
+},
+
+
+{
+id:"readiness",
+
+icon:"🏆",
+
+title:"Placement Ready",
+
+description:
+"Reach 75% overall placement readiness.",
+
+unlocked:
+calculateReadiness() >= 75
+
+}
+
+];
+
+
+/* =========================================
+   READINESS CALCULATION
+========================================= */
+
+function calculateReadiness(){
+
+const values = [
+
+aptitudeProgress,
+dsaProgress,
+coreProgress,
+interviewScore,
+resumeScore
+
+];
+
+return Math.round(
+
+values.reduce(
+(sum,value)=>sum+value,
+0
+) / values.length
+
+);
+
+}
+
+
+/* =========================================
+   RENDER ACHIEVEMENTS
+========================================= */
+
+const container =
+document.getElementById(
+"achievementContainer"
+);
+
+
+let unlockedCount = 0;
+
+
+achievements.forEach(
+function(achievement){
+
+const card =
+document.createElement("div");
+
+
+card.className =
+"achievement " +
+(
+achievement.unlocked
+? "unlocked"
+: "locked"
+);
+
+
+if(achievement.unlocked){
+
+unlockedCount++;
+
+}
+
+
+card.innerHTML = `
+
+<div class="icon">
+${achievement.icon}
+</div>
+
+<h3>
+${achievement.title}
+</h3>
+
+<p>
+${achievement.description}
+</p>
+
+<span class="status">
+
+${
+achievement.unlocked
+? "✓ Unlocked"
+: "🔒 Locked"
+}
+
+</span>
+
+`;
+
+
+container.appendChild(card);
+
+}
+);
+
+
+/* =========================================
+   SUMMARY
+========================================= */
+
+const total =
+achievements.length;
+
+
+const completion =
+Math.round(
+(unlockedCount / total) * 100
+);
+
+
+document.getElementById(
+"unlockedCount"
+).textContent =
+unlockedCount;
+
+
+document.getElementById(
+"totalCount"
+).textContent =
+total;
+
+
+document.getElementById(
+"completionPercent"
+).textContent =
+completion + "%";
+
+
+</script>
+
+</body>
+
+</html>

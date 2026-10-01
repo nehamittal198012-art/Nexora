@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXORA - Core Practice</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #171821;
+      color: #f5f5f5;
+      min-height: 100vh;
+      padding: 30px;
+    }
+
+    .container {
+      max-width: 1150px;
+      margin: auto;
+    }
+
+    .back {
+      display: inline-block;
+      color: #a78bfa;
+      text-decoration: none;
+      margin-bottom: 25px;
+      font-weight: bold;
+    }
+
+    .header {
+      margin-bottom: 30px;
+    }
+
+    .header h1 {
+      font-size: 36px;
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      color: #aaa;
+      font-size: 16px;
+    }
+
+    .filters {
+      background: #1d1f29;
+      padding: 22px;
+      border-radius: 20px;
+      box-shadow:
+        8px 8px 18px #101117,
+        -6px -6px 15px #252735;
+      margin-bottom: 30px;
+    }
+
+    .filters h2 {
+      margin-bottom: 18px;
+      font-size: 20px;
+    }
+
+    .filter-row {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    select {
+      background: #171821;
+      color: white;
+      border: none;
+      padding: 13px 16px;
+      border-radius: 12px;
+      outline: none;
+      box-shadow:
+        inset 3px 3px 7px #101117,
+        inset -3px -3px 7px #252735;
+      min-width: 190px;
+    }
+
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: #1d1f29;
+      border-radius: 22px;
+      padding: 25px;
+      box-shadow:
+        8px 8px 18px #101117,
+        -6px -6px 15px #252735;
+      transition: 0.25s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .subject {
+      color: #a78bfa;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .card h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #aaa;
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .tag {
+      background: #292b38;
+      color: #cfc4ff;
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-size: 12px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      padding: 11px 16px;
+      border-radius: 11px;
+      font-weight: bold;
+      display: inline-block;
+    }
+
+    .primary {
+      background: #8b5cf6;
+      color: white;
+    }
+
+    .secondary {
+      background: #292b38;
+      color: #ddd;
+    }
+
+    .btn:hover {
+      opacity: 0.85;
+    }
+
+    .company-section {
+      margin-top: 45px;
+    }
+
+    .company-section h2 {
+      font-size: 27px;
+      margin-bottom: 8px;
+    }
+
+    .company-section > p {
+      color: #aaa;
+      margin-bottom: 22px;
+    }
+
+    .company-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .company-card {
+      background: #1d1f29;
+      padding: 22px;
+      border-radius: 18px;
+      box-shadow:
+        7px 7px 16px #101117,
+        -5px -5px 12px #252735;
+    }
+
+    .company-card h3 {
+      margin-bottom: 10px;
+    }
+
+    .company-card p {
+      color: #aaa;
+      line-height: 1.5;
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+
+    .company-card a {
+      color: #a78bfa;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .note {
+      margin-top: 35px;
+      padding: 18px;
+      background: #1d1f29;
+      border-radius: 16px;
+      color: #aaa;
+      line-height: 1.6;
+      box-shadow:
+        inset 3px 3px 8px #101117,
+        inset -3px -3px 8px #252735;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 18px;
+      }
+
+      .header h1 {
+        font-size: 28px;
+      }
+
+      .filter-row {
+        flex-direction: column;
+      }
+
+      select {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <a href="core.html" class="back">← Back to Core CS</a>
+
+  <div class="header">
+    <h1>Core CS Practice</h1>
+    <p>
+      Practice Core Computer Science subjects using trusted external resources.
+    </p>
+  </div>
+
+  <div class="filters">
+
+    <h2>Choose Subject</h2>
+
+    <div class="filter-row">
+
+      <select id="subjectFilter" onchange="filterResources()">
+        <option value="all">All Subjects</option>
+        <option value="DBMS">DBMS</option>
+        <option value="OS">Operating System</option>
+        <option value="CN">Computer Networks</option>
+        <option value="OOP">OOP</option>
+      </select>
+
+      <select id="levelFilter" onchange="filterResources()">
+        <option value="all">All Levels</option>
+        <option value="beginner">Beginner</option>
+        <option value="intermediate">Intermediate</option>
+        <option value="advanced">Advanced</option>
+      </select>
+
+    </div>
+
+  </div>
+
+
+  <div class="resource-grid" id="resourceGrid">
+
+    <!-- DBMS -->
+
+    <div class="card resource"
+         data-subject="DBMS"
+         data-level="beginner">
+
+      <div class="subject">DBMS</div>
+
+      <h3>GeeksforGeeks DBMS</h3>
+
+      <p>
+        DBMS interview questions, SQL, normalization, keys,
+        transactions, indexing and other important concepts.
+      </p>
+
+      <div class="tags">
+        <span class="tag">SQL</span>
+        <span class="tag">Normalization</span>
+        <span class="tag">Transactions</span>
+      </div>
+
+      <div class="buttons">
+        <a
+          href="https://www.geeksforgeeks.org/dbms/dbms-interview-questions/"
+          target="_blank"
+          class="btn primary">
+          Open Practice ↗
+        </a>
+
+        <a
+          href="https://www.geeksforgeeks.org/dbms/"
+          target="_blank"
+          class="btn secondary">
+          Learn DBMS ↗
+        </a>
+      </div>
+
+    </div>
+
+
+    <div class="card resource"
+         data-subject="DBMS"
+         data-level="intermediate">
+
+      <div class="subject">DBMS</div>
+
+      <h3>InterviewBit DBMS</h3>
+
+      <p>
+        Interview-oriented DBMS questions covering SQL,
+        normalization, transactions, indexing and more.
+      </p>
+
+      <div class="tags">
+        <span class="tag">Interview</span>
+        <span class="tag">SQL</span>
+        <span class="tag">MCQ</span>
+      </div>
+
+      <div class="buttons">
+        <a
+          href="https://www.interviewbit.com/dbms-interview-questions/"
+          target="_blank"
+          class="btn primary">
+          Practice ↗
+        </a>
+      </div>
+
+    </div>
+
+
+    <!-- OS -->
+
+    <div class="card resource"
+         data-subject="OS"
+         data-level="beginner">
+
+      <div class="subject">Operating System</div>
+
+      <h3>GeeksforGeeks OS</h3>
+
+      <p>
+        Practice operating system concepts such as processes,
+        threads, scheduling, memory management and deadlocks.
+      </p>
+
+      <div class="tags">
+        <span class="tag">Processes</span>
+        <span class="tag">Scheduling</span>
+        <span class="tag">Memory</span>
+      </div>
+
+      <div class="buttons">
+        <a
+          href="https://www.geeksforgeeks.org/operating-systems/operating-systems-interview-questions/"
+          target="_blank"
+          class="btn primary">
+          Open Practice ↗
+        </a>
+
+        <a
+          href="https://www.geeksforgeeks.org/operating-systems/"
+          target="_blank"
+          class="btn secondary">
+          Learn OS ↗
+        </a>
+      </div>
+
+    </div>
+
+
+    <div class="card resource"
+         data-subject="OS"
+         data-level="intermediate">
+
+      <div class="subject">Operating System</div>
+
+      <h3>InterviewBit OS</h3>
+
+      <p>
+        Interview-focused OS questions covering processes,
+        synchronization, memory and operating system concepts.
+      </p>
+
+      <div class="tags">
+        <span class="tag">Interview</span>
+        <span class="tag">Concepts</span>
+      </div>
+
+      <div class="buttons">
+        <a
+          href="https://www.interviewbit.com/operating-system-interview-questions/"
+          target="_blank"
+          class="btn primary">
+          Practice ↗
+        </a>
+      </div>
+
+    </div>
+
+
+    <!-- CN -->
+
+    <div class="card resource"
+         data-subject="CN"
+         data-level="beginner">
+
+      <div class="subject">Computer Networks</div>
+
+      <h3>GeeksforGeeks CN</h3>
+
+      <p>
+        Practice networking concepts including OSI model,
+        TCP/IP, HTTP, routing, protocols and network security basics.
+      </p>
+
+      <div class="tags">
+        <span class="tag">OSI</span>
+        <span class="tag">TCP/IP</span>
+        <span class="tag">Protocols</span>
+      </div>
+
+      <div class="buttons">
+        <a
+          href="https://www.geeksforgeeks.org/computer-networks/computer-network-interview-questions/"
+          target="_blank"
+          class="btn primary">
+          Open Practice ↗
+        </a>
+
+        <a
+          href="https://www.geeksforgeeks.org/computer-networks/"
+          target="_blank"
+          class="btn secondary">
+          Learn CN ↗
+        </a>
+      </div>
+
+    </div>
+
+
+    <div class="card resource"
+         data-subject="CN"
+         data-level="intermediate">
+
+      <div class="subject">Computer Networks</div>
+
+      <h3>InterviewBit CN</h3>
+
+      <p>
+        Interview questions on networking fundamentals,
+        protocols, TCP/IP, OSI and common interview concepts.
+      </p>
+
+      <div class="tags">
+        <span class="tag">Interview</span>
+        <span class="tag">Networking</span>
+      </div>
+
+      <div class="buttons">
+        <a
+          href="https://www.interviewbit.com/networking-interview-questions/"
+          target="_blank"
+          class="btn primary">
+          Practice ↗
+        </a>
+      </div>
+
+    </div>
+
+
+    <!-- OOP -->
+
+    <div class="card resource"
+         data-subject="OOP"
+         data-level="beginner">
+
+      <div class="subject">OOP</div>
+
+      <h3>GeeksforGeeks OOP</h3>
+
+      <p>
+        Practice object-oriented programming concepts such as
+        inheritance, polymorphism, abstraction and encapsulation.
+      </p>
+
+      <div class="tags">
+        <span class="tag">Inheritance</span>
+        <span class="tag">Polymorphism</span>
+        <span class="tag">Abstraction</span>
+      </div>
+
+      <div class="buttons">
+        <a
+          href="https://www.geeksforgeeks.org/oops-interview-questions/"
+          target="_blank"
+          class="btn primary">
+          Open Practice ↗
+        </a>
+
+        <a
+          href="https://www.geeksforgeeks.org/object-oriented-programming-oops-concept-in-java/"
+          target="_blank"
+          class="btn secondary">
+          Learn OOP ↗
+        </a>
+      </div>
+
+    </div>
+
+
+    <div class="card resource"
+         data-subject="OOP"
+         data-level="intermediate">
+
+      <div class="subject">OOP</div>
+
+      <h3>InterviewBit OOP</h3>
+
+      <p>
+        Interview-oriented object-oriented programming questions
+        and important concepts.
+      </p>
+
+      <div class="tags">
+        <span class="tag">Interview</span>
+        <span class="tag">OOP Concepts</span>
+      </div>
+
+      <div class="buttons">
+        <a
+          href="https://www.interviewbit.com/oops-interview-questions/"
+          target="_blank"
+          class="btn primary">
+          Practice ↗
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- COMPANY PRACTICE -->
+
+  <div class="company-section">
+
+    <h2>Company Interview Practice</h2>
+
+    <p>
+      Practice company-specific interview questions from publicly available
+      interview-preparation resources.
+    </p>
+
+
+    <div class="company-grid">
+
+      <div class="company-card">
+        <h3>Amazon</h3>
+
+        <p>
+          Explore Amazon interview questions, experiences and
+          preparation resources.
+        </p>
+
+        <a
+          href="https://www.geeksforgeeks.org/interview-experiences/amazon-interview-experience/"
+          target="_blank">
+          Open Amazon Resources ↗
+        </a>
+      </div>
+
+
+      <div class="company-card">
+        <h3>Microsoft</h3>
+
+        <p>
+          Explore Microsoft interview questions and reported
+          interview experiences.
+        </p>
+
+        <a
+          href="https://www.geeksforgeeks.org/interview-experiences/microsoft-interview-experience/"
+          target="_blank">
+          Open Microsoft Resources ↗
+        </a>
+      </div>
+
+
+      <div class="company-card">
+        <h3>Google</h3>
+
+        <p>
+          Explore Google interview preparation and reported
+          interview experiences.
+        </p>
+
+        <a
+          href="https://www.geeksforgeeks.org/interview-experiences/google-interview-experience/"
+          target="_blank">
+          Open Google Resources ↗
+        </a>
+      </div>
+
+
+      <div class="company-card">
+        <h3>Adobe</h3>
+
+        <p>
+          Explore Adobe interview questions and reported
+          interview experiences.
+        </p>
+
+        <a
+          href="https://www.geeksforgeeks.org/interview-experiences/adobe-interview-experience/"
+          target="_blank">
+          Open Adobe Resources ↗
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="note">
+    <strong>NEXORA approach:</strong><br><br>
+
+    NEXORA does not copy or host third-party question banks.
+    Practice content remains on the original resource website.
+    NEXORA organizes the resources and can track the learner's
+    preparation progress separately.
+  </div>
+
+</div>
+
+
+<script>
+
+  function filterResources() {
+
+    const subject =
+      document.getElementById("subjectFilter").value;
+
+    const level =
+      document.getElementById("levelFilter").value;
+
+    const cards =
+      document.querySelectorAll(".resource");
+
+    cards.forEach(card => {
+
+      const cardSubject =
+        card.dataset.subject;
+
+      const cardLevel =
+        card.dataset.level;
+
+      const subjectMatch =
+        subject === "all" ||
+        cardSubject === subject;
+
+      const levelMatch =
+        level === "all" ||
+        cardLevel === level;
+
+      if (subjectMatch && levelMatch) {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+      }
+
+    });
+
+  }
+
+
+  // Read subject from URL
+  // Example:
+  // core-practice.html?subject=DBMS
+
+  const params =
+    new URLSearchParams(window.location.search);
+
+  const selectedSubject =
+    params.get("subject");
+
+  if (selectedSubject) {
+
+    const subjectFilter =
+      document.getElementById("subjectFilter");
+
+    const validSubjects =
+      ["DBMS", "OS", "CN", "OOP"];
+
+    if (validSubjects.includes(selectedSubject)) {
+
+      subjectFilter.value =
+        selectedSubject;
+
+      filterResources();
+
+    }
+
+  }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>NEXORA | DSA Practice</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+    <!-- HEADER -->
+
+    <h1>
+        💻 DSA Practice
+    </h1>
+
+    <p>
+        Practice important Data Structures & Algorithms
+        questions for technical interviews.
+    </p>
+
+
+    <!-- PROGRESS -->
+
+    <h2>
+        📊 Your DSA Progress
+    </h2>
+
+
+    <div class="dashboard-grid">
+
+        <div class="dashboard-card">
+
+            <h3>
+                Easy
+            </h3>
+
+            <strong id="easyCount">
+                0
+            </strong>
+
+            <p>
+                Questions Solved
+            </p>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <h3>
+                Medium
+            </h3>
+
+            <strong id="mediumCount">
+                0
+            </strong>
+
+            <p>
+                Questions Solved
+            </p>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <h3>
+                Hard
+            </h3>
+
+            <strong id="hardCount">
+                0
+            </strong>
+
+            <p>
+                Questions Solved
+            </p>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <h3>
+                Total Solved
+            </h3>
+
+            <strong id="totalCount">
+                0
+            </strong>
+
+            <p>
+                Out of 24 Questions
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- OVERALL PROGRESS -->
+
+    <div class="dashboard-card">
+
+        <h3>
+            Overall DSA Progress
+        </h3>
+
+        <div class="progress-container">
+
+            <div
+                class="progress-bar"
+                id="dsaProgressBar"
+                style="width: 0%;"
+            ></div>
+
+        </div>
+
+        <p id="progressText">
+            0 / 24 Questions Solved
+        </p>
+
+    </div>
+
+
+    <!-- TOPICS -->
+
+    <h2>
+        Choose a Topic
+    </h2>
+
+    <p>
+        Select a topic to start practicing interview questions.
+    </p>
+
+
+    <div class="dashboard-grid">
+
+
+        <div
+            class="dashboard-card"
+            onclick="selectTopic('Arrays')"
+            style="cursor:pointer;"
+        >
+
+            <h3>
+                📦 Arrays
+            </h3>
+
+            <p>
+                3 Questions
+            </p>
+
+            <button>
+                Practice →
+            </button>
+
+        </div>
+
+
+        <div
+            class="dashboard-card"
+            onclick="selectTopic('Strings')"
+            style="cursor:pointer;"
+        >
+
+            <h3>
+                🔤 Strings
+            </h3>
+
+            <p>
+                3 Questions
+            </p>
+
+            <button>
+                Practice →
+            </button>
+
+        </div>
+
+
+        <div
+            class="dashboard-card"
+            onclick="selectTopic('Linked List')"
+            style="cursor:pointer;"
+        >
+
+            <h3>
+                🔗 Linked List
+            </h3>
+
+            <p>
+                3 Questions
+            </p>
+
+            <button>
+                Practice →
+            </button>
+
+        </div>
+
+
+        <div
+            class="dashboard-card"
+            onclick="selectTopic('Stack & Queue')"
+            style="cursor:pointer;"
+        >
+
+            <h3>
+                📚 Stack & Queue
+            </h3>
+
+            <p>
+                3 Questions
+            </p>
+
+            <button>
+                Practice →
+            </button>
+
+        </div>
+
+
+        <div
+            class="dashboard-card"
+            onclick="selectTopic('Trees')"
+            style="cursor:pointer;"
+        >
+
+            <h3>
+                🌳 Trees
+            </h3>
+
+            <p>
+                3 Questions
+            </p>
+
+            <button>
+                Practice →
+            </button>
+
+        </div>
+
+
+        <div
+            class="dashboard-card"
+            onclick="selectTopic('Graphs')"
+            style="cursor:pointer;"
+        >
+
+            <h3>
+                🕸 Graphs
+            </h3>
+
+            <p>
+                3 Questions
+            </p>
+
+            <button>
+                Practice →
+            </button>
+
+        </div>
+
+
+        <div
+            class="dashboard-card"
+            onclick="selectTopic('Dynamic Programming')"
+            style="cursor:pointer;"
+        >
+
+            <h3>
+                🧠 Dynamic Programming
+            </h3>
+
+            <p>
+                3 Questions
+            </p>
+
+            <button>
+                Practice →
+            </button>
+
+        </div>
+
+
+        <div
+            class="dashboard-card"
+            onclick="selectTopic('Sorting & Searching')"
+            style="cursor:pointer;"
+        >
+
+            <h3>
+                🔎 Sorting & Searching
+            </h3>
+
+            <p>
+                3 Questions
+            </p>
+
+            <button>
+                Practice →
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- QUESTIONS -->
+
+    <div
+        id="questionsSection"
+        style="display:none;"
+    >
+
+        <h2 id="selectedTopic">
+            Questions
+        </h2>
+
+
+        <p>
+            Choose difficulty and start solving.
+        </p>
+
+
+        <div>
+
+            <button
+                onclick="setFilter('All')"
+                id="allFilter"
+            >
+                All
+            </button>
+
+            <button
+                onclick="setFilter('Easy')"
+            >
+                Easy
+            </button>
+
+            <button
+                onclick="setFilter('Medium')"
+            >
+                Medium
+            </button>
+
+            <button
+                onclick="setFilter('Hard')"
+            >
+                Hard
+            </button>
+
+        </div>
+
+
+        <div
+            id="questionsList"
+            class="dashboard-grid"
+        ></div>
+
+
+        <p
+            id="noQuestions"
+            style="display:none;"
+        >
+            No questions found.
+        </p>
+
+    </div>
+
+
+    <br>
+
+
+    <button
+        onclick="window.location.href='progress.html'"
+    >
+        📊 Progress & Analytics
+    </button>
+
+
+    <button
+        onclick="window.location.href='dashboard.html'"
+    >
+        ← Back to Dashboard
+    </button>
+
+
+<script>
+
+
+const questions = [
+
+    {
+        id: "q1",
+        topic: "Arrays",
+        title: "Two Sum",
+        difficulty: "Easy",
+        platform: "LeetCode",
+        link: "https://leetcode.com/problems/two-sum/"
+    },
+
+    {
+        id: "q2",
+        topic: "Arrays",
+        title: "Best Time to Buy and Sell Stock",
+        difficulty: "Easy",
+        platform: "LeetCode",
+        link: "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/"
+    },
+
+    {
+        id: "q3",
+        topic: "Arrays",
+        title: "Maximum Subarray",
+        difficulty: "Medium",
+        platform: "LeetCode",
+        link: "https://leetcode.com/problems/maximum-subarray/"
+    },
+
+    {
+        id: "q4",
+        topic: "Strings",
+        title: "Valid Palindrome",
+        difficulty: "Easy",
+        platform: "LeetCode",
+        link: "https://leetcode.com/problems/valid-palindrome/"
+    },
+
+    {
+        id: "q5",
+        topic: "Strings",
+        title: "Valid Anagram",
+        difficulty: "Easy",
+        platform: "LeetCode",
+        link: "https://leetcode.com/problems/valid-anagram/"
+    },
+
+    {
+        id: "q6",
+        topic: "Strings",
+        title: "Longest Substring Without Repeating Characters",
+        difficulty: "Medium",
+        platform: "LeetCode",
+        link: "https://leetcode.com/problems/longest-substring-without-repeating-characters/"
+    },
+
+    {
+        id: "q7",
+        topic: "Linked List",
+        title: "Reverse Linked List",
+        difficulty: "Easy",
+        platform: "LeetCode",
+        link: "https://leetcode.com/problems/reverse-linked-list/"
+    },
+
+    {
+        id: "q8",
+        topic: "Linked List",
+        title: "Merge Two Sorted Lists",
+        difficulty: "Easy",
+        platform: "LeetCode",
+        link: "https://leetcode.com/problems/merge-two-sorted-lists/"
+    },
+
+    {
+        id: "q9",
+        topic: "Linked List",
+        title: "Linked List Cycle",
+        difficulty: "Medium",
+        platform: "LeetCode",
+        link: "https://leetcode.com/problems/linked-list-cycle/"
+    },
+
+    {
+        id: "q10",
+        topic: "Stack & Queue",
+        title: "Valid Parentheses",
+        difficulty: "Easy",
+        platform: "LeetCode",
+        link: "https://leetcode.com/problems/valid-parentheses/"
+    },
+
+    {
+        id: "q11",
+        topic: "Stack & Queue",
+        title: "Implement Queue using Stacks",
+        difficulty: "Easy",
+        platform: "LeetCode",
+        link: "https://leetcode.com/problems/implement-queue-using-stacks/"
+    },
+
+    {
+        id: "q12",
+        topic: "Stack & Queue",
+        title: "Daily Temperatures",
+        difficulty: "Medium",
+        platform: "LeetCode",
+        link: "https://leetcode.com/problems/daily-temperatures/"
+    },
+
+    {
+        id: "q13",
+        topic: "Trees",
+        title: "Maximum Depth of Binary Tree",
+        difficulty: "Easy",
+        platform: "LeetCode",
+        link: "https://leetcode.com/problems/maximum-depth-of-binary-tree/"
+    },
+
+    {
+        id: "q14",
+        topic: "Trees",
+        title: "Invert Binary Tree",
+        difficulty: "Easy",
+        platform: "LeetCode",
+        link: "https://leetcode.com/problems/invert-binary-tree/"
+    },
+
+    {
+        id: "q15",
+        topic: "Trees",
+        title: "Binary Tree Level Order Traversal",
+        difficulty: "Medium",
+        platform: "LeetCode",
+        link: "https://leetcode.com/problems/binary-tree-level-order-traversal/"
+    },
+
+    {
+        id: "q16",
+        topic: "Graphs",
+        title: "Number of Islands",
+        difficulty: "Medium",
+        platform: "LeetCode",
+        link: "https://leetcode.com/problems/number-of-islands/"
+    },
+
+    {
+        id: "q17",
+        topic: "Graphs",
+        title: "Clone Graph",
+        difficulty: "Medium",
+        platform: "LeetCode",
+        link: "https://leetcode.com/problems/clone-graph/"
+    },
+
+    {
+        id: "q18",
+        topic: "Graphs",
+        title: "Course Schedule",
+        difficulty: "Medium",
+        platform: "LeetCode",
+        link: "https://leetcode.com/problems/course-schedule/"
+    },
+
+    {
+        id: "q19",
+        topic: "Dynamic Programming",
+        title: "Climbing Stairs",
+        difficulty: "Easy",
+        platform: "LeetCode",
+        link: "https://leetcode.com/problems/climbing-stairs/"
+    },
+
+    {
+        id: "q20",
+        topic: "Dynamic Programming",
+        title: "House Robber",
+        difficulty: "Medium",
+        platform: "LeetCode",
+        link: "https://leetcode.com/problems/house-robber/"
+    },
+
+    {
+        id: "q21",
+        topic: "Dynamic Programming",
+        title: "Longest Increasing Subsequence",
+        difficulty: "Medium",
+        platform: "LeetCode",
+        link: "https://leetcode.com/problems/longest-increasing-subsequence/"
+    },
+
+    {
+        id: "q22",
+        topic: "Sorting & Searching",
+        title: "Binary Search",
+        difficulty: "Easy",
+        platform: "LeetCode",
+        link: "https://leetcode.com/problems/binary-search/"
+    },
+
+    {
+        id: "q23",
+        topic: "Sorting & Searching",
+        title: "Search in Rotated Sorted Array",
+        difficulty: "Medium",
+        platform: "LeetCode",
+        link: "https://leetcode.com/problems/search-in-rotated-sorted-array/"
+    },
+
+    {
+        id: "q24",
+        topic: "Sorting & Searching",
+        title: "Merge Sort",
+        difficulty: "Medium",
+        platform: "GeeksforGeeks",
+        link: "https://www.geeksforgeeks.org/merge-sort/"
+    }
+
+];
+
+
+let currentTopic = "";
+
+let currentFilter = "All";
+
+
+let solvedQuestions =
+    JSON.parse(
+        localStorage.getItem("dsaSolved")
+    ) || [];
+
+
+function selectTopic(topic) {
+
+    currentTopic = topic;
+
+    currentFilter = "All";
+
+    document.getElementById(
+        "selectedTopic"
+    ).textContent =
+        topic + " Questions";
+
+    document.getElementById(
+        "questionsSection"
+    ).style.display = "block";
+
+    renderQuestions();
+
+    document.getElementById(
+        "questionsSection"
+    ).scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+
+function setFilter(filter) {
+
+    currentFilter = filter;
+
+    renderQuestions();
+
+}
+
+
+function renderQuestions() {
+
+    const list =
+        document.getElementById(
+            "questionsList"
+        );
+
+    list.innerHTML = "";
+
+
+    const filtered =
+        questions.filter(function(question) {
+
+            return (
+                question.topic === currentTopic
+                &&
+                (
+                    currentFilter === "All"
+                    ||
+                    question.difficulty === currentFilter
+                )
+            );
+
+        });
+
+
+    if (filtered.length === 0) {
+
+        document.getElementById(
+            "noQuestions"
+        ).style.display = "block";
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "noQuestions"
+    ).style.display = "none";
+
+
+    filtered.forEach(function(question) {
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "dashboard-card";
+
+
+        const solved =
+            solvedQuestions.includes(
+                question.id
+            );
+
+
+        card.innerHTML = `
+
+            <h3>
+                ${question.title}
+            </h3>
+
+            <p>
+                Difficulty: ${question.difficulty}
+            </p>
+
+            <p>
+                Practice on ${question.platform}
+            </p>
+
+            <button
+                onclick="
+                    window.open(
+                        '${question.link}',
+                        '_blank'
+                    )
+                "
+            >
+                🔗 Open Problem
+            </button>
+
+            <button
+                onclick="
+                    toggleSolved(
+                        '${question.id}'
+                    )
+                "
+            >
+                ${
+                    solved
+                    ? "✅ Solved"
+                    : "☐ Mark as Solved"
+                }
+            </button>
+
+        `;
+
+
+        list.appendChild(card);
+
+    });
+
+}
+
+
+function toggleSolved(id) {
+
+    if (solvedQuestions.includes(id)) {
+
+        solvedQuestions =
+            solvedQuestions.filter(
+                function(item) {
+                    return item !== id;
+                }
+            );
+
+    } else {
+
+        solvedQuestions.push(id);
+
+    }
+
+
+    localStorage.setItem(
+        "dsaSolved",
+        JSON.stringify(solvedQuestions)
+    );
+
+
+    renderQuestions();
+
+    updateStats();
+
+}
+
+
+function updateStats() {
+
+    let easy = 0;
+
+    let medium = 0;
+
+    let hard = 0;
+
+
+    solvedQuestions.forEach(function(id) {
+
+        const question =
+            questions.find(
+                function(item) {
+                    return item.id === id;
+                }
+            );
+
+
+        if (!question) return;
+
+
+        if (question.difficulty === "Easy") {
+
+            easy++;
+
+        }
+
+        if (question.difficulty === "Medium") {
+
+            medium++;
+
+        }
+
+        if (question.difficulty === "Hard") {
+
+            hard++;
+
+        }
+
+    });
+
+
+    document.getElementById(
+        "easyCount"
+    ).textContent = easy;
+
+
+    document.getElementById(
+        "mediumCount"
+    ).textContent = medium;
+
+
+    document.getElementById(
+        "hardCount"
+    ).textContent = hard;
+
+
+    document.getElementById(
+        "totalCount"
+    ).textContent =
+        solvedQuestions.length;
+
+
+    const percentage =
+        Math.round(
+            (
+                solvedQuestions.length /
+                questions.length
+            ) * 100
+        );
+
+
+    document.getElementById(
+        "dsaProgressBar"
+    ).style.width =
+        percentage + "%";
+
+
+    document.getElementById(
+        "progressText"
+    ).textContent =
+        solvedQuestions.length +
+        " / " +
+        questions.length +
+        " Questions Solved";
+
+}
+
+
+updateStats();
+
+</script>
+
+
+</body>
+
+</html>

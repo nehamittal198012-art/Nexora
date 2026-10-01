@@ -1,0 +1,1674 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>NEXORA | DSA Intelligence Hub</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* =========================
+           TOP BACK
+        ========================= */
+
+        .top-back {
+            position: absolute !important;
+            top: 20px !important;
+            left: 20px !important;
+            width: auto !important;
+            margin: 0 !important;
+            padding: 8px 12px !important;
+            background: transparent !important;
+            color: #b8bac5 !important;
+            border: none !important;
+            box-shadow: none !important;
+            font-size: 15px !important;
+        }
+
+        .top-back:hover {
+            color: #a78bfa !important;
+            transform: none !important;
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hub-hero,
+        .hub-card {
+
+            width: 100%;
+            max-width: 900px;
+            margin: 20px 0;
+            padding: 28px;
+
+            background: #20212b;
+
+            border-radius: 28px;
+
+            box-shadow:
+                12px 12px 25px #0d0e13,
+                -10px -10px 22px #2b2d38;
+        }
+
+        .hub-hero h2,
+        .hub-card h2 {
+
+            color: #a78bfa;
+            margin-bottom: 15px;
+        }
+
+        .hub-hero p,
+        .hub-card p {
+
+            color: #b8bac5;
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           STAT GRID
+        ========================= */
+
+        .stat-grid {
+
+            width: 100%;
+            max-width: 900px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+
+            margin: 20px 0;
+        }
+
+        .stat-card {
+
+            padding: 20px;
+
+            background: #20212b;
+
+            border-radius: 20px;
+
+            text-align: center;
+
+            box-shadow:
+                8px 8px 18px #0d0e13,
+                -7px -7px 15px #2b2d38;
+        }
+
+        .stat-card h3 {
+
+            color: #a78bfa;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        .stat-card strong {
+
+            color: #eeeeF4;
+            font-size: 24px;
+        }
+
+
+        /* =========================
+           INNER BOX
+        ========================= */
+
+        .inner-box {
+
+            padding: 20px;
+
+            background: #1b1c25;
+
+            border-radius: 18px;
+
+            box-shadow:
+                inset 5px 5px 10px #101117,
+                inset -4px -4px 8px #292b38;
+        }
+
+        .inner-box strong {
+
+            color: #a78bfa;
+        }
+
+
+        /* =========================
+           PROFILE GRID
+        ========================= */
+
+        .profile-list {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 12px;
+
+            margin: 18px 0;
+        }
+
+        .profile-item {
+
+            padding: 15px;
+
+            background: #1b1c25;
+
+            border-radius: 16px;
+
+            color: #c9cad3;
+
+            box-shadow:
+                inset 4px 4px 8px #101117,
+                inset -3px -3px 7px #292b38;
+        }
+
+        .connected {
+
+            color: #a78bfa;
+
+            font-weight: 600;
+        }
+
+
+        /* =========================
+           PROGRESS
+        ========================= */
+
+        .progress-row {
+
+            margin: 22px 0;
+        }
+
+        .progress-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-bottom: 9px;
+
+            color: #d5d5df;
+        }
+
+        .progress-bar {
+
+            width: 100%;
+
+            height: 13px;
+
+            background: #1b1c25;
+
+            border-radius: 20px;
+
+            box-shadow:
+                inset 4px 4px 8px #101117,
+                inset -3px -3px 7px #292b38;
+        }
+
+        .progress-fill {
+
+            height: 100%;
+
+            width: 0%;
+
+            background: #8b5cf6;
+
+            border-radius: 20px;
+
+            transition: width 0.4s ease;
+        }
+
+
+        /* =========================
+           TOPIC GRID
+        ========================= */
+
+        .topic-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 15px;
+
+            margin-top: 20px;
+        }
+
+        .topic-card {
+
+            padding: 18px;
+
+            background: #1b1c25;
+
+            border-radius: 18px;
+
+            box-shadow:
+                inset 5px 5px 10px #101117,
+                inset -4px -4px 8px #292b38;
+        }
+
+        .topic-card h3 {
+
+            color: #a78bfa;
+
+            margin-bottom: 8px;
+
+            font-size: 16px;
+        }
+
+        .topic-card p {
+
+            font-size: 13px;
+
+            margin: 6px 0;
+        }
+
+        .topic-status {
+
+            color: #a78bfa !important;
+
+            font-weight: 600;
+        }
+
+
+        /* =========================
+           ANALYSIS
+        ========================= */
+
+        .analysis-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 15px;
+
+            margin-top: 20px;
+        }
+
+        .analysis-box {
+
+            padding: 20px;
+
+            background: #1b1c25;
+
+            border-radius: 18px;
+
+            box-shadow:
+                inset 5px 5px 10px #101117,
+                inset -4px -4px 8px #292b38;
+        }
+
+        .analysis-box h3 {
+
+            color: #a78bfa;
+
+            margin-bottom: 10px;
+        }
+
+        .analysis-box p {
+
+            margin: 8px 0;
+
+            color: #c9cad3;
+        }
+
+
+        /* =========================
+           RECOMMENDATION
+        ========================= */
+
+        .recommendation,
+        .next-action {
+
+            padding: 22px;
+
+            background: #1b1c25;
+
+            border-radius: 20px;
+
+            box-shadow:
+                inset 5px 5px 10px #101117,
+                inset -4px -4px 8px #292b38;
+        }
+
+        .recommendation h3,
+        .next-action h3 {
+
+            color: #a78bfa;
+
+            margin-bottom: 12px;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 750px) {
+
+            .stat-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .topic-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .profile-list,
+            .analysis-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .topic-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- BACK -->
+
+    <button
+        class="top-back"
+        onclick="window.location.href='dashboard.html'"
+    >
+        ← Back
+    </button>
+
+
+    <!-- TITLE -->
+
+    <h1>NEXORA 🤖</h1>
+
+
+    <!-- HERO -->
+
+    <div class="hub-hero">
+
+        <h2>💻 DSA Intelligence Hub</h2>
+
+        <p>
+            NEXORA analyzes your DSA preparation,
+            identifies skill gaps and helps you decide
+            what to practice next.
+        </p>
+
+    </div>
+
+
+    <!-- QUICK STATS -->
+
+    <div class="stat-grid">
+
+        <div class="stat-card">
+
+            <h3>🔥 Streak</h3>
+
+            <strong id="streak">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <h3>✓ Completed</h3>
+
+            <strong id="completed">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <h3>📚 Topics</h3>
+
+            <strong>
+                18
+            </strong>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <h3>🎯 Mastery</h3>
+
+            <strong id="mastery">
+                0%
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <!-- MY DSA SHEET -->
+
+    <div class="hub-card">
+
+        <h2>📑 My DSA Sheet</h2>
+
+        <div class="inner-box">
+
+            <p>
+
+                Selected Sheet:
+
+                <strong id="selectedSheet">
+                    Not selected
+                </strong>
+
+            </p>
+
+            <p>
+                NEXORA tracks your personal progress
+                without copying or hosting the original sheet.
+            </p>
+
+            <button
+                onclick="window.location.href='dsa-sheets.html'"
+            >
+                📑 Manage DSA Sheet
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- CODING ACTIVITY -->
+
+    <div class="hub-card">
+
+        <h2>🔗 Coding Activity</h2>
+
+        <p>
+            Your connected coding platforms:
+        </p>
+
+
+        <div class="profile-list">
+
+            <div class="profile-item">
+
+                LeetCode:
+
+                <span id="leetcodeStatus">
+                    Not Connected
+                </span>
+
+            </div>
+
+
+            <div class="profile-item">
+
+                GeeksforGeeks:
+
+                <span id="gfgStatus">
+                    Not Connected
+                </span>
+
+            </div>
+
+
+            <div class="profile-item">
+
+                HackerRank:
+
+                <span id="hackerrankStatus">
+                    Not Connected
+                </span>
+
+            </div>
+
+
+            <div class="profile-item">
+
+                CodeChef:
+
+                <span id="codechefStatus">
+                    Not Connected
+                </span>
+
+            </div>
+
+
+            <div class="profile-item">
+
+                Codeforces:
+
+                <span id="codeforcesStatus">
+                    Not Connected
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <button
+            onclick="window.location.href='coding-profiles.html'"
+        >
+            🔗 Manage Coding Profiles
+        </button>
+
+    </div>
+
+
+    <!-- DSA PROGRESS -->
+
+    <div class="hub-card">
+
+        <h2>📊 DSA Progress & Mastery</h2>
+
+
+        <div class="progress-row">
+
+            <div class="progress-header">
+
+                <span>
+                    Overall DSA Progress
+                </span>
+
+                <span id="overallProgressText">
+                    0%
+                </span>
+
+            </div>
+
+
+            <div class="progress-bar">
+
+                <div
+                    class="progress-fill"
+                    id="overallProgress"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <div class="progress-row">
+
+            <div class="progress-header">
+
+                <span>
+                    Easy
+                </span>
+
+                <span id="easyProgressText">
+                    0%
+                </span>
+
+            </div>
+
+
+            <div class="progress-bar">
+
+                <div
+                    class="progress-fill"
+                    id="easyProgress"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <div class="progress-row">
+
+            <div class="progress-header">
+
+                <span>
+                    Medium
+                </span>
+
+                <span id="mediumProgressText">
+                    0%
+                </span>
+
+            </div>
+
+
+            <div class="progress-bar">
+
+                <div
+                    class="progress-fill"
+                    id="mediumProgress"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <div class="progress-row">
+
+            <div class="progress-header">
+
+                <span>
+                    Hard
+                </span>
+
+                <span id="hardProgressText">
+                    0%
+                </span>
+
+            </div>
+
+
+            <div class="progress-bar">
+
+                <div
+                    class="progress-fill"
+                    id="hardProgress"
+                ></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- TOPIC MASTERY -->
+
+    <div class="hub-card">
+
+        <h2>🧠 Topic Mastery</h2>
+
+        <p>
+            NEXORA tracks which DSA topics need more practice.
+        </p>
+
+
+        <div
+            class="topic-grid"
+            id="topicGrid"
+        ></div>
+
+    </div>
+
+
+    <!-- SKILL GAP -->
+
+    <div class="hub-card">
+
+        <h2>🔍 Skill Gap Analysis</h2>
+
+
+        <div class="analysis-grid">
+
+
+            <div class="analysis-box">
+
+                <h3>💪 Strong Areas</h3>
+
+                <div id="strongAreas">
+                    <p>Complete questions to identify strong areas.</p>
+                </div>
+
+            </div>
+
+
+            <div class="analysis-box">
+
+                <h3>⚠️ Needs Attention</h3>
+
+                <div id="attentionAreas">
+                    <p>Complete questions to identify weak topics.</p>
+                </div>
+
+            </div>
+
+
+            <div class="analysis-box">
+
+                <h3>📈 Improving</h3>
+
+                <div id="improvingAreas">
+                    <p>No improving topics yet.</p>
+                </div>
+
+            </div>
+
+
+            <div class="analysis-box">
+
+                <h3>💤 Inactive</h3>
+
+                <div id="inactiveAreas">
+                    <p>No inactive topics yet.</p>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- RECOMMENDATION -->
+
+    <div class="hub-card">
+
+        <h2>🤖 NEXORA Recommendation</h2>
+
+
+        <div class="recommendation">
+
+            <h3 id="recommendationTitle">
+                Start your DSA preparation
+            </h3>
+
+
+            <p id="recommendationText">
+
+                Select a DSA sheet and solve your
+                first problem. NEXORA will then
+                analyze your preparation data.
+
+            </p>
+
+
+            <p>
+
+                <strong>
+                    Why this recommendation?
+                </strong>
+
+            </p>
+
+
+            <p id="recommendationWhy">
+
+                There is not enough activity data yet.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- NEXT BEST ACTION -->
+
+    <div class="hub-card">
+
+        <h2>🚀 Next Best Action</h2>
+
+
+        <div class="next-action">
+
+            <h3 id="nextActionTitle">
+                Start DSA Practice
+            </h3>
+
+
+            <p id="nextActionText">
+
+                Solve a DSA problem on the original
+                coding platform and track your completion
+                inside NEXORA.
+
+            </p>
+
+
+            <button
+                id="nextActionButton"
+                onclick="window.location.href='dsa-practice.html'"
+            >
+                💻 Start DSA Practice →
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- PLACEMENT READINESS -->
+
+    <div class="hub-card">
+
+        <h2>🎯 Placement Readiness Impact</h2>
+
+
+        <div class="inner-box">
+
+            <p id="readinessText">
+
+                Your DSA preparation data will contribute
+                to your overall placement readiness.
+
+            </p>
+
+
+            <p>
+
+                DSA is one component of NEXORA's
+                complete placement preparation system.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+
+        /* =========================
+           TOPICS
+        ========================= */
+
+        const topics = [
+
+            "Arrays",
+            "Strings",
+            "Linked List",
+            "Stack",
+            "Queue",
+            "Trees",
+            "BST",
+            "Graph",
+            "Recursion",
+            "Backtracking",
+            "Greedy",
+            "Heap",
+            "Hashing",
+            "Sliding Window",
+            "Two Pointer",
+            "DP",
+            "Sorting",
+            "Searching"
+
+        ];
+
+
+        /* =========================
+           TOPIC KEY
+        ========================= */
+
+        function topicKey(topic) {
+
+            return "nexoraTopic_" +
+                topic
+                    .toLowerCase()
+                    .replace(/[^a-z0-9]/g, "");
+
+        }
+
+
+        /* =========================
+           GET TOPIC PROGRESS
+        ========================= */
+
+        function getTopicProgress(topic) {
+
+            return Number(
+                localStorage.getItem(
+                    topicKey(topic)
+                ) || 0
+            );
+
+        }
+
+
+        /* =========================
+           TOPIC STATUS
+        ========================= */
+
+        function getStatus(progress) {
+
+            if (progress >= 70) {
+
+                return "Strong";
+
+            }
+
+            if (progress >= 40) {
+
+                return "Improving";
+
+            }
+
+            if (progress > 0) {
+
+                return "Needs Practice";
+
+            }
+
+            return "Not Started";
+
+        }
+
+
+        /* =========================
+           SHOW TOPICS
+        ========================= */
+
+        function showTopics() {
+
+            const container =
+                document.getElementById(
+                    "topicGrid"
+                );
+
+
+            container.innerHTML = "";
+
+
+            topics.forEach(function(topic) {
+
+                const progress =
+                    getTopicProgress(topic);
+
+
+                const status =
+                    getStatus(progress);
+
+
+                const card =
+                    document.createElement("div");
+
+
+                card.className =
+                    "topic-card";
+
+
+                card.innerHTML = `
+
+                    <h3>
+                        ${topic}
+                    </h3>
+
+                    <p>
+                        Progress:
+                        ${progress}%
+                    </p>
+
+                    <div class="progress-bar">
+
+                        <div
+                            class="progress-fill"
+                            style="width:${progress}%"
+                        ></div>
+
+                    </div>
+
+                    <p class="topic-status">
+                        ${status}
+                    </p>
+
+                `;
+
+
+                container.appendChild(card);
+
+            });
+
+        }
+
+
+        /* =========================
+           COMPLETED COUNT
+        ========================= */
+
+        function getCompletedCount() {
+
+            let count = 0;
+
+
+            for (
+                let i = 0;
+                i < localStorage.length;
+                i++
+            ) {
+
+                const key =
+                    localStorage.key(i);
+
+
+                if (
+                    key &&
+                    key.startsWith("nexoraSolved_") &&
+                    localStorage.getItem(key)
+                        === "true"
+                ) {
+
+                    count++;
+
+                }
+
+            }
+
+
+            return count;
+
+        }
+
+
+        /* =========================
+           STREAK
+        ========================= */
+
+        function loadStreak() {
+
+            const streak =
+                Number(
+                    localStorage.getItem(
+                        "nexoraCurrentStreak"
+                    ) || 0
+                );
+
+
+            document.getElementById(
+                "streak"
+            ).textContent =
+                streak;
+
+        }
+
+
+        /* =========================
+           SHEET
+        ========================= */
+
+        function loadSheet() {
+
+            const sheet =
+                localStorage.getItem(
+                    "nexoraSelectedSheet"
+                );
+
+
+            document.getElementById(
+                "selectedSheet"
+            ).textContent =
+                sheet || "Not selected";
+
+        }
+
+
+        /* =========================
+           PROFILES
+        ========================= */
+
+        function loadProfiles() {
+
+            const platforms = [
+
+                "leetcode",
+                "gfg",
+                "hackerrank",
+                "codechef",
+                "codeforces"
+
+            ];
+
+
+            platforms.forEach(function(platform) {
+
+                const saved =
+                    localStorage.getItem(
+                        "nexora_" + platform
+                    );
+
+
+                const element =
+                    document.getElementById(
+                        platform + "Status"
+                    );
+
+
+                if (saved) {
+
+                    element.textContent =
+                        "Connected ✓";
+
+                    element.className =
+                        "connected";
+
+                } else {
+
+                    element.textContent =
+                        "Not Connected";
+
+                }
+
+            });
+
+        }
+
+
+        /* =========================
+           MASTERY
+        ========================= */
+
+        function calculateMastery() {
+
+            let total = 0;
+
+
+            topics.forEach(function(topic) {
+
+                total +=
+                    getTopicProgress(topic);
+
+            });
+
+
+            const mastery =
+                Math.round(
+                    total / topics.length
+                );
+
+
+            document.getElementById(
+                "mastery"
+            ).textContent =
+                mastery + "%";
+
+
+            return mastery;
+
+        }
+
+
+        /* =========================
+           OVERALL PROGRESS
+        ========================= */
+
+        function loadProgress() {
+
+            const completed =
+                getCompletedCount();
+
+
+            const overall =
+                Math.min(
+                    100,
+                    completed * 10
+                );
+
+
+            document.getElementById(
+                "completed"
+            ).textContent =
+                completed;
+
+
+            document.getElementById(
+                "overallProgress"
+            ).style.width =
+                overall + "%";
+
+
+            document.getElementById(
+                "overallProgressText"
+            ).textContent =
+                overall + "%";
+
+
+            const easy =
+                Math.min(
+                    100,
+                    completed * 10
+                );
+
+
+            const medium =
+                Math.min(
+                    100,
+                    Math.max(
+                        0,
+                        (completed - 3) * 10
+                    )
+                );
+
+
+            const hard =
+                Math.min(
+                    100,
+                    Math.max(
+                        0,
+                        (completed - 7) * 10
+                    )
+                );
+
+
+            document.getElementById(
+                "easyProgress"
+            ).style.width =
+                easy + "%";
+
+
+            document.getElementById(
+                "easyProgressText"
+            ).textContent =
+                easy + "%";
+
+
+            document.getElementById(
+                "mediumProgress"
+            ).style.width =
+                medium + "%";
+
+
+            document.getElementById(
+                "mediumProgressText"
+            ).textContent =
+                medium + "%";
+
+
+            document.getElementById(
+                "hardProgress"
+            ).style.width =
+                hard + "%";
+
+
+            document.getElementById(
+                "hardProgressText"
+            ).textContent =
+                hard + "%";
+
+        }
+
+
+        /* =========================
+           SKILL GAP
+        ========================= */
+
+        function loadSkillGap() {
+
+            const strong = [];
+            const attention = [];
+            const improving = [];
+            const inactive = [];
+
+
+            topics.forEach(function(topic) {
+
+                const progress =
+                    getTopicProgress(topic);
+
+
+                if (progress >= 70) {
+
+                    strong.push(topic);
+
+                } else if (progress >= 40) {
+
+                    improving.push(topic);
+
+                } else if (progress > 0) {
+
+                    attention.push(topic);
+
+                } else {
+
+                    inactive.push(topic);
+
+                }
+
+            });
+
+
+            document.getElementById(
+                "strongAreas"
+            ).innerHTML =
+                strong.length
+                ? strong.map(
+                    item => `<p>✓ ${item}</p>`
+                ).join("")
+                : "<p>No strong areas yet.</p>";
+
+
+            document.getElementById(
+                "attentionAreas"
+            ).innerHTML =
+                attention.length
+                ? attention.map(
+                    item => `<p>⚠ ${item}</p>`
+                ).join("")
+                : "<p>No attention areas yet.</p>";
+
+
+            document.getElementById(
+                "improvingAreas"
+            ).innerHTML =
+                improving.length
+                ? improving.map(
+                    item => `<p>↑ ${item}</p>`
+                ).join("")
+                : "<p>No improving topics yet.</p>";
+
+
+            document.getElementById(
+                "inactiveAreas"
+            ).innerHTML =
+                inactive.length
+                ? inactive.map(
+                    item => `<p>• ${item}</p>`
+                ).join("")
+                : "<p>No inactive topics.</p>";
+
+        }
+
+
+        /* =========================
+           RECOMMENDATION
+        ========================= */
+
+        function loadRecommendation() {
+
+            let lowestTopic =
+                topics[0];
+
+
+            let lowestProgress =
+                getTopicProgress(
+                    topics[0]
+                );
+
+
+            topics.forEach(function(topic) {
+
+                const progress =
+                    getTopicProgress(topic);
+
+
+                if (
+                    progress <
+                    lowestProgress
+                ) {
+
+                    lowestProgress =
+                        progress;
+
+                    lowestTopic =
+                        topic;
+
+                }
+
+            });
+
+
+            const completed =
+                getCompletedCount();
+
+
+            if (completed === 0) {
+
+                document.getElementById(
+                    "recommendationTitle"
+                ).textContent =
+                    "Start with your first DSA problem";
+
+
+                document.getElementById(
+                    "recommendationText"
+                ).textContent =
+                    "Begin solving problems to create meaningful DSA activity data.";
+
+
+                document.getElementById(
+                    "recommendationWhy"
+                ).textContent =
+                    "NEXORA needs your practice activity before it can identify your strengths and gaps.";
+
+                return;
+
+            }
+
+
+            document.getElementById(
+                "recommendationTitle"
+            ).textContent =
+                "Practice " +
+                lowestTopic;
+
+
+            document.getElementById(
+                "recommendationText"
+            ).textContent =
+                "Your current tracked progress is lowest in " +
+                lowestTopic +
+                ".";
+
+
+            document.getElementById(
+                "recommendationWhy"
+            ).textContent =
+                "NEXORA recommends the topic with the lowest recorded progress so you can improve your skill coverage.";
+
+        }
+
+
+        /* =========================
+           NEXT ACTION
+        ========================= */
+
+        function loadNextAction() {
+
+            const sheet =
+                localStorage.getItem(
+                    "nexoraSelectedSheet"
+                );
+
+
+            const completed =
+                getCompletedCount();
+
+
+            const title =
+                document.getElementById(
+                    "nextActionTitle"
+                );
+
+
+            const text =
+                document.getElementById(
+                    "nextActionText"
+                );
+
+
+            const button =
+                document.getElementById(
+                    "nextActionButton"
+                );
+
+
+            if (!sheet) {
+
+                title.textContent =
+                    "Select your DSA Sheet";
+
+
+                text.textContent =
+                    "Choose a DSA sheet first so NEXORA can track your preparation path.";
+
+
+                button.textContent =
+                    "📑 Select DSA Sheet →";
+
+
+                button.onclick =
+                    function() {
+
+                        window.location.href =
+                            "dsa-sheets.html";
+
+                    };
+
+
+                return;
+
+            }
+
+
+            if (completed === 0) {
+
+                title.textContent =
+                    "Start your first DSA problem";
+
+
+                text.textContent =
+                    "Your sheet is selected. Now solve a problem on the original coding platform.";
+
+
+                button.textContent =
+                    "💻 Start DSA Practice →";
+
+
+                button.onclick =
+                    function() {
+
+                        window.location.href =
+                            "dsa-practice.html";
+
+                    };
+
+
+                return;
+
+            }
+
+
+            title.textContent =
+                "Continue DSA Practice";
+
+
+            text.textContent =
+                "Keep solving problems to improve topic mastery and placement readiness.";
+
+
+            button.textContent =
+                "💻 Continue Practice →";
+
+
+            button.onclick =
+                function() {
+
+                    window.location.href =
+                        "dsa-practice.html";
+
+                };
+
+        }
+
+
+        /* =========================
+           READINESS
+        ========================= */
+
+        function loadReadiness() {
+
+            const mastery =
+                calculateMastery();
+
+
+            const element =
+                document.getElementById(
+                    "readinessText"
+                );
+
+
+            if (mastery === 0) {
+
+                element.textContent =
+                    "No DSA mastery data has been recorded yet. Start practicing to build your preparation profile.";
+
+            } else if (mastery < 40) {
+
+                element.textContent =
+                    "Your DSA preparation has started. Continue practicing to increase topic coverage.";
+
+            } else if (mastery < 70) {
+
+                element.textContent =
+                    "Your DSA preparation is developing. Strengthen weaker topics for broader placement preparation.";
+
+            } else {
+
+                element.textContent =
+                    "Your tracked DSA preparation shows strong topic coverage. Continue maintaining consistency.";
+
+            }
+
+        }
+
+
+        /* =========================
+           INITIAL LOAD
+        ========================= */
+
+        loadStreak();
+
+        loadSheet();
+
+        loadProfiles();
+
+        loadProgress();
+
+        showTopics();
+
+        loadSkillGap();
+
+        loadRecommendation();
+
+        loadNextAction();
+
+        loadReadiness();
+
+
+    </script>
+
+
+</body>
+
+</html>

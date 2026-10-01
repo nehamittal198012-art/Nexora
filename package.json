@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@huggingface/transformers": "^4.3.0",
+    "mammoth": "^1.13.0",
+    "mongoose": "^9.10.2",
+    "openai": "^7.25.0"
+  }
+}

@@ -1,0 +1,2643 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NEXORA | Core CS Study</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        body {
+            background: #171821;
+            color: #eeeeF5;
+        }
+
+        .page {
+            width: 92%;
+            max-width: 1100px;
+            margin: auto;
+            padding: 30px 0 60px;
+        }
+
+        .top-back {
+            display: inline-block;
+            margin-bottom: 25px;
+            color: #a78bfa;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .hero {
+            background: #20212b;
+            padding: 30px;
+            border-radius: 28px;
+            box-shadow:
+                12px 12px 25px #0d0e13,
+                -10px -10px 22px #2b2d38;
+            margin-bottom: 30px;
+        }
+
+        .hero h1 {
+            color: #a78bfa;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: #b8bac5;
+            line-height: 1.7;
+        }
+
+        .progress-box {
+            margin-top: 20px;
+            padding: 18px;
+            background: #1b1c25;
+            border-radius: 18px;
+            box-shadow:
+                inset 5px 5px 10px #101117,
+                inset -4px -4px 8px #292b38;
+        }
+
+        .progress-box strong {
+            color: #a78bfa;
+        }
+
+        .progress-track {
+            height: 12px;
+            margin-top: 12px;
+            background: #101117;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: #8b5cf6;
+            border-radius: 20px;
+            transition: width .3s ease;
+        }
+
+        .search-box {
+            margin: 25px 0;
+        }
+
+        .search-box input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 15px;
+            border-radius: 16px;
+            border: none;
+            outline: none;
+            background: #1b1c25;
+            color: white;
+            box-shadow:
+                inset 4px 4px 8px #101117,
+                inset -3px -3px 7px #292b38;
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .topic-card {
+            background: #20212b;
+            padding: 22px;
+            border-radius: 22px;
+            box-shadow:
+                10px 10px 20px #0d0e13,
+                -8px -8px 18px #2b2d38;
+            transition: .2s;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .topic-card h3 {
+            color: #a78bfa;
+            margin-bottom: 10px;
+        }
+
+        .topic-card p {
+            color: #b8bac5;
+            line-height: 1.5;
+        }
+
+        .topic-number {
+            color: #77798a;
+            font-size: 13px;
+        }
+
+        .topic-level {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 5px 10px;
+            border-radius: 10px;
+            background: #292b38;
+            color: #c9cad3;
+            font-size: 12px;
+        }
+
+        .study-btn {
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        .completed {
+            margin-top: 10px;
+            color: #a78bfa;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .material-card {
+            background: #20212b;
+            padding: 30px;
+            border-radius: 28px;
+            box-shadow:
+                12px 12px 25px #0d0e13,
+                -10px -10px 22px #2b2d38;
+        }
+
+        .material-card h2 {
+            color: #a78bfa;
+            margin-bottom: 25px;
+        }
+
+        .material-card h3 {
+            color: #c4b5fd;
+            margin-top: 28px;
+            margin-bottom: 12px;
+        }
+
+        .material-card p,
+        .material-card li {
+            color: #d0d1d9;
+            line-height: 1.75;
+        }
+
+        .material-card ul,
+        .material-card ol {
+            padding-left: 25px;
+        }
+
+        .material-box {
+            background: #1b1c25;
+            padding: 18px;
+            border-radius: 16px;
+            margin: 15px 0;
+            box-shadow:
+                inset 4px 4px 8px #101117,
+                inset -3px -3px 7px #292b38;
+        }
+
+        .code-box {
+            background: #111218;
+            padding: 18px;
+            border-radius: 15px;
+            overflow-x: auto;
+            color: #ddd;
+            margin: 15px 0;
+        }
+
+        .code-box pre {
+            margin: 0;
+            white-space: pre-wrap;
+        }
+
+        .interview-question {
+            background: #1b1c25;
+            padding: 15px 18px;
+            border-radius: 14px;
+            margin: 10px 0;
+            color: #d8d8e0;
+        }
+
+        .quick-revision {
+            border-left: 4px solid #8b5cf6;
+            padding-left: 15px;
+        }
+
+        .complete-btn {
+            margin-top: 25px;
+            width: 100%;
+        }
+
+        .back-topics {
+            margin-bottom: 20px;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 40px;
+            color: #aaa;
+        }
+
+        @media(max-width:600px) {
+
+            .page {
+                width: 94%;
+            }
+
+            .hero,
+            .material-card {
+                padding: 22px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="page" id="app"></div>
+
+
+<script>
+
+/* =========================================================
+   COMPLETE PLACEMENT TOPICS
+========================================================= */
+
+const subjects = {
+
+DBMS: [
+
+"Introduction to DBMS",
+"DBMS vs File System",
+"Advantages of DBMS",
+"Database Users",
+"Database Administrator (DBA)",
+"DBMS Architecture",
+"1-Tier, 2-Tier and 3-Tier Architecture",
+"Data Abstraction",
+"Data Independence",
+"Logical Data Independence",
+"Physical Data Independence",
+"Schema and Instance",
+"Database Models",
+"Hierarchical Model",
+"Network Model",
+"Relational Model",
+"ER Model",
+"Entity",
+"Attributes",
+"Types of Attributes",
+"Relationship",
+"Cardinality",
+"ER Diagram",
+"Weak Entity",
+"Keys in DBMS",
+"Super Key",
+"Candidate Key",
+"Primary Key",
+"Alternate Key",
+"Foreign Key",
+"Composite Key",
+"Constraints",
+"Domain Constraint",
+"Referential Integrity",
+"Relational Algebra",
+"Relational Calculus",
+"SQL Basics",
+"SQL Data Types",
+"DDL",
+"DML",
+"DCL",
+"TCL",
+"SELECT",
+"INSERT",
+"UPDATE",
+"DELETE",
+"CREATE",
+"ALTER",
+"DROP",
+"TRUNCATE",
+"SQL Operators",
+"WHERE Clause",
+"ORDER BY",
+"GROUP BY",
+"HAVING",
+"Aggregate Functions",
+"String Functions",
+"Date Functions",
+"SQL Joins",
+"INNER JOIN",
+"LEFT JOIN",
+"RIGHT JOIN",
+"FULL OUTER JOIN",
+"SELF JOIN",
+"CROSS JOIN",
+"Subqueries",
+"Correlated Subquery",
+"Views",
+"SQL Constraints",
+"NULL Values",
+"UNION",
+"UNION ALL",
+"EXISTS",
+"NOT EXISTS",
+"Functional Dependency",
+"Armstrong's Axioms",
+"Normalization",
+"1NF",
+"2NF",
+"3NF",
+"BCNF",
+"4NF",
+"5NF",
+"Denormalization",
+"Update Anomaly",
+"Insert Anomaly",
+"Delete Anomaly",
+"Transactions",
+"ACID Properties",
+"Transaction States",
+"Serializability",
+"Concurrency Control",
+"Lock Based Protocol",
+"Two Phase Locking",
+"Timestamp Ordering",
+"Deadlock in DBMS",
+"Deadlock Prevention",
+"Deadlock Detection",
+"Indexing",
+"Primary Index",
+"Secondary Index",
+"Clustered Index",
+"Non-Clustered Index",
+"B-Tree",
+"B+ Tree",
+"Hashing",
+"Query Processing",
+"Query Optimization",
+"Database Recovery",
+"Log Based Recovery",
+"Checkpoint",
+"Backup and Recovery",
+"Distributed Database",
+"Database Security",
+"SQL Injection Basics"
+
+],
+
+
+OS: [
+
+"Introduction to Operating System",
+"Functions of Operating System",
+"Goals of Operating System",
+"Types of Operating Systems",
+"Batch Operating System",
+"Multiprogramming OS",
+"Multitasking OS",
+"Time Sharing OS",
+"Distributed OS",
+"Real Time OS",
+"System Calls",
+"Kernel",
+"User Mode and Kernel Mode",
+"Process",
+"Process States",
+"Process Control Block",
+"Process Creation",
+"Process Termination",
+"Context Switching",
+"Program vs Process",
+"Thread",
+"Process vs Thread",
+"User Level Threads",
+"Kernel Level Threads",
+"Multithreading",
+"CPU Scheduling",
+"Scheduling Criteria",
+"FCFS Scheduling",
+"SJF Scheduling",
+"SRTF Scheduling",
+"Priority Scheduling",
+"Round Robin Scheduling",
+"Multilevel Queue Scheduling",
+"Multilevel Feedback Queue",
+"Preemptive Scheduling",
+"Non-Preemptive Scheduling",
+"CPU Scheduling Numericals",
+"Process Synchronization",
+"Race Condition",
+"Critical Section",
+"Mutex",
+"Semaphore",
+"Monitor",
+"Producer Consumer Problem",
+"Reader Writer Problem",
+"Dining Philosophers Problem",
+"Deadlock",
+"Deadlock Conditions",
+"Resource Allocation Graph",
+"Deadlock Prevention",
+"Deadlock Avoidance",
+"Banker's Algorithm",
+"Deadlock Detection",
+"Deadlock Recovery",
+"Memory Management",
+"Logical Address",
+"Physical Address",
+"Memory Allocation",
+"Internal Fragmentation",
+"External Fragmentation",
+"Paging",
+"Page Table",
+"Multilevel Paging",
+"Segmentation",
+"Paging vs Segmentation",
+"Virtual Memory",
+"Demand Paging",
+"Page Fault",
+"Page Replacement",
+"FIFO Page Replacement",
+"Optimal Page Replacement",
+"LRU Page Replacement",
+"Thrashing",
+"Working Set",
+"File System",
+"File Attributes",
+"File Operations",
+"File Allocation",
+"Directory Structure",
+"Disk Scheduling",
+"FCFS Disk Scheduling",
+"SSTF",
+"SCAN",
+"C-SCAN",
+"LOOK",
+"C-LOOK",
+"I/O Management",
+"I/O Devices",
+"Device Controller",
+"Buffering",
+"Caching",
+"Spooling",
+"Booting"
+
+],
+
+
+CN: [
+
+"Introduction to Computer Networks",
+"Network Components",
+"Network Criteria",
+"Types of Networks",
+"LAN",
+"MAN",
+"WAN",
+"PAN",
+"Network Topologies",
+"Bus Topology",
+"Star Topology",
+"Ring Topology",
+"Mesh Topology",
+"Network Devices",
+"Hub",
+"Switch",
+"Router",
+"Bridge",
+"Gateway",
+"Repeater",
+"OSI Model",
+"OSI Seven Layers",
+"TCP/IP Model",
+"OSI vs TCP/IP",
+"Encapsulation",
+"Decapsulation",
+"Physical Layer",
+"Transmission Media",
+"Guided Media",
+"Unguided Media",
+"Switching",
+"Circuit Switching",
+"Packet Switching",
+"Data Link Layer",
+"Framing",
+"Error Detection",
+"Parity",
+"Checksum",
+"CRC",
+"Error Correction",
+"Flow Control",
+"Stop and Wait",
+"Sliding Window",
+"MAC Address",
+"Ethernet",
+"CSMA/CD",
+"CSMA/CA",
+"Network Layer",
+"IP Address",
+"IPv4",
+"IPv6",
+"Public IP",
+"Private IP",
+"Static IP",
+"Dynamic IP",
+"Subnetting",
+"Subnet Mask",
+"CIDR",
+"ARP",
+"RARP",
+"ICMP",
+"Routing",
+"Static Routing",
+"Dynamic Routing",
+"Distance Vector Routing",
+"Link State Routing",
+"RIP",
+"OSPF",
+"BGP",
+"Transport Layer",
+"TCP",
+"UDP",
+"TCP vs UDP",
+"Port Number",
+"Socket",
+"TCP Three Way Handshake",
+"TCP Connection Termination",
+"Flow Control in TCP",
+"Congestion Control",
+"Reliable Data Transfer",
+"Application Layer",
+"DNS",
+"DHCP",
+"HTTP",
+"HTTPS",
+"HTTP Methods",
+"HTTP Status Codes",
+"FTP",
+"SMTP",
+"POP3",
+"IMAP",
+"Telnet",
+"SSH",
+"Network Security",
+"Firewall",
+"Proxy Server",
+"Encryption",
+"Symmetric Encryption",
+"Asymmetric Encryption",
+"Digital Signature",
+"SSL/TLS",
+"URL",
+"Client Server Model",
+"P2P Network",
+"Web Communication"
+
+],
+
+
+OOP: [
+
+"Introduction to OOP",
+"OOP vs Procedural Programming",
+"Class",
+"Object",
+"Class vs Object",
+"Constructors",
+"Default Constructor",
+"Parameterized Constructor",
+"Copy Constructor",
+"Destructor",
+"Encapsulation",
+"Abstraction",
+"Inheritance",
+"Types of Inheritance",
+"Single Inheritance",
+"Multilevel Inheritance",
+"Hierarchical Inheritance",
+"Multiple Inheritance",
+"Hybrid Inheritance",
+"Polymorphism",
+"Compile Time Polymorphism",
+"Runtime Polymorphism",
+"Method Overloading",
+"Method Overriding",
+"Dynamic Method Dispatch",
+"Early Binding",
+"Late Binding",
+"Access Modifiers",
+"public",
+"private",
+"protected",
+"default",
+"this Keyword",
+"super Keyword",
+"static Keyword",
+"final Keyword",
+"Abstract Class",
+"Interface",
+"Abstract Class vs Interface",
+"Association",
+"Aggregation",
+"Composition",
+"IS-A Relationship",
+"HAS-A Relationship",
+"Exception Handling",
+"try-catch",
+"finally",
+"throw",
+"throws",
+"Checked Exception",
+"Unchecked Exception",
+"Object Class",
+"equals()",
+"hashCode()",
+"toString()",
+"Upcasting",
+"Downcasting",
+"Composition vs Inheritance",
+"Coupling",
+"Cohesion",
+"SOLID Principles",
+"Single Responsibility Principle",
+"Open Closed Principle",
+"Liskov Substitution Principle",
+"Interface Segregation Principle",
+"Dependency Inversion Principle",
+"Dependency Injection",
+"Design Patterns",
+"Singleton Pattern",
+"Factory Pattern",
+"Real World OOP",
+"OOP Interview Questions"
+
+]
+
+};
+
+
+/* =========================================================
+   IMPORTANT STUDY MATERIAL
+========================================================= */
+
+const detailed = {
+
+DBMS: {
+
+"Introduction to DBMS": {
+
+definition:
+"DBMS stands for Database Management System. It is software used to create, store, organize, retrieve and manage data efficiently.",
+
+explanation:
+"A DBMS acts as an interface between users/applications and the database. Instead of directly managing files, users can perform operations such as insert, update, delete and search through the DBMS.",
+
+points: [
+"Stores and manages structured data.",
+"Provides efficient data retrieval.",
+"Provides security and authorization.",
+"Reduces unnecessary data redundancy.",
+"Maintains data consistency.",
+"Supports multiple users.",
+"Provides backup and recovery."
+],
+
+example:
+"A college DBMS can store students, courses, marks, attendance and faculty information.",
+
+interview: [
+"What is DBMS?",
+"Why do we need DBMS?",
+"How is DBMS different from a file system?",
+"What are the advantages of DBMS?"
+],
+
+revision:
+"DBMS = software used to store, manage, retrieve and secure data."
+},
+
+"DBMS vs File System": {
+
+definition:
+"A file system stores data as files, while DBMS provides structured and controlled management of related data.",
+
+explanation:
+"File systems can suffer from redundancy, inconsistency, weak security and difficulty in concurrent access. DBMS provides mechanisms to solve these problems.",
+
+points: [
+"DBMS provides better security.",
+"DBMS supports transactions.",
+"DBMS supports concurrency.",
+"DBMS provides recovery.",
+"DBMS reduces redundancy.",
+"DBMS supports query languages."
+],
+
+example:
+"A banking system requires transactions and concurrency, so a DBMS is preferred over ordinary files.",
+
+interview: [
+"Why is DBMS better than a file system?",
+"What problems exist in file systems?"
+],
+
+revision:
+"File system = basic file storage. DBMS = controlled database management."
+},
+
+"Data Abstraction": {
+
+definition:
+"Data abstraction means hiding unnecessary implementation details and showing users only the required information.",
+
+explanation:
+"DBMS provides different levels so users do not need to know how data is physically stored.",
+
+points: [
+"Physical Level – describes actual storage.",
+"Logical Level – describes database structure.",
+"View Level – describes what a particular user sees."
+],
+
+example:
+"A bank customer sees account balance, but does not see how the database stores the balance internally.",
+
+interview: [
+"What is data abstraction?",
+"What are its three levels?"
+],
+
+revision:
+"Three levels: Physical → Logical → View."
+},
+
+"Data Independence": {
+
+definition:
+"Data independence is the ability to change one database level without affecting the higher level.",
+
+explanation:
+"It makes database applications easier to maintain when storage or database structure changes.",
+
+points: [
+"Physical data independence deals with storage changes.",
+"Logical data independence deals with logical schema changes.",
+"Physical independence is generally easier to achieve than logical independence."
+],
+
+example:
+"Changing the storage method without changing the user view is physical data independence.",
+
+interview: [
+"What is data independence?",
+"Physical vs logical data independence?"
+],
+
+revision:
+"Physical = storage changes. Logical = schema changes."
+},
+
+"Keys in DBMS": {
+
+definition:
+"A key is an attribute or group of attributes used to uniquely identify records or create relationships between tables.",
+
+explanation:
+"Keys are fundamental for maintaining uniqueness and relationships in relational databases.",
+
+points: [
+"Super Key",
+"Candidate Key",
+"Primary Key",
+"Alternate Key",
+"Foreign Key",
+"Composite Key"
+],
+
+example:
+"In Student(RollNo, Name, Branch), RollNo can be a primary key.",
+
+interview: [
+"What is a primary key?",
+"Primary key vs foreign key?",
+"Can primary key contain NULL?",
+"What is a composite key?"
+],
+
+revision:
+"Primary key uniquely identifies a row; foreign key creates a relationship."
+},
+
+"Normalization": {
+
+definition:
+"Normalization is the process of organizing tables to reduce redundancy and prevent insertion, deletion and update anomalies.",
+
+explanation:
+"Normalization divides poorly designed tables into smaller related tables while maintaining relationships.",
+
+points: [
+"1NF → atomic values.",
+"2NF → 1NF + no partial dependency.",
+"3NF → 2NF + no transitive dependency.",
+"BCNF → every determinant is a candidate key.",
+"4NF → removes problematic multivalued dependencies.",
+"5NF → deals with join dependencies."
+],
+
+example:
+"Instead of storing student and department information repeatedly in one table, separate Student and Department tables can be created.",
+
+interview: [
+"What is normalization?",
+"Explain 1NF, 2NF and 3NF.",
+"What is partial dependency?",
+"What is transitive dependency?",
+"3NF vs BCNF?"
+],
+
+revision:
+"Normalization reduces redundancy and anomalies."
+},
+
+"ACID Properties": {
+
+definition:
+"ACID properties ensure reliable and consistent execution of database transactions.",
+
+explanation:
+"Every reliable transaction system should preserve these properties so that database data remains correct even during failures.",
+
+points: [
+"Atomicity – all operations happen or none happen.",
+"Consistency – valid state changes to another valid state.",
+"Isolation – concurrent transactions should not improperly affect each other.",
+"Durability – committed changes survive failures."
+],
+
+example:
+"In a bank transfer, debit and credit should be treated as one transaction.",
+
+interview: [
+"What are ACID properties?",
+"Explain atomicity with a banking example.",
+"Why is durability important?"
+],
+
+revision:
+"A = All or Nothing, C = Correct State, I = Independent Execution, D = Permanent Commit."
+},
+
+"SQL Basics": {
+
+definition:
+"SQL stands for Structured Query Language and is used to interact with relational databases.",
+
+explanation:
+"SQL can be used to create database objects and perform operations such as selecting, inserting, updating and deleting records.",
+
+points: [
+"DDL – database structure.",
+"DML – data manipulation.",
+"DCL – permissions.",
+"TCL – transactions.",
+"DQL – querying data."
+],
+
+example:
+"SELECT * FROM Student;",
+
+interview: [
+"What is SQL?",
+"DDL vs DML?",
+"DELETE vs TRUNCATE vs DROP?"
+],
+
+revision:
+"SQL is the standard language used to communicate with relational databases."
+},
+
+"SQL Joins": {
+
+definition:
+"A JOIN combines related rows from two or more tables.",
+
+explanation:
+"Joins are used when required information is distributed across multiple relational tables.",
+
+points: [
+"INNER JOIN returns matching rows.",
+"LEFT JOIN keeps all rows from left table.",
+"RIGHT JOIN keeps all rows from right table.",
+"FULL OUTER JOIN keeps rows from both sides.",
+"SELF JOIN joins a table with itself.",
+"CROSS JOIN produces Cartesian combinations."
+],
+
+example:
+"Student table can be joined with Department table using DepartmentID.",
+
+interview: [
+"INNER JOIN vs LEFT JOIN?",
+"Why are joins required?",
+"What is a self join?"
+],
+
+revision:
+"JOIN = combine related data from tables."
+},
+
+"Functional Dependency": {
+
+definition:
+"Functional dependency describes a relationship where one attribute determines another.",
+
+explanation:
+"If A determines B, then for each value of A there should be only one corresponding value of B.",
+
+points: [
+"Written as A → B.",
+"Used in normalization.",
+"Helps identify candidate keys.",
+"Used to identify redundancy."
+],
+
+example:
+"RollNo → StudentName means RollNo determines StudentName.",
+
+interview: [
+"What is functional dependency?",
+"What is partial dependency?",
+"What is transitive dependency?"
+],
+
+revision:
+"A → B means A determines B."
+},
+
+"Transactions": {
+
+definition:
+"A transaction is a sequence of database operations treated as one logical unit of work.",
+
+explanation:
+"Transactions are essential when several operations must either all succeed or all fail.",
+
+points: [
+"BEGIN",
+"READ",
+"WRITE",
+"COMMIT",
+"ROLLBACK"
+],
+
+example:
+"Money transfer requires debit and credit operations to be treated as one transaction.",
+
+interview: [
+"What is a transaction?",
+"COMMIT vs ROLLBACK?",
+"What happens if a transaction fails?"
+],
+
+revision:
+"Transaction = one logical unit of database work."
+},
+
+"Indexing": {
+
+definition:
+"Indexing is a database technique used to make data retrieval faster.",
+
+explanation:
+"An index stores additional information that helps the database locate records without scanning the complete table.",
+
+points: [
+"Improves search performance.",
+"Requires additional storage.",
+"Can slow down insert/update/delete operations.",
+"Useful on frequently searched columns."
+],
+
+example:
+"An index on student roll number can make searches faster.",
+
+interview: [
+"What is indexing?",
+"Why does indexing improve search?",
+"What is the disadvantage of indexing?"
+],
+
+revision:
+"Index = faster reads, extra storage and maintenance cost."
+},
+
+"B-Tree": {
+
+definition:
+"B-Tree is a balanced multiway search tree used for efficient searching and indexing.",
+
+explanation:
+"Each node can contain multiple keys and children. The tree remains balanced, keeping search operations efficient.",
+
+points: [
+"Balanced tree.",
+"Multiple keys per node.",
+"All leaves are at the same level.",
+"Useful for database indexing.",
+"Search, insertion and deletion are efficient."
+],
+
+example:
+"Database indexes can use tree-based structures to locate records efficiently.",
+
+interview: [
+"What is B-Tree?",
+"Why is B-Tree balanced?",
+"B-Tree vs B+ Tree?"
+],
+
+revision:
+"B-Tree = balanced multiway search tree."
+},
+
+"B+ Tree": {
+
+definition:
+"B+ Tree is a balanced indexing tree where data/record references are maintained at leaf level and leaf nodes are linked.",
+
+explanation:
+"Linked leaves make sequential and range searches efficient, which is why B+ Trees are widely associated with database indexing.",
+
+points: [
+"Balanced structure.",
+"Internal nodes guide searching.",
+"Leaf nodes contain record references/data.",
+"Leaf nodes are linked.",
+"Excellent for range queries."
+],
+
+example:
+"A query asking for records between two values can efficiently traverse linked leaf nodes.",
+
+interview: [
+"B-Tree vs B+ Tree?",
+"Why are B+ Trees useful for range queries?",
+"Where are records stored in B+ Tree?"
+],
+
+revision:
+"B+ Tree = balanced index tree + linked leaves + efficient range search."
+}
+
+},
+
+
+OS: {
+
+"Introduction to Operating System": {
+
+definition:
+"An Operating System is system software that manages hardware resources and provides services to application programs.",
+
+explanation:
+"The OS acts as an interface between the user/application and computer hardware.",
+
+points: [
+"Process management",
+"Memory management",
+"File management",
+"I/O management",
+"Security",
+"Resource allocation"
+],
+
+example:
+"Windows, Linux and Android are operating systems.",
+
+interview: [
+"What is an operating system?",
+"What are the major functions of OS?",
+"Why is OS called a resource manager?"
+],
+
+revision:
+"OS manages hardware and provides services to applications."
+},
+
+"Process": {
+
+definition:
+"A process is a program in execution.",
+
+explanation:
+"A program is passive code stored on disk, while a process is the active execution of that program.",
+
+points: [
+"Has its own execution state.",
+"Contains program counter.",
+"Uses CPU registers.",
+"Has memory resources.",
+"Maintains process information in PCB."
+],
+
+example:
+"When you open a browser, its running instance is a process.",
+
+interview: [
+"Program vs process?",
+"What is PCB?",
+"What are process states?"
+],
+
+revision:
+"Program = passive. Process = program in execution."
+},
+
+"Process vs Thread": {
+
+definition:
+"A process is an independent execution unit, while a thread is a lightweight execution unit inside a process.",
+
+explanation:
+"Threads belonging to the same process generally share code, data and other resources.",
+
+points: [
+"Process has separate address space.",
+"Threads share process resources.",
+"Thread creation is generally cheaper.",
+"Communication between threads is easier.",
+"Processes provide stronger isolation."
+],
+
+example:
+"A browser may use multiple processes and multiple threads for different tasks.",
+
+interview: [
+"Process vs thread?",
+"Why are threads called lightweight?",
+"What resources do threads share?"
+],
+
+revision:
+"Process = independent unit. Thread = lightweight unit inside process."
+},
+
+"CPU Scheduling": {
+
+definition:
+"CPU scheduling decides which ready process should be allocated the CPU.",
+
+explanation:
+"The scheduler selects processes according to a scheduling algorithm.",
+
+points: [
+"Waiting Time",
+"Turnaround Time",
+"Response Time",
+"Throughput",
+"CPU Utilization"
+],
+
+example:
+"Round Robin is commonly associated with time-sharing systems.",
+
+interview: [
+"What is CPU scheduling?",
+"What is waiting time?",
+"What is turnaround time?"
+],
+
+revision:
+"Scheduling decides which ready process gets CPU next."
+},
+
+"FCFS Scheduling": {
+
+definition:
+"FCFS means First Come First Serve. The process arriving first is executed first.",
+
+explanation:
+"It is simple and non-preemptive, but a long process can make shorter processes wait.",
+
+points: [
+"Simple.",
+"Non-preemptive.",
+"Easy to implement.",
+"Can cause convoy effect."
+],
+
+example:
+"If P1 arrives before P2, P1 executes first.",
+
+interview: [
+"What is FCFS?",
+"What is convoy effect?",
+"Is FCFS preemptive?"
+],
+
+revision:
+"FCFS = first arrival gets CPU first."
+},
+
+"Round Robin Scheduling": {
+
+definition:
+"Round Robin is a preemptive scheduling algorithm in which every process receives a fixed time quantum.",
+
+explanation:
+"When the quantum expires, the running process is moved back to the ready queue if it is not finished.",
+
+points: [
+"Preemptive.",
+"Uses time quantum.",
+"Suitable for time-sharing.",
+"Very small quantum increases context switches.",
+"Very large quantum behaves more like FCFS."
+],
+
+example:
+"With quantum = 2 ms, each ready process gets up to 2 ms before another process is selected.",
+
+interview: [
+"What is Round Robin?",
+"What happens if time quantum is too small?",
+"What happens if quantum is very large?"
+],
+
+revision:
+"Round Robin = preemptive + fixed time quantum."
+},
+
+"Deadlock": {
+
+definition:
+"Deadlock is a situation where processes wait indefinitely for resources held by each other.",
+
+explanation:
+"Each process remains blocked because another process holds a required resource.",
+
+points: [
+"Mutual Exclusion",
+"Hold and Wait",
+"No Preemption",
+"Circular Wait"
+],
+
+example:
+"P1 holds Resource A and waits for B, while P2 holds B and waits for A.",
+
+interview: [
+"What is deadlock?",
+"What are the four necessary conditions?",
+"Deadlock vs starvation?"
+],
+
+revision:
+"Deadlock requires four conditions: mutual exclusion, hold-wait, no preemption, circular wait."
+},
+
+"Banker's Algorithm": {
+
+definition:
+"Banker's Algorithm is a deadlock avoidance algorithm that checks whether granting resources keeps the system in a safe state.",
+
+explanation:
+"The algorithm simulates resource allocation before actually granting a request.",
+
+points: [
+"Used for deadlock avoidance.",
+"Checks safe state.",
+"Uses Available, Max, Allocation and Need.",
+"Need = Max − Allocation."
+],
+
+example:
+"A resource request is granted only if the resulting state remains safe.",
+
+interview: [
+"What is Banker's Algorithm?",
+"Safe state vs unsafe state?",
+"Is Banker’s Algorithm prevention or avoidance?"
+],
+
+revision:
+"Banker's Algorithm = deadlock avoidance through safe-state checking."
+},
+
+"Paging": {
+
+definition:
+"Paging is a memory management technique that divides logical memory into fixed-size pages and physical memory into frames.",
+
+explanation:
+"A page can be loaded into any available frame, allowing non-contiguous memory allocation.",
+
+points: [
+"Pages are fixed size.",
+"Frames are fixed size.",
+"Page table maps pages to frames.",
+"Reduces external fragmentation.",
+"May cause internal fragmentation."
+],
+
+example:
+"Page 2 can be stored in frame 7 instead of requiring contiguous physical memory.",
+
+interview: [
+"What is paging?",
+"Page vs frame?",
+"What is page table?"
+],
+
+revision:
+"Paging = pages + frames + page table."
+},
+
+"Virtual Memory": {
+
+definition:
+"Virtual memory allows a system to execute programs that are larger than available physical memory by using secondary storage.",
+
+explanation:
+"Only required portions of a program may be loaded into RAM at a time.",
+
+points: [
+"Supports larger programs.",
+"Uses demand paging.",
+"Can cause page faults.",
+"Improves multiprogramming."
+],
+
+example:
+"A process can have a large virtual address space even when RAM is smaller.",
+
+interview: [
+"What is virtual memory?",
+"What is page fault?",
+"Why is virtual memory needed?"
+],
+
+revision:
+"Virtual memory gives programs a larger logical memory space."
+},
+
+"Page Replacement": {
+
+definition:
+"Page replacement decides which page should be removed from memory when a new page needs to be loaded and no free frame exists.",
+
+explanation:
+"Different algorithms try to reduce the number of page faults.",
+
+points: [
+"FIFO",
+"Optimal",
+"LRU"
+],
+
+example:
+"LRU replaces the page that has not been used for the longest recent period.",
+
+interview: [
+"What is page replacement?",
+"FIFO vs LRU?",
+"Which algorithm is theoretically optimal?"
+],
+
+revision:
+"Page replacement chooses which page to remove."
+}
+
+},
+
+
+CN: {
+
+"Introduction to Computer Networks": {
+
+definition:
+"A computer network is a collection of interconnected devices that communicate and share resources.",
+
+explanation:
+"Networks allow computers and devices to exchange data using communication protocols.",
+
+points: [
+"Resource sharing",
+"Communication",
+"Data sharing",
+"Internet access",
+"Distributed services"
+],
+
+example:
+"Computers connected through a college Wi-Fi network form a network.",
+
+interview: [
+"What is a computer network?",
+"Why are networks needed?",
+"What is a protocol?"
+],
+
+revision:
+"Network = connected devices communicating through protocols."
+},
+
+"OSI Model": {
+
+definition:
+"OSI is a seven-layer conceptual model used to understand network communication.",
+
+explanation:
+"Each layer performs specific networking functions and communicates with adjacent layers.",
+
+points: [
+"Application",
+"Presentation",
+"Session",
+"Transport",
+"Network",
+"Data Link",
+"Physical"
+],
+
+example:
+"Transport layer provides end-to-end communication while Network layer handles routing.",
+
+interview: [
+"Explain OSI model.",
+"Name all seven layers.",
+"Which layer handles routing?",
+"Which layer provides end-to-end communication?"
+],
+
+revision:
+"OSI: Application → Presentation → Session → Transport → Network → Data Link → Physical."
+},
+
+"TCP/IP Model": {
+
+definition:
+"TCP/IP is the practical protocol architecture used by the Internet.",
+
+explanation:
+"It organizes communication into layers responsible for application services, transport, internet addressing/routing and network access.",
+
+points: [
+"Application Layer",
+"Transport Layer",
+"Internet Layer",
+"Network Access Layer"
+],
+
+example:
+"HTTP works at application level while TCP works at transport level.",
+
+interview: [
+"What is TCP/IP model?",
+"OSI vs TCP/IP?",
+"Which model is used by the Internet?"
+],
+
+revision:
+"TCP/IP is the practical Internet protocol architecture."
+},
+
+"IP Address": {
+
+definition:
+"An IP address is a logical address used to identify a device/interface on an IP network.",
+
+explanation:
+"IPv4 uses 32-bit addresses while IPv6 uses 128-bit addresses.",
+
+points: [
+"IPv4 = 32 bit.",
+"IPv6 = 128 bit.",
+"Used for logical addressing.",
+"Routers use IP information for forwarding."
+],
+
+example:
+"192.168.1.10 is a commonly seen private IPv4 address.",
+
+interview: [
+"What is an IP address?",
+"IPv4 vs IPv6?",
+"Public vs private IP?"
+],
+
+revision:
+"IP address = logical network address."
+},
+
+"Subnetting": {
+
+definition:
+"Subnetting divides a larger IP network into smaller logical networks called subnets.",
+
+explanation:
+"It helps organize networks, use addresses efficiently and control broadcast domains.",
+
+points: [
+"Uses subnet mask/prefix.",
+"Divides networks into smaller parts.",
+"Improves address management.",
+"Important for networking interviews."
+],
+
+example:
+"A /24 network can be divided into smaller subnets by borrowing host bits.",
+
+interview: [
+"What is subnetting?",
+"What is subnet mask?",
+"What does /24 mean?"
+],
+
+revision:
+"Subnetting = dividing one network into smaller networks."
+},
+
+"TCP": {
+
+definition:
+"TCP is a connection-oriented transport-layer protocol that provides reliable and ordered delivery of data.",
+
+explanation:
+"TCP establishes a connection and uses acknowledgements, sequence numbers and retransmission mechanisms.",
+
+points: [
+"Connection-oriented.",
+"Reliable.",
+"Ordered delivery.",
+"Flow control.",
+"Congestion control."
+],
+
+example:
+"HTTPS commonly uses TCP as its transport protocol.",
+
+interview: [
+"What is TCP?",
+"Why is TCP reliable?",
+"TCP vs UDP?"
+],
+
+revision:
+"TCP = connection-oriented + reliable + ordered."
+},
+
+"UDP": {
+
+definition:
+"UDP is a connectionless transport-layer protocol with low overhead and no guarantee of reliable delivery.",
+
+explanation:
+"UDP is useful where speed and low overhead are more important than guaranteed delivery.",
+
+points: [
+"Connectionless.",
+"Low overhead.",
+"No delivery guarantee.",
+"No built-in retransmission.",
+"Useful for real-time applications."
+],
+
+example:
+"DNS commonly uses UDP for many queries.",
+
+interview: [
+"What is UDP?",
+"Why is UDP faster?",
+"When should UDP be preferred?"
+],
+
+revision:
+"UDP = connectionless + low overhead + no reliability guarantee."
+},
+
+"TCP vs UDP": {
+
+definition:
+"TCP prioritizes reliable ordered delivery, while UDP prioritizes simplicity and low overhead.",
+
+explanation:
+"The choice depends on application requirements.",
+
+points: [
+"TCP is connection-oriented.",
+"UDP is connectionless.",
+"TCP provides reliability.",
+"UDP does not guarantee delivery.",
+"TCP has more overhead.",
+"UDP has lower overhead."
+],
+
+example:
+"File transfer generally benefits from TCP; some real-time applications may prefer UDP.",
+
+interview: [
+"TCP vs UDP?",
+"Which is faster?",
+"Which is reliable?"
+],
+
+revision:
+"TCP = reliability. UDP = speed/low overhead."
+},
+
+"DNS": {
+
+definition:
+"DNS stands for Domain Name System. It translates domain names into IP addresses.",
+
+explanation:
+"Humans use names such as example.com, while network communication requires IP addresses.",
+
+points: [
+"Name resolution.",
+"Uses hierarchical structure.",
+"DNS servers store records.",
+"Common record types include A, AAAA, CNAME and MX."
+],
+
+example:
+"Typing a website domain causes DNS resolution before the browser connects to the server.",
+
+interview: [
+"What is DNS?",
+"Why is DNS required?",
+"What is DNS resolution?"
+],
+
+revision:
+"DNS = domain name → IP address resolution."
+},
+
+"HTTP": {
+
+definition:
+"HTTP is an application-layer protocol used for communication between web clients and servers.",
+
+explanation:
+"A client sends an HTTP request and the server returns an HTTP response.",
+
+points: [
+"Request-response protocol.",
+"Uses methods such as GET and POST.",
+"Uses status codes.",
+"Commonly works over TCP."
+],
+
+example:
+"Browser sends GET request to retrieve a webpage.",
+
+interview: [
+"What is HTTP?",
+"GET vs POST?",
+"What are HTTP status codes?"
+],
+
+revision:
+"HTTP = web request-response protocol."
+},
+
+"HTTPS": {
+
+definition:
+"HTTPS is HTTP communication protected using TLS.",
+
+explanation:
+"TLS helps provide confidentiality, integrity and server authentication for web communication.",
+
+points: [
+"HTTP + TLS security.",
+"Encrypts communication.",
+"Protects data in transit.",
+"Uses certificates for authentication."
+],
+
+example:
+"Online banking websites use HTTPS to protect communication.",
+
+interview: [
+"HTTP vs HTTPS?",
+"What is TLS?",
+"Why is HTTPS secure?"
+],
+
+revision:
+"HTTPS = HTTP secured using TLS."
+}
+
+},
+
+
+OOP: {
+
+"Introduction to OOP": {
+
+definition:
+"Object-Oriented Programming is a programming approach that organizes software around objects containing data and behavior.",
+
+explanation:
+"OOP helps model real-world entities and build reusable, maintainable software.",
+
+points: [
+"Class",
+"Object",
+"Encapsulation",
+"Abstraction",
+"Inheritance",
+"Polymorphism"
+],
+
+example:
+"A Student class can contain student data and methods such as displayDetails().",
+
+interview: [
+"What is OOP?",
+"What are the four pillars of OOP?",
+"OOP vs procedural programming?"
+],
+
+revision:
+"OOP organizes programs around objects and their behavior."
+},
+
+"Class": {
+
+definition:
+"A class is a blueprint or template used to create objects.",
+
+explanation:
+"It defines data members and methods that objects created from the class can use.",
+
+points: [
+"Logical blueprint.",
+"Contains fields.",
+"Contains methods.",
+"Objects are instances of classes."
+],
+
+example:
+"class Student can define name, rollNo and display().",
+
+interview: [
+"What is a class?",
+"Class vs object?"
+],
+
+revision:
+"Class = blueprint. Object = instance."
+},
+
+"Object": {
+
+definition:
+"An object is an instance of a class.",
+
+explanation:
+"An object has state represented by data and behavior represented by methods.",
+
+points: [
+"Has state.",
+"Has behavior.",
+"Has identity.",
+"Created from a class."
+],
+
+example:
+"Student s1 = new Student();",
+
+interview: [
+"What is an object?",
+"What are state and behavior?"
+],
+
+revision:
+"Object = real instance of a class."
+},
+
+"Encapsulation": {
+
+definition:
+"Encapsulation means bundling data and methods together and controlling access to internal data.",
+
+explanation:
+"Access modifiers and methods such as getters and setters can be used to protect object data.",
+
+points: [
+"Data hiding.",
+"Controlled access.",
+"Improves maintainability.",
+"Implemented using classes and access modifiers."
+],
+
+example:
+"Keep balance private and provide deposit() and withdraw() methods.",
+
+interview: [
+"What is encapsulation?",
+"Encapsulation vs abstraction?",
+"How is encapsulation achieved in Java?"
+],
+
+revision:
+"Encapsulation = bundle data + methods + controlled access."
+},
+
+"Abstraction": {
+
+definition:
+"Abstraction means exposing essential functionality while hiding unnecessary implementation details.",
+
+explanation:
+"The user focuses on what an object does rather than how it internally performs the operation.",
+
+points: [
+"Shows essential features.",
+"Hides implementation.",
+"Can be achieved using abstract classes and interfaces.",
+"Reduces complexity."
+],
+
+example:
+"A user calls car.start() without needing to know the internal engine mechanism.",
+
+interview: [
+"What is abstraction?",
+"Abstraction vs encapsulation?",
+"How is abstraction implemented in Java?"
+],
+
+revision:
+"Abstraction = what to do; implementation details remain hidden."
+},
+
+"Inheritance": {
+
+definition:
+"Inheritance allows a class to acquire properties and behavior of another class.",
+
+explanation:
+"It promotes code reuse and represents an IS-A relationship.",
+
+points: [
+"Parent/Superclass",
+"Child/Subclass",
+"Code reuse",
+"Method overriding",
+"IS-A relationship"
+],
+
+example:
+"Dog can inherit common properties from Animal.",
+
+interview: [
+"What is inheritance?",
+"What are its types?",
+"What is IS-A relationship?"
+],
+
+revision:
+"Inheritance = acquiring properties/behavior from another class."
+},
+
+"Polymorphism": {
+
+definition:
+"Polymorphism means one interface or method name can represent different behaviors.",
+
+explanation:
+"In Java, compile-time polymorphism is commonly achieved through method overloading, while runtime polymorphism is achieved through method overriding.",
+
+points: [
+"Compile-time polymorphism.",
+"Runtime polymorphism.",
+"Method overloading.",
+"Method overriding."
+],
+
+example:
+"draw() can behave differently for Circle and Rectangle.",
+
+interview: [
+"What is polymorphism?",
+"Overloading vs overriding?",
+"Compile-time vs runtime polymorphism?"
+],
+
+revision:
+"Polymorphism = one interface/name, multiple forms."
+},
+
+"Method Overloading": {
+
+definition:
+"Method overloading means having multiple methods with the same name but different parameter lists in the same class.",
+
+explanation:
+"The compiler determines which method to call based on the arguments.",
+
+points: [
+"Same method name.",
+"Different parameters.",
+"Compile-time decision.",
+"Return type alone cannot overload a method."
+],
+
+example:
+"add(int,int) and add(int,int,int).",
+
+interview: [
+"What is method overloading?",
+"Can methods be overloaded by changing only return type?"
+],
+
+revision:
+"Overloading = same name + different parameter list."
+},
+
+"Method Overriding": {
+
+definition:
+"Method overriding occurs when a subclass provides its own implementation of an inherited method.",
+
+explanation:
+"It enables runtime polymorphism.",
+
+points: [
+"Requires inheritance.",
+"Method signature is compatible.",
+"Runtime decision.",
+"Used for specialized behavior."
+],
+
+example:
+"Dog overrides Animal's sound() method.",
+
+interview: [
+"What is overriding?",
+"Overloading vs overriding?",
+"How does runtime polymorphism work?"
+],
+
+revision:
+"Overriding = child provides its own implementation."
+},
+
+"Abstract Class": {
+
+definition:
+"An abstract class is a class that cannot normally be instantiated directly and may contain abstract as well as concrete methods.",
+
+explanation:
+"It provides a common base with shared implementation and abstract behavior.",
+
+points: [
+"Cannot directly create object.",
+"Can contain abstract methods.",
+"Can contain concrete methods.",
+"Can have constructors."
+],
+
+example:
+"abstract class Shape can define abstract area().",
+
+interview: [
+"What is abstract class?",
+"Can abstract class have constructor?",
+"Abstract class vs interface?"
+],
+
+revision:
+"Abstract class = incomplete base class that can provide common implementation."
+},
+
+"Interface": {
+
+definition:
+"An interface defines a contract that implementing classes agree to follow.",
+
+explanation:
+"Interfaces are useful for abstraction and allowing classes to follow common behavior contracts.",
+
+points: [
+"Defines contract.",
+"Classes implement interfaces.",
+"Supports abstraction.",
+"Java allows a class to implement multiple interfaces."
+],
+
+example:
+"Payable interface can define pay() for different payment classes.",
+
+interview: [
+"What is interface?",
+"Interface vs abstract class?",
+"Why are interfaces useful?"
+],
+
+revision:
+"Interface = contract of behavior."
+},
+
+"Exception Handling": {
+
+definition:
+"Exception handling is a mechanism for handling runtime problems so that a program can respond gracefully.",
+
+explanation:
+"Java provides try, catch, finally, throw and throws for exception handling.",
+
+points: [
+"try contains risky code.",
+"catch handles exception.",
+"finally executes cleanup code.",
+"throw explicitly throws exception.",
+"throws declares possible exceptions."
+],
+
+example:
+"Handle division by zero using try-catch.",
+
+interview: [
+"What is exception handling?",
+"throw vs throws?",
+"Checked vs unchecked exception?"
+],
+
+revision:
+"Exception handling prevents abnormal situations from crashing program flow unexpectedly."
+},
+
+"SOLID Principles": {
+
+definition:
+"SOLID is a set of five principles used to design maintainable and flexible object-oriented software.",
+
+explanation:
+"The principles help reduce strong dependencies and make software easier to extend and modify.",
+
+points: [
+"Single Responsibility Principle",
+"Open Closed Principle",
+"Liskov Substitution Principle",
+"Interface Segregation Principle",
+"Dependency Inversion Principle"
+],
+
+example:
+"A class should not have many unrelated responsibilities.",
+
+interview: [
+"What is SOLID?",
+"Explain SRP.",
+"Explain OCP.",
+"Explain LSP.",
+"Explain ISP.",
+"Explain DIP."
+],
+
+revision:
+"SRP, OCP, LSP, ISP, DIP = five SOLID principles."
+},
+
+"Coupling": {
+
+definition:
+"Coupling represents the level of dependency between software modules.",
+
+explanation:
+"Low coupling is generally preferred because changes in one module have less impact on others.",
+
+points: [
+"High coupling = strong dependency.",
+"Low coupling = weaker dependency.",
+"Low coupling improves maintainability."
+],
+
+example:
+"A class directly depending on many internal details of another class has high coupling.",
+
+interview: [
+"What is coupling?",
+"Why is low coupling preferred?"
+],
+
+revision:
+"Good design generally aims for low coupling."
+},
+
+"Cohesion": {
+
+definition:
+"Cohesion represents how closely related the responsibilities inside a module are.",
+
+explanation:
+"High cohesion means a module focuses on a clear and related responsibility.",
+
+points: [
+"High cohesion is desirable.",
+"Low cohesion means unrelated responsibilities are mixed.",
+"Improves maintainability."
+],
+
+example:
+"A class responsible only for authentication has better cohesion than a class handling authentication, payments and reports.",
+
+interview: [
+"What is cohesion?",
+"Coupling vs cohesion?"
+],
+
+revision:
+"Good software design aims for high cohesion and low coupling."
+}
+
+}
+
+};
+
+
+/* =========================================================
+   GENERIC MATERIAL FOR REMAINING TOPICS
+   Topic-specific content is still generated around the
+   actual topic instead of showing a blank page.
+========================================================= */
+
+function generateMaterial(subject, topic) {
+
+    if (detailed[subject] && detailed[subject][topic]) {
+        return detailed[subject][topic];
+    }
+
+    const subjectFocus = {
+
+        DBMS:
+        "database design, SQL, normalization, transactions, indexing and database interviews",
+
+        OS:
+        "processes, CPU scheduling, synchronization, deadlocks, memory management and file systems",
+
+        CN:
+        "network models, protocols, addressing, routing, TCP/IP and network security",
+
+        OOP:
+        "classes, objects, inheritance, polymorphism, abstraction, encapsulation and software design"
+
+    };
+
+    return {
+
+        definition:
+            `${topic} is an important ${subject} concept used in ${subjectFocus[subject]}.`,
+
+        explanation:
+            `For placement preparation, you should understand what ${topic} means, why it is used, how it works, its advantages and limitations, and where it is used in real-world systems.`,
+
+        points: [
+            `Understand the basic definition of ${topic}.`,
+            `Know the working or main idea behind ${topic}.`,
+            `Learn important terminology related to ${topic}.`,
+            `Understand advantages and limitations.`,
+            `Prepare common comparison-based questions.`,
+            `Practice interview-oriented examples.`
+        ],
+
+        example:
+            `${topic} should be understood with a simple real-world example and then connected with its technical implementation.`,
+
+        interview: [
+            `What is ${topic}?`,
+            `Why is ${topic} used?`,
+            `Explain ${topic} with an example.`,
+            `What are the advantages and limitations of ${topic}?`,
+            `How is ${topic} different from related concepts?`
+        ],
+
+        revision:
+            `${topic} → definition → working → key points → example → interview questions.`
+    };
+}
+
+
+/* =========================================================
+   APP
+========================================================= */
+
+const app = document.getElementById("app");
+
+const params = new URLSearchParams(window.location.search);
+
+const subject = params.get("subject");
+const topic = params.get("topic");
+
+
+/* =========================================================
+   SUBJECT TOPIC PAGE
+========================================================= */
+
+function renderTopics() {
+
+    if (!subjects[subject]) {
+
+        app.innerHTML = `
+            <a class="top-back" href="core-blogs.html">← Back to Core CS Blogs</a>
+
+            <div class="hero">
+                <h1>NEXORA 🤖</h1>
+                <p>Subject not found.</p>
+            </div>
+        `;
+
+        return;
+    }
+
+
+    const topicList = subjects[subject];
+
+    const completedCount =
+        topicList.filter((_, index) =>
+            localStorage.getItem(
+                `nexora_core_${subject}_${index}`
+            ) === "true"
+        ).length;
+
+
+    app.innerHTML = `
+
+        <a class="top-back" href="core-blogs.html">
+            ← Back to Core CS Blogs
+        </a>
+
+        <div class="hero">
+
+            <h1>${subject}</h1>
+
+            <p>
+                Placement-oriented ${subject} preparation
+                with simple concepts, examples and interview focus.
+            </p>
+
+            <div class="progress-box">
+
+                <strong>
+                    Your ${subject} Progress:
+                    ${completedCount} / ${topicList.length}
+                </strong>
+
+                <div class="progress-track">
+                    <div
+                        class="progress-fill"
+                        style="width:${(completedCount / topicList.length) * 100}%"
+                    ></div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="topicSearch"
+                placeholder="🔍 Search ${subject} topic..."
+                oninput="filterTopics()"
+            >
+
+        </div>
+
+
+        <div class="topics-grid" id="topicsGrid">
+
+            ${topicList.map((item, index) => `
+
+                <div
+                    class="topic-card"
+                    data-topic="${item.toLowerCase()}"
+                >
+
+                    <span class="topic-number">
+                        Topic ${index + 1}
+                    </span>
+
+                    <h3>${item}</h3>
+
+                    <p>
+                        Learn ${item} with placement-focused
+                        explanation and interview preparation.
+                    </p>
+
+                    <span class="topic-level">
+                        Placement Focus
+                    </span>
+
+                    <button
+                        class="study-btn"
+                        onclick="openTopic(${index})"
+                    >
+                        📖 Study This Topic
+                    </button>
+
+                    ${
+                        localStorage.getItem(
+                            `nexora_core_${subject}_${index}`
+                        ) === "true"
+                        ?
+                        `<div class="completed">✓ Completed</div>`
+                        :
+                        ""
+                    }
+
+                </div>
+
+            `).join("")}
+
+        </div>
+
+    `;
+}
+
+
+/* =========================================================
+   OPEN TOPIC
+========================================================= */
+
+function openTopic(index) {
+
+    const topicName = subjects[subject][index];
+
+    window.location.href =
+        `subjects.html?subject=${encodeURIComponent(subject)}&topic=${encodeURIComponent(topicName)}`;
+}
+
+
+/* =========================================================
+   MATERIAL PAGE
+========================================================= */
+
+function renderMaterial() {
+
+    const material = generateMaterial(subject, topic);
+
+    const topicIndex =
+        subjects[subject].indexOf(topic);
+
+
+    app.innerHTML = `
+
+        <button
+            class="back-topics"
+            onclick="window.location.href='subjects.html?subject=${encodeURIComponent(subject)}'"
+        >
+            ← Back to ${subject} Topics
+        </button>
+
+
+        <div class="material-card">
+
+            <h2>📖 ${topic}</h2>
+
+
+            <h3>📘 1. What is ${topic}?</h3>
+
+            <p>
+                ${material.definition}
+            </p>
+
+
+            <h3>🧠 2. Concept Explanation</h3>
+
+            <p>
+                ${material.explanation}
+            </p>
+
+
+            <h3>🔑 3. Important Points</h3>
+
+            <ul>
+                ${material.points.map(point =>
+                    `<li>${point}</li>`
+                ).join("")}
+            </ul>
+
+
+            <h3>💡 4. Example</h3>
+
+            <div class="material-box">
+
+                <p>
+                    ${material.example}
+                </p>
+
+            </div>
+
+
+            <h3>🎯 5. Placement Focus</h3>
+
+            <p>
+                For placements, don't only memorize the definition.
+                Be able to explain the concept in simple words,
+                give an example and compare it with related concepts.
+            </p>
+
+
+            <h3>🎤 6. Important Interview Questions</h3>
+
+            ${material.interview.map((question, i) => `
+
+                <div class="interview-question">
+
+                    <strong>
+                        Q${i + 1}.
+                    </strong>
+
+                    ${question}
+
+                </div>
+
+            `).join("")}
+
+
+            <h3>📝 7. Quick Revision</h3>
+
+            <div class="material-box quick-revision">
+
+                <p>
+                    ${material.revision}
+                </p>
+
+            </div>
+
+
+            <button
+                class="complete-btn"
+                onclick="markCompleted()"
+            >
+
+                ${
+                    localStorage.getItem(
+                        `nexora_core_${subject}_${topicIndex}`
+                    ) === "true"
+                    ?
+                    "✓ Completed"
+                    :
+                    "✓ Mark as Completed"
+                }
+
+            </button>
+
+        </div>
+
+    `;
+}
+
+
+/* =========================================================
+   MARK TOPIC COMPLETE
+========================================================= */
+
+function markCompleted() {
+
+    const topicIndex =
+        subjects[subject].indexOf(topic);
+
+    localStorage.setItem(
+        `nexora_core_${subject}_${topicIndex}`,
+        "true"
+    );
+
+    renderMaterial();
+
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+function filterTopics() {
+
+    const search =
+        document
+            .getElementById("topicSearch")
+            .value
+            .toLowerCase();
+
+    const cards =
+        document.querySelectorAll(".topic-card");
+
+    let visible = 0;
+
+    cards.forEach(card => {
+
+        const name =
+            card.dataset.topic;
+
+        if (name.includes(search)) {
+
+            card.style.display = "block";
+
+            visible++;
+
+        } else {
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+
+    if (visible === 0) {
+
+        if (!document.getElementById("noResults")) {
+
+            const div =
+                document.createElement("div");
+
+            div.id = "noResults";
+
+            div.className = "empty";
+
+            div.innerHTML =
+                "No topic found. Try another search.";
+
+            document
+                .getElementById("topicsGrid")
+                .appendChild(div);
+
+        }
+
+    } else {
+
+        const noResults =
+            document.getElementById("noResults");
+
+        if (noResults) {
+            noResults.remove();
+        }
+
+    }
+
+}
+
+
+/* =========================================================
+   INITIAL LOAD
+========================================================= */
+
+if (subject && topic) {
+
+    if (subjects[subject] &&
+        subjects[subject].includes(topic)) {
+
+        renderMaterial();
+
+    } else {
+
+        renderTopics();
+
+    }
+
+}
+else if (subject) {
+
+    renderTopics();
+
+}
+else {
+
+    app.innerHTML = `
+
+        <a class="top-back" href="core-blogs.html">
+            ← Back to Core CS Blogs
+        </a>
+
+        <div class="hero">
+
+            <h1>NEXORA 🤖</h1>
+
+            <p>
+                Select a Core CS subject to start your preparation.
+            </p>
+
+        </div>
+
+    `;
+
+}
+
+</script>
+
+</body>
+</html>

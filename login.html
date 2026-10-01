@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>NEXORA | Login</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+    <h1>NEXORA 🤖</h1>
+
+    <h2>Welcome Back</h2>
+
+
+    <form id="loginForm">
+
+        <label>Email</label>
+
+        <input
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+            required
+        >
+
+
+        <br><br>
+
+
+        <label>Password</label>
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+            required
+        >
+
+
+        <br><br>
+
+
+        <button type="submit">
+            Login 🚀
+        </button>
+
+    </form>
+
+
+    <p id="message"></p>
+
+
+    <p>
+        Don't have an account?
+        <a href="signup.html">
+            Create Account
+        </a>
+    </p>
+
+
+    <script>
+
+        const loginForm =
+            document.getElementById("loginForm");
+
+
+        loginForm.addEventListener(
+            "submit",
+            async function(event) {
+
+                event.preventDefault();
+
+
+                const email =
+                    document.getElementById(
+                        "email"
+                    ).value.trim();
+
+
+                const password =
+                    document.getElementById(
+                        "password"
+                    ).value;
+
+
+                const message =
+                    document.getElementById(
+                        "message"
+                    );
+
+
+                try {
+
+                    const response =
+                        await fetch(
+                            "http://localhost:5000/api/auth/login",
+                            {
+
+                                method: "POST",
+
+                                headers: {
+
+                                    "Content-Type":
+                                        "application/json"
+
+                                },
+
+                                body:
+                                    JSON.stringify({
+
+                                        email,
+                                        password
+
+                                    })
+
+                            }
+                        );
+
+
+                    const data =
+                        await response.json();
+
+
+                    message.textContent =
+                        data.message;
+
+
+                    if (data.success) {
+
+                        localStorage.setItem(
+                            "nexoraUser",
+                            JSON.stringify(
+                                data.user
+                            )
+                        );
+
+
+                        setTimeout(
+                            function() {
+
+                                window.location.href =
+                                    "dashboard.html";
+
+                            },
+                            500
+                        );
+
+                    }
+
+                }
+
+                catch(error) {
+
+                    console.error(error);
+
+                    message.textContent =
+                        "Unable to connect to server.";
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

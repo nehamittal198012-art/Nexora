@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXORA | Profile</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    color:#f8f5ff;
+    background:
+        radial-gradient(circle at top left,#4c1d95 0%,transparent 35%),
+        radial-gradient(circle at bottom right,#831843 0%,transparent 35%),
+        #0b0614;
+    padding:25px;
+}
+
+.container{
+    max-width:1150px;
+    margin:auto;
+}
+
+/* TOP BAR */
+.topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:28px;
+}
+
+.back-btn{
+    text-decoration:none;
+    color:white;
+    background:rgba(126,34,206,.35);
+    border:1px solid rgba(216,180,254,.2);
+    padding:11px 18px;
+    border-radius:14px;
+    font-size:14px;
+    transition:.2s;
+}
+
+.back-btn:hover{
+    background:rgba(168,85,247,.5);
+    transform:translateX(-3px);
+}
+
+.logo{
+    font-size:24px;
+    font-weight:800;
+    letter-spacing:2px;
+    color:#e879f9;
+}
+
+/* HERO */
+.hero{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    padding:30px;
+    border-radius:28px;
+    background:rgba(76,29,149,.25);
+    border:1px solid rgba(216,180,254,.15);
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.35),
+        inset 0 1px 1px rgba(255,255,255,.05);
+    margin-bottom:22px;
+}
+
+.hero-left{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.avatar{
+    width:82px;
+    height:82px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    font-weight:bold;
+    background:linear-gradient(145deg,#c084fc,#7e22ce);
+    box-shadow:0 12px 30px rgba(126,34,206,.45);
+}
+
+.hero h1{
+    font-size:30px;
+    margin-bottom:7px;
+}
+
+.hero p{
+    color:#cfc3dd;
+    font-size:14px;
+}
+
+.role{
+    display:inline-block;
+    margin-top:10px;
+    padding:7px 13px;
+    border-radius:20px;
+    background:rgba(232,121,249,.13);
+    color:#e879f9;
+    font-size:13px;
+}
+
+.edit-btn{
+    border:none;
+    cursor:pointer;
+    color:white;
+    padding:13px 22px;
+    border-radius:15px;
+    font-weight:bold;
+    background:linear-gradient(135deg,#b967e8,#7e22ce);
+    box-shadow:0 8px 20px rgba(126,34,206,.3);
+}
+
+.edit-btn:hover{
+    transform:translateY(-2px);
+}
+
+/* GRID */
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px;
+}
+
+.card{
+    padding:25px;
+    border-radius:24px;
+    background:rgba(30,16,49,.72);
+    border:1px solid rgba(216,180,254,.13);
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.28),
+        inset 0 1px 1px rgba(255,255,255,.03);
+}
+
+.card.full{
+    grid-column:1/-1;
+}
+
+.card h2{
+    font-size:19px;
+    margin-bottom:20px;
+    color:#f3d8ff;
+}
+
+.info-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.info{
+    padding:15px;
+    border-radius:16px;
+    background:rgba(255,255,255,.035);
+}
+
+.label{
+    display:block;
+    color:#9f8cab;
+    font-size:12px;
+    margin-bottom:7px;
+}
+
+.value{
+    color:#f8f5ff;
+    font-size:14px;
+    word-break:break-word;
+}
+
+/* STATS */
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.stat{
+    text-align:center;
+    padding:20px 10px;
+    border-radius:18px;
+    background:rgba(255,255,255,.035);
+}
+
+.stat-number{
+    display:block;
+    font-size:27px;
+    font-weight:bold;
+    color:#e879f9;
+    margin-bottom:6px;
+}
+
+.stat-label{
+    color:#a99bb5;
+    font-size:12px;
+}
+
+/* READINESS */
+.readiness-box{
+    display:flex;
+    align-items:center;
+    gap:25px;
+}
+
+.circle{
+    width:105px;
+    height:105px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:conic-gradient(#c084fc var(--score),rgba(255,255,255,.08) 0);
+    position:relative;
+    flex-shrink:0;
+}
+
+.circle::before{
+    content:"";
+    position:absolute;
+    width:79px;
+    height:79px;
+    border-radius:50%;
+    background:#211331;
+}
+
+.circle span{
+    position:relative;
+    z-index:1;
+    font-size:22px;
+    font-weight:bold;
+}
+
+.readiness-text h3{
+    margin-bottom:8px;
+}
+
+.readiness-text p{
+    color:#aaa0b4;
+    font-size:13px;
+    line-height:1.6;
+}
+
+/* CODING */
+.profile-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    padding:14px 0;
+    border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.profile-row:last-child{
+    border-bottom:none;
+}
+
+.platform{
+    font-weight:bold;
+}
+
+.connected{
+    color:#86efac;
+    font-size:12px;
+}
+
+.not-connected{
+    color:#9f8cab;
+    font-size:12px;
+}
+
+/* PROGRESS */
+.progress-item{
+    margin-bottom:18px;
+}
+
+.progress-top{
+    display:flex;
+    justify-content:space-between;
+    font-size:13px;
+    margin-bottom:8px;
+}
+
+.progress-bar{
+    width:100%;
+    height:9px;
+    border-radius:20px;
+    background:rgba(255,255,255,.07);
+    overflow:hidden;
+}
+
+.progress-fill{
+    height:100%;
+    border-radius:20px;
+    background:linear-gradient(90deg,#c084fc,#e879f9);
+}
+
+/* EDIT PANEL */
+.edit-panel{
+    display:none;
+    margin-top:22px;
+    padding:25px;
+    border-radius:24px;
+    background:rgba(30,16,49,.9);
+    border:1px solid rgba(216,180,254,.15);
+}
+
+.edit-panel.active{
+    display:block;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+}
+
+.field label{
+    display:block;
+    color:#b6a8c2;
+    font-size:12px;
+    margin-bottom:7px;
+}
+
+.field input,
+.field select{
+    width:100%;
+    padding:12px 14px;
+    border-radius:13px;
+    border:1px solid rgba(216,180,254,.15);
+    outline:none;
+    color:white;
+    background:#160d21;
+}
+
+.field input:focus,
+.field select:focus{
+    border-color:#c084fc;
+}
+
+.field input:disabled{
+    opacity:.55;
+}
+
+.save-btn{
+    margin-top:20px;
+    border:none;
+    cursor:pointer;
+    padding:13px 25px;
+    border-radius:14px;
+    color:white;
+    font-weight:bold;
+    background:linear-gradient(135deg,#b967e8,#7e22ce);
+}
+
+.cancel-btn{
+    margin-left:10px;
+    border:1px solid rgba(216,180,254,.18);
+    cursor:pointer;
+    padding:12px 22px;
+    border-radius:14px;
+    color:#ddd1e7;
+    background:rgba(255,255,255,.05);
+}
+
+/* LOGOUT */
+.logout-area{
+    text-align:center;
+    margin-top:28px;
+}
+
+.logout-btn{
+    border:1px solid rgba(248,113,113,.3);
+    background:rgba(127,29,29,.18);
+    color:#fca5a5;
+    padding:12px 25px;
+    border-radius:14px;
+    cursor:pointer;
+}
+
+.logout-btn:hover{
+    background:rgba(127,29,29,.3);
+}
+
+/* EMPTY */
+.empty{
+    color:#9f8cab;
+    font-size:13px;
+}
+
+/* RESPONSIVE */
+@media(max-width:750px){
+    body{
+        padding:15px;
+    }
+
+    .hero{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .card.full{
+        grid-column:auto;
+    }
+
+    .info-grid,
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .readiness-box{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .topbar{
+        margin-bottom:20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+        <a href="dashboard.html" class="back-btn">← Back to Dashboard</a>
+        <div class="logo">NEXORA</div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-left">
+            <div class="avatar" id="avatar">N</div>
+
+            <div>
+                <h1 id="heroName">Your Profile</h1>
+                <p id="heroCollege">NEXORA Placement Profile</p>
+                <span class="role" id="heroRole">Target Role</span>
+            </div>
+        </div>
+
+        <button class="edit-btn" onclick="openEdit()">Edit Profile</button>
+    </section>
+
+    <!-- MAIN GRID -->
+    <div class="grid">
+
+        <!-- PERSONAL INFORMATION -->
+        <section class="card full">
+            <h2>👤 Personal Information</h2>
+
+            <div class="info-grid">
+
+                <div class="info">
+                    <span class="label">Full Name</span>
+                    <span class="value" id="name">—</span>
+                </div>
+
+                <div class="info">
+                    <span class="label">Email</span>
+                    <span class="value" id="email">—</span>
+                </div>
+
+                <div class="info">
+                    <span class="label">College</span>
+                    <span class="value" id="college">—</span>
+                </div>
+
+                <div class="info">
+                    <span class="label">Course / Branch</span>
+                    <span class="value" id="branch">—</span>
+                </div>
+
+                <div class="info">
+                    <span class="label">Current Year</span>
+                    <span class="value" id="year">—</span>
+                </div>
+
+                <div class="info">
+                    <span class="label">Graduation Year</span>
+                    <span class="value" id="graduationYear">—</span>
+                </div>
+
+                <div class="info">
+                    <span class="label">Preparing For</span>
+                    <span class="value" id="preparationType">—</span>
+                </div>
+
+                <div class="info">
+                    <span class="label">Current Level</span>
+                    <span class="value" id="currentLevel">—</span>
+                </div>
+
+                <div class="info">
+                    <span class="label">Daily Goal</span>
+                    <span class="value" id="dailyGoal">—</span>
+                </div>
+
+                <div class="info">
+                    <span class="label">Target Role</span>
+                    <span class="value" id="targetRole">—</span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- READINESS -->
+        <section class="card">
+            <h2>🎯 Placement Readiness</h2>
+
+            <div class="readiness-box">
+                <div class="circle" id="readinessCircle">
+                    <span id="readinessScore">0%</span>
+                </div>
+
+                <div class="readiness-text">
+                    <h3 id="readinessTitle">Keep preparing</h3>
+                    <p id="readinessMessage">
+                        Your NEXORA preparation progress will appear here.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PREPARATION STATS -->
+        <section class="card">
+            <h2>📊 Preparation Stats</h2>
+
+            <div class="stats">
+
+                <div class="stat">
+                    <span class="stat-number" id="streak">0</span>
+                    <span class="stat-label">Day Streak</span>
+                </div>
+
+                <div class="stat">
+                    <span class="stat-number" id="dsaStat">0%</span>
+                    <span class="stat-label">DSA Progress</span>
+                </div>
+
+                <div class="stat">
+                    <span class="stat-number" id="coreStat">0%</span>
+                    <span class="stat-label">Core CS</span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CODING PROFILES -->
+        <section class="card">
+            <h2>💻 Coding Profiles</h2>
+
+            <div id="codingProfiles"></div>
+        </section>
+
+        <!-- DSA SHEET -->
+        <section class="card">
+            <h2>📚 DSA Sheet</h2>
+
+            <div class="info">
+                <span class="label">Selected Sheet</span>
+                <span class="value" id="dsaSheet">No sheet selected</span>
+            </div>
+
+            <br>
+
+            <a href="DSA Sheets.html"
+               class="back-btn"
+               style="display:inline-block;">
+                Manage DSA Sheets →
+            </a>
+        </section>
+
+        <!-- PROGRESS -->
+        <section class="card full">
+            <h2>📈 Preparation Progress</h2>
+
+            <div class="progress-item">
+                <div class="progress-top">
+                    <span>DSA</span>
+                    <span id="dsaPercent">0%</span>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" id="dsaBar" style="width:0%"></div>
+                </div>
+            </div>
+
+            <div class="progress-item">
+                <div class="progress-top">
+                    <span>Core CS</span>
+                    <span id="corePercent">0%</span>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" id="coreBar" style="width:0%"></div>
+                </div>
+            </div>
+
+            <div class="progress-item">
+                <div class="progress-top">
+                    <span>Aptitude</span>
+                    <span id="aptitudePercent">0%</span>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" id="aptitudeBar" style="width:0%"></div>
+                </div>
+            </div>
+
+            <div class="progress-item">
+                <div class="progress-top">
+                    <span>Resume</span>
+                    <span id="resumePercent">0%</span>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" id="resumeBar" style="width:0%"></div>
+                </div>
+            </div>
+
+            <div class="progress-item">
+                <div class="progress-top">
+                    <span>AI Interview</span>
+                    <span id="interviewPercent">0%</span>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" id="interviewBar" style="width:0%"></div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- EDIT PANEL -->
+    <section class="edit-panel" id="editPanel">
+
+        <h2>Edit Profile</h2>
+
+        <div class="form-grid">
+
+            <div class="field">
+                <label>Name</label>
+                <input type="text" id="editName">
+            </div>
+
+            <div class="field">
+                <label>Email</label>
+                <input type="email" id="editEmail" disabled>
+            </div>
+
+            <div class="field">
+                <label>College</label>
+                <input type="text" id="editCollege">
+            </div>
+
+            <div class="field">
+                <label>Course / Branch</label>
+                <input type="text" id="editBranch">
+            </div>
+
+            <div class="field">
+                <label>Current Year</label>
+                <select id="editYear">
+                    <option value="">Select Year</option>
+                    <option value="1st Year">1st Year</option>
+                    <option value="2nd Year">2nd Year</option>
+                    <option value="3rd Year">3rd Year</option>
+                    <option value="4th Year">4th Year</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Graduation Year</label>
+                <input type="text" id="editGraduationYear">
+            </div>
+
+            <div class="field">
+                <label>Target Role</label>
+                <select id="editTargetRole">
+                    <option value="">Select Role</option>
+                    <option>Software Engineer</option>
+                    <option>Frontend Developer</option>
+                    <option>Backend Developer</option>
+                    <option>Full Stack Developer</option>
+                    <option>Data Analyst</option>
+                    <option>Other</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Preparing For</label>
+                <select id="editPreparationType">
+                    <option value="">Select</option>
+                    <option value="Placement">Placement</option>
+                    <option value="Internship">Internship</option>
+                    <option value="Both">Both</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Current Level</label>
+                <select id="editCurrentLevel">
+                    <option value="">Select Level</option>
+                    <option value="Beginner">Beginner</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Advanced">Advanced</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Daily Goal</label>
+                <select id="editDailyGoal">
+                    <option value="30">30 minutes</option>
+                    <option value="60">1 hour</option>
+                    <option value="120">2 hours</option>
+                    <option value="180">3+ hours</option>
+                </select>
+            </div>
+
+        </div>
+
+        <button class="save-btn" onclick="saveProfile()">Save Changes</button>
+        <button class="cancel-btn" onclick="closeEdit()">Cancel</button>
+
+    </section>
+
+    <!-- LOGOUT -->
+    <div class="logout-area">
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+
+</div>
+
+
+<script>
+
+let user = null;
+
+
+/* ================================
+   GET USER FROM LOCAL STORAGE
+================================ */
+
+function getStoredUser(){
+
+    const possibleKeys = [
+        "nexoraUser",
+        "user",
+        "loggedInUser",
+        "currentUser"
+    ];
+
+    for(const key of possibleKeys){
+
+        const stored = localStorage.getItem(key);
+
+        if(!stored) continue;
+
+        try{
+
+            const parsed = JSON.parse(stored);
+
+            if(parsed && typeof parsed === "object"){
+
+                if(parsed.user && typeof parsed.user === "object"){
+                    return parsed.user;
+                }
+
+                return parsed;
+            }
+
+        }catch(error){
+
+            if(key === "nexoraUser"){
+                return {
+                    name: stored
+                };
+            }
+        }
+    }
+
+    return null;
+}
+
+
+/* ================================
+   SAFE NUMBER
+================================ */
+
+function numberValue(value){
+
+    const n = Number(value);
+
+    if(Number.isNaN(n)) return 0;
+
+    return Math.max(0,Math.min(100,n));
+}
+
+
+/* ================================
+   GET PROGRESS
+================================ */
+
+function getProgress(){
+
+    const dsa = numberValue(
+        localStorage.getItem("nexoraDSAProgress") ||
+        localStorage.getItem("nexoraDSAScore") ||
+        localStorage.getItem("nexoraCodingProgress")
+    );
+
+    const core = numberValue(
+        localStorage.getItem("nexoraCoreProgress") ||
+        localStorage.getItem("nexoraCoreScore")
+    );
+
+    const aptitude = numberValue(
+        localStorage.getItem("nexoraAptitudeProgress") ||
+        localStorage.getItem("nexoraAptitudeScore")
+    );
+
+    const resume = numberValue(
+        localStorage.getItem("nexoraResumeScore")
+    );
+
+    const interview = numberValue(
+        localStorage.getItem("nexoraInterviewScore")
+    );
+
+    const readiness = Math.round(
+        (dsa + core + aptitude + resume + interview) / 5
+    );
+
+    return {
+        dsa,
+        core,
+        aptitude,
+        resume,
+        interview,
+        readiness
+    };
+}
+
+
+/* ================================
+   DISPLAY PROFILE
+================================ */
+
+function displayProfile(){
+
+    if(!user){
+
+        document.getElementById("heroName").textContent =
+            "Profile not available";
+
+        document.getElementById("heroCollege").textContent =
+            "Please login to view your profile.";
+
+        return;
+    }
+
+    const name = user.name || "NEXORA User";
+
+    document.getElementById("avatar").textContent =
+        name.charAt(0).toUpperCase();
+
+    document.getElementById("heroName").textContent = name;
+
+    document.getElementById("heroCollege").textContent =
+        user.college || "College not added";
+
+    document.getElementById("heroRole").textContent =
+        user.targetRole || "Target role not set";
+
+
+    document.getElementById("name").textContent =
+        user.name || "Not added";
+
+    document.getElementById("email").textContent =
+        user.email || "Not available";
+
+    document.getElementById("college").textContent =
+        user.college || "Not added";
+
+    document.getElementById("branch").textContent =
+        user.branch || "Not added";
+
+    document.getElementById("year").textContent =
+        user.year || "Not added";
+
+    document.getElementById("graduationYear").textContent =
+        user.graduationYear || "Not added";
+
+    document.getElementById("targetRole").textContent =
+        user.targetRole || "Not added";
+
+    document.getElementById("preparationType").textContent =
+        user.preparationType || "Not added";
+
+    document.getElementById("currentLevel").textContent =
+        user.currentLevel || "Not added";
+
+    document.getElementById("dailyGoal").textContent =
+        formatDailyGoal(user.dailyGoal);
+
+
+    loadCodingProfiles();
+    loadDSASheet();
+    loadProgress();
+}
+
+
+/* ================================
+   DAILY GOAL
+================================ */
+
+function formatDailyGoal(value){
+
+    if(value === 30 || value === "30")
+        return "30 minutes";
+
+    if(value === 60 || value === "60" || value === 1)
+        return "1 hour";
+
+    if(value === 120 || value === "120" || value === 2)
+        return "2 hours";
+
+    if(value === 180 || value === "180" || value === 3)
+        return "3+ hours";
+
+    return value ? value : "Not set";
+}
+
+
+/* ================================
+   CODING PROFILES
+================================ */
+
+function loadCodingProfiles(){
+
+    const container =
+        document.getElementById("codingProfiles");
+
+    const platforms = [
+        ["LeetCode","nexora_leetcode"],
+        ["GeeksforGeeks","nexora_gfg"],
+        ["HackerRank","nexora_hackerrank"],
+        ["CodeChef","nexora_codechef"],
+        ["Codeforces","nexora_codeforces"]
+    ];
+
+    container.innerHTML = "";
+
+    platforms.forEach(([name,key])=>{
+
+        const value = localStorage.getItem(key);
+
+        const row = document.createElement("div");
+
+        row.className = "profile-row";
+
+        row.innerHTML = `
+            <span class="platform">${name}</span>
+
+            ${
+                value
+                ? `<span class="connected">● Connected</span>`
+                : `<span class="not-connected">Not connected</span>`
+            }
+        `;
+
+        container.appendChild(row);
+    });
+}
+
+
+/* ================================
+   DSA SHEET
+================================ */
+
+function loadDSASheet(){
+
+    const possibleKeys = [
+        "nexoraSelectedDSASheet",
+        "nexoraDSASheet",
+        "selectedDSASheet",
+        "dsaSheet",
+        "nexoraDsaSheet"
+    ];
+
+    let sheet = null;
+
+    for(const key of possibleKeys){
+
+        const value = localStorage.getItem(key);
+
+        if(value){
+
+            try{
+
+                const parsed = JSON.parse(value);
+
+                if(typeof parsed === "string"){
+                    sheet = parsed;
+                }else{
+                    sheet =
+                        parsed.name ||
+                        parsed.title ||
+                        parsed.sheet ||
+                        parsed.selectedSheet;
+                }
+
+            }catch(error){
+
+                sheet = value;
+            }
+
+            if(sheet) break;
+        }
+    }
+
+    document.getElementById("dsaSheet").textContent =
+        sheet || "No sheet selected";
+}
+
+
+/* ================================
+   PROGRESS
+================================ */
+
+function loadProgress(){
+
+    const p = getProgress();
+
+    document.getElementById("dsaStat").textContent =
+        `${Math.round(p.dsa)}%`;
+
+    document.getElementById("coreStat").textContent =
+        `${Math.round(p.core)}%`;
+
+    const streak =
+        Number(localStorage.getItem("nexoraStreak")) || 0;
+
+    document.getElementById("streak").textContent =
+        streak;
+
+
+    setProgress("dsa",p.dsa);
+    setProgress("core",p.core);
+    setProgress("aptitude",p.aptitude);
+    setProgress("resume",p.resume);
+    setProgress("interview",p.interview);
+
+
+    document.getElementById("readinessScore").textContent =
+        `${p.readiness}%`;
+
+    document.getElementById("readinessCircle")
+        .style.setProperty("--score",`${p.readiness * 3.6}deg`);
+
+    /*
+       Circle uses degrees through conic-gradient.
+       Convert percentage to degrees.
+    */
+
+    document.getElementById("readinessCircle").style.background =
+        `conic-gradient(#c084fc ${p.readiness * 3.6}deg,
+        rgba(255,255,255,.08) 0deg)`;
+
+
+    if(p.readiness >= 75){
+
+        document.getElementById("readinessTitle").textContent =
+            "Strong preparation";
+
+        document.getElementById("readinessMessage").textContent =
+            "Your NEXORA preparation is progressing across major placement areas.";
+
+    }else if(p.readiness >= 50){
+
+        document.getElementById("readinessTitle").textContent =
+            "Good progress";
+
+        document.getElementById("readinessMessage").textContent =
+            "You have built a solid base. Keep improving your weaker areas.";
+
+    }else{
+
+        document.getElementById("readinessTitle").textContent =
+            "Keep preparing";
+
+        document.getElementById("readinessMessage").textContent =
+            "Continue your DSA, Core CS, aptitude, resume and interview preparation.";
+    }
+}
+
+
+function setProgress(type,value){
+
+    const rounded = Math.round(value);
+
+    document.getElementById(type+"Percent").textContent =
+        `${rounded}%`;
+
+    document.getElementById(type+"Bar").style.width =
+        `${rounded}%`;
+}
+
+
+/* ================================
+   EDIT PROFILE
+================================ */
+
+function openEdit(){
+
+    if(!user){
+
+        alert("Please login first.");
+
+        window.location.href = "login.html";
+
+        return;
+    }
+
+    document.getElementById("editName").value =
+        user.name || "";
+
+    document.getElementById("editEmail").value =
+        user.email || "";
+
+    document.getElementById("editCollege").value =
+        user.college || "";
+
+    document.getElementById("editBranch").value =
+        user.branch || "";
+
+    document.getElementById("editYear").value =
+        user.year || "";
+
+    document.getElementById("editGraduationYear").value =
+        user.graduationYear || "";
+
+    document.getElementById("editTargetRole").value =
+        user.targetRole || "";
+
+    document.getElementById("editPreparationType").value =
+        user.preparationType || "";
+
+    document.getElementById("editCurrentLevel").value =
+        user.currentLevel || "";
+
+    document.getElementById("editDailyGoal").value =
+        convertDailyGoal(user.dailyGoal);
+
+    document.getElementById("editPanel")
+        .classList.add("active");
+
+    document.getElementById("editPanel")
+        .scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+        });
+}
+
+
+function closeEdit(){
+
+    document.getElementById("editPanel")
+        .classList.remove("active");
+}
+
+
+/* ================================
+   DAILY GOAL CONVERTER
+================================ */
+
+function convertDailyGoal(value){
+
+    if(value === 1 || value === "1")
+        return "60";
+
+    if(value === 2 || value === "2")
+        return "120";
+
+    if(value === 3 || value === "3")
+        return "180";
+
+    if(value === 30 || value === "30")
+        return "30";
+
+    if(value === 60 || value === "60")
+        return "60";
+
+    if(value === 120 || value === "120")
+        return "120";
+
+    if(value === 180 || value === "180")
+        return "180";
+
+    return "60";
+}
+
+
+/* ================================
+   SAVE PROFILE
+================================ */
+
+function saveProfile(){
+
+    if(!user) return;
+
+    user.name =
+        document.getElementById("editName").value.trim();
+
+    user.college =
+        document.getElementById("editCollege").value.trim();
+
+    user.branch =
+        document.getElementById("editBranch").value.trim();
+
+    user.year =
+        document.getElementById("editYear").value;
+
+    user.graduationYear =
+        document.getElementById("editGraduationYear").value.trim();
+
+    user.targetRole =
+        document.getElementById("editTargetRole").value;
+
+    user.preparationType =
+        document.getElementById("editPreparationType").value;
+
+    user.currentLevel =
+        document.getElementById("editCurrentLevel").value;
+
+    user.dailyGoal =
+        Number(document.getElementById("editDailyGoal").value);
+
+
+    /*
+       Save updated profile locally.
+       This keeps Profile connected with
+       the existing NEXORA frontend.
+    */
+
+    localStorage.setItem(
+        "nexoraUser",
+        JSON.stringify(user)
+    );
+
+    /*
+       Keep other common user keys updated
+       if they already exist.
+    */
+
+    if(localStorage.getItem("user")){
+        localStorage.setItem(
+            "user",
+            JSON.stringify(user)
+        );
+    }
+
+    if(localStorage.getItem("loggedInUser")){
+        localStorage.setItem(
+            "loggedInUser",
+            JSON.stringify(user)
+        );
+    }
+
+    if(localStorage.getItem("currentUser")){
+        localStorage.setItem(
+            "currentUser",
+            JSON.stringify(user)
+        );
+    }
+
+
+    displayProfile();
+
+    closeEdit();
+
+    alert("Profile updated successfully!");
+}
+
+
+/* ================================
+   LOGOUT
+================================ */
+
+function logout(){
+
+    const confirmLogout =
+        confirm("Are you sure you want to logout?");
+
+    if(!confirmLogout) return;
+
+    localStorage.removeItem("nexoraUser");
+    localStorage.removeItem("user");
+    localStorage.removeItem("loggedInUser");
+    localStorage.removeItem("currentUser");
+
+    window.location.href = "login.html";
+}
+
+
+/* ================================
+   START
+================================ */
+
+user = getStoredUser();
+
+displayProfile();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,2330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXORA | Core CS Interview</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:
+        radial-gradient(circle at 10% 10%,rgba(192,132,252,.18),transparent 30%),
+        radial-gradient(circle at 90% 20%,rgba(232,121,249,.12),transparent 30%),
+        linear-gradient(135deg,#0b0614,#160b25 45%,#0b0614);
+    color:#fff;
+    padding-bottom:50px;
+}
+
+.topbar{
+    position:sticky;
+    top:0;
+    z-index:100;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:15px 24px;
+    background:rgba(11,6,20,.94);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(192,132,252,.18);
+}
+
+.logo{
+    font-size:22px;
+    font-weight:800;
+    letter-spacing:2px;
+    color:#e9b8ff;
+}
+
+.back-btn{
+    text-decoration:none;
+    color:#fff;
+    background:rgba(126,34,206,.35);
+    border:1px solid rgba(192,132,252,.4);
+    padding:9px 15px;
+    border-radius:12px;
+    font-size:14px;
+    transition:.2s;
+}
+
+.back-btn:hover{
+    background:#7e22ce;
+    transform:translateY(-1px);
+}
+
+.container{
+    width:min(1180px,92%);
+    margin:30px auto;
+}
+
+.hero{
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(192,132,252,.2);
+    border-radius:25px;
+    padding:30px;
+    box-shadow:0 20px 50px rgba(0,0,0,.28);
+}
+
+.hero h1{
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+.hero p{
+    color:#cfc4d8;
+    line-height:1.6;
+}
+
+.mode-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    margin-top:25px;
+}
+
+.mode-card{
+    padding:24px;
+    border-radius:20px;
+    background:rgba(255,255,255,.055);
+    border:1px solid rgba(192,132,252,.2);
+    cursor:pointer;
+    transition:.25s;
+}
+
+.mode-card:hover{
+    transform:translateY(-4px);
+    border-color:#c084fc;
+    background:rgba(126,34,206,.18);
+}
+
+.mode-card.active{
+    border-color:#e879f9;
+    background:rgba(126,34,206,.2);
+}
+
+.mode-icon{
+    font-size:30px;
+    margin-bottom:12px;
+}
+
+.mode-card h3{
+    margin-bottom:7px;
+}
+
+.mode-card p{
+    color:#bdb0c9;
+    font-size:14px;
+    line-height:1.5;
+}
+
+.section{
+    margin-top:28px;
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(192,132,252,.16);
+    border-radius:24px;
+    padding:25px;
+}
+
+.section h2{
+    margin-bottom:7px;
+}
+
+.section-subtitle{
+    color:#bdb0c9;
+    margin-bottom:20px;
+    line-height:1.5;
+}
+
+.filters{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-bottom:20px;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    padding:12px 13px;
+    border-radius:12px;
+    border:1px solid rgba(192,132,252,.25);
+    background:#160d22;
+    color:#fff;
+    outline:none;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:#c084fc;
+}
+
+.question-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+}
+
+.question-card{
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(192,132,252,.16);
+    border-radius:18px;
+    padding:20px;
+    transition:.2s;
+}
+
+.question-card:hover{
+    border-color:rgba(232,121,249,.55);
+    transform:translateY(-2px);
+}
+
+.question-card h3{
+    font-size:17px;
+    line-height:1.45;
+    margin-bottom:12px;
+}
+
+.meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+    margin-bottom:13px;
+}
+
+.tag{
+    padding:5px 9px;
+    border-radius:20px;
+    background:rgba(126,34,206,.22);
+    color:#e4c7ff;
+    font-size:12px;
+}
+
+.answer{
+    color:#cfc4d8;
+    line-height:1.6;
+    font-size:14px;
+}
+
+.resource-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    margin-top:20px;
+}
+
+.resource-card{
+    padding:19px;
+    border-radius:18px;
+    background:rgba(126,34,206,.10);
+    border:1px solid rgba(192,132,252,.18);
+}
+
+.resource-card h3{
+    margin-bottom:7px;
+}
+
+.resource-card p{
+    color:#bdb0c9;
+    line-height:1.5;
+    font-size:14px;
+    margin-bottom:14px;
+}
+
+.btn{
+    display:inline-block;
+    border:none;
+    text-decoration:none;
+    cursor:pointer;
+    padding:10px 15px;
+    border-radius:11px;
+    color:#fff;
+    background:linear-gradient(135deg,#b967e8,#7e22ce);
+    font-weight:600;
+    transition:.2s;
+}
+
+.btn:hover{
+    transform:translateY(-1px);
+    filter:brightness(1.08);
+}
+
+.btn.secondary{
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(192,132,252,.2);
+}
+
+.company-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.company-card{
+    padding:18px;
+    border-radius:18px;
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(192,132,252,.16);
+}
+
+.company-card h3{
+    margin-bottom:8px;
+}
+
+.company-card p{
+    color:#bdb0c9;
+    font-size:13px;
+    line-height:1.5;
+    margin-bottom:13px;
+}
+
+.company-links{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.company-links a{
+    color:#e8c9ff;
+    text-decoration:none;
+    font-size:13px;
+}
+
+.company-links a:hover{
+    text-decoration:underline;
+}
+
+.ai-panel{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.field label{
+    display:block;
+    margin-bottom:7px;
+    color:#d9c9e4;
+    font-size:13px;
+}
+
+.full{
+    grid-column:1/-1;
+}
+
+.ai-actions{
+    margin-top:20px;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.status{
+    margin-top:15px;
+    color:#d7c7e1;
+    font-size:14px;
+}
+
+.evaluation{
+    margin-top:20px;
+    padding:22px;
+    border-radius:18px;
+    background:rgba(126,34,206,.10);
+    border:1px solid rgba(192,132,252,.2);
+}
+
+.score{
+    font-size:42px;
+    font-weight:800;
+    color:#e879f9;
+    margin:8px 0 14px;
+}
+
+.feedback-list{
+    margin-top:12px;
+    padding-left:20px;
+    color:#d4c7dc;
+    line-height:1.7;
+}
+
+.hidden{
+    display:none;
+}
+
+.empty{
+    padding:25px;
+    text-align:center;
+    color:#a99db0;
+}
+
+.notice{
+    margin-top:18px;
+    padding:15px;
+    border-radius:14px;
+    background:rgba(232,121,249,.07);
+    border:1px solid rgba(232,121,249,.16);
+    color:#cfc4d8;
+    line-height:1.55;
+    font-size:14px;
+}
+
+@media(max-width:900px){
+    .mode-grid,
+    .company-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .filters{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:650px){
+    .mode-grid,
+    .question-grid,
+    .resource-grid,
+    .company-grid,
+    .ai-panel,
+    .filters{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:26px;
+    }
+
+    .topbar{
+        padding:12px 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+    <a href="Core.html" class="back-btn">← Back to Core CS</a>
+    <div class="logo">NEXORA</div>
+</header>
+
+<main class="container">
+
+<section class="hero">
+
+    <h1>🎯 Core CS Interview Preparation</h1>
+
+    <p>
+        Prepare for Core CS interviews with company resources,
+        quick practice questions and NEXORA AI mock interviews.
+    </p>
+
+    <div class="mode-grid">
+
+        <div class="mode-card active"
+             onclick="showSection('companySection',this)">
+            <div class="mode-icon">🏢</div>
+            <h3>Company Interviews</h3>
+            <p>
+                Company-wise preparation resources and quick practice.
+            </p>
+        </div>
+
+        <div class="mode-card"
+             onclick="showSection('coreSection',this)">
+            <div class="mode-icon">📚</div>
+            <h3>Core CS Interviews</h3>
+            <p>
+                Practice DBMS, OS, CN and OOP interview questions.
+            </p>
+        </div>
+
+        <div class="mode-card"
+             onclick="showSection('aiSection',this)">
+            <div class="mode-icon">🤖</div>
+            <h3>AI Mock Interview</h3>
+            <p>
+                Practice with NEXORA AI and receive answer evaluation.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     COMPANY INTERVIEW SECTION
+===================================================== -->
+
+<section class="section" id="companySection">
+
+    <h2>🏢 Company Interview Preparation</h2>
+
+    <p class="section-subtitle">
+        Start with company-specific preparation resources and then
+        use NEXORA Quick Practice for revision.
+    </p>
+
+
+    <!-- COMPANY RESOURCES FIRST -->
+
+    <h2>🔗 Company Resources</h2>
+
+    <p class="section-subtitle">
+        These external resources provide detailed preparation,
+        interview questions and interview experiences.
+    </p>
+
+
+    <div class="company-grid">
+
+        <!-- AMAZON -->
+
+        <div class="company-card">
+
+            <h3>Amazon</h3>
+
+            <p>
+                Amazon interview preparation, technical questions
+                and interview experiences.
+            </p>
+
+            <div class="company-links">
+
+                <a
+                    href="https://www.geeksforgeeks.org/interview-experiences/amazon-interview-preparation/"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    Amazon Interview Preparation ↗
+                </a>
+
+                <a
+                    href="https://www.geeksforgeeks.org/interview-experiences/amazon-interview-questions/"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    Amazon Interview Questions ↗
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- GOOGLE -->
+
+        <div class="company-card">
+
+            <h3>Google</h3>
+
+            <p>
+                Google interview experiences and preparation resources.
+            </p>
+
+            <div class="company-links">
+
+                <a
+                    href="https://www.geeksforgeeks.org/interview-experiences/google-interview-experience/"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    Google Interview Experiences ↗
+                </a>
+
+                <a
+                    href="https://careers.google.com/"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    Google Careers ↗
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- MICROSOFT -->
+
+        <div class="company-card">
+
+            <h3>Microsoft</h3>
+
+            <p>
+                Microsoft interview preparation and technical
+                interview resources.
+            </p>
+
+            <div class="company-links">
+
+                <a
+                    href="https://www.geeksforgeeks.org/interview-experiences/microsoft-interview-preparation/"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    Microsoft Interview Preparation ↗
+                </a>
+
+                <a
+                    href="https://www.geeksforgeeks.org/interview-experiences/microsofts-asked-interview-questions/"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    Microsoft Interview Questions ↗
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- ADOBE -->
+
+        <div class="company-card">
+
+            <h3>Adobe</h3>
+
+            <p>
+                Adobe interview preparation and technical
+                interview resources.
+            </p>
+
+            <div class="company-links">
+
+                <a
+                    href="https://www.geeksforgeeks.org/interview-experiences/adobe-interview-preparation/"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    Adobe Interview Preparation ↗
+                </a>
+
+                <a
+                    href="https://www.geeksforgeeks.org/adobe-interview-questions-computer-scientist/"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    Adobe Interview Questions ↗
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- MORE COMPANIES -->
+
+    <div class="resource-grid">
+
+        <div class="resource-card">
+
+            <h3>🌐 More Company Interviews</h3>
+
+            <p>
+                Explore interview preparation and experiences
+                for many more companies.
+            </p>
+
+            <a
+                class="btn"
+                href="https://www.geeksforgeeks.org/interview-prep/interview-corner/"
+                target="_blank"
+                rel="noopener"
+            >
+                Explore More Companies ↗
+            </a>
+
+        </div>
+
+
+        <div class="resource-card">
+
+            <h3>📌 How NEXORA Uses These</h3>
+
+            <p>
+                External resources are kept as links. NEXORA does not
+                copy their complete question banks.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- NEXORA QUICK PRACTICE -->
+
+    <h2 style="margin-top:35px;">
+        📝 NEXORA Quick Practice
+    </h2>
+
+    <p class="section-subtitle">
+        These curated questions are for quick revision.
+        They are NOT official company interview questions.
+    </p>
+
+
+    <div class="filters">
+
+        <select id="companyFilter"
+                onchange="renderCompanyQuestions()">
+
+            <option value="All">All Companies</option>
+            <option value="Amazon">Amazon</option>
+            <option value="Google">Google</option>
+            <option value="Microsoft">Microsoft</option>
+            <option value="Adobe">Adobe</option>
+
+        </select>
+
+
+        <select id="companySubject"
+                onchange="renderCompanyQuestions()">
+
+            <option value="All">All Subjects</option>
+            <option value="DBMS">DBMS</option>
+            <option value="OS">Operating System</option>
+            <option value="CN">Computer Networks</option>
+            <option value="OOP">OOP</option>
+            <option value="DSA">DSA</option>
+            <option value="System Design">System Design</option>
+
+        </select>
+
+
+        <select id="companyLevel"
+                onchange="renderCompanyQuestions()">
+
+            <option value="All">All Levels</option>
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
+
+        </select>
+
+
+        <input
+            id="companySearch"
+            type="text"
+            placeholder="Search practice question..."
+            oninput="renderCompanyQuestions()"
+        >
+
+    </div>
+
+
+    <div
+        id="companyQuestionGrid"
+        class="question-grid"
+    ></div>
+
+</section>
+
+
+<!-- =====================================================
+     CORE CS SECTION
+===================================================== -->
+
+<section class="section hidden" id="coreSection">
+
+    <h2>📚 Core CS Interview Questions</h2>
+
+    <p class="section-subtitle">
+        Practice DBMS, Operating System, Computer Networks and OOP.
+        Use the external question banks for deeper preparation.
+    </p>
+
+
+    <div class="filters">
+
+        <select id="coreSubject"
+                onchange="renderCoreQuestions()">
+
+            <option value="All">All Subjects</option>
+            <option value="DBMS">DBMS</option>
+            <option value="OS">Operating System</option>
+            <option value="CN">Computer Networks</option>
+            <option value="OOP">OOP</option>
+
+        </select>
+
+
+        <select id="coreLevel"
+                onchange="renderCoreQuestions()">
+
+            <option value="All">All Levels</option>
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
+
+        </select>
+
+
+        <input
+            id="coreSearch"
+            type="text"
+            placeholder="Search question..."
+            oninput="renderCoreQuestions()"
+        >
+
+
+        <button class="btn secondary"
+                onclick="resetCoreFilters()">
+            Reset
+        </button>
+
+    </div>
+
+
+    <div
+        id="coreQuestionGrid"
+        class="question-grid"
+    ></div>
+
+
+    <div class="notice">
+
+        💡 <strong>Need more practice?</strong>
+
+        NEXORA's internal questions are for quick revision.
+        Use the external Core CS question banks for a much
+        larger collection of interview questions.
+
+    </div>
+
+
+    <div class="resource-grid">
+
+        <div class="resource-card">
+
+            <h3>🌐 Core CS Question Bank</h3>
+
+            <p>
+                Large collection covering DBMS, Operating System,
+                Computer Networks and OOP interview questions.
+            </p>
+
+            <a
+                class="btn"
+                href="https://www.geeksforgeeks.org/computer-science-fundamentals/computer-science-subjects-interview-questions/"
+                target="_blank"
+                rel="noopener"
+            >
+                Open Question Bank ↗
+            </a>
+
+        </div>
+
+
+        <div class="resource-card">
+
+            <h3>📖 Core CS Preparation</h3>
+
+            <p>
+                Additional preparation material for major
+                Core CS subjects.
+            </p>
+
+            <a
+                class="btn"
+                href="https://www.geeksforgeeks.org/blogs/learn-os-dbms-cn-for-sde-interview-preparation-one-course-for-all-subjects/"
+                target="_blank"
+                rel="noopener"
+            >
+                Open Preparation ↗
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     AI MOCK INTERVIEW
+===================================================== -->
+
+<section class="section hidden" id="aiSection">
+
+    <h2>🤖 NEXORA AI Mock Interview</h2>
+
+    <p class="section-subtitle">
+        Start a personalized technical mock interview.
+        Answers are evaluated by the NEXORA backend.
+    </p>
+
+
+    <div class="ai-panel">
+
+        <div class="field">
+
+            <label>Target Role</label>
+
+            <select id="aiRole">
+
+                <option>Software Engineer</option>
+                <option>Frontend Developer</option>
+                <option>Backend Developer</option>
+                <option>Full Stack Developer</option>
+                <option>Data Analyst</option>
+
+            </select>
+
+        </div>
+
+
+        <div class="field">
+
+            <label>Difficulty</label>
+
+            <select id="aiDifficulty">
+
+                <option>Beginner</option>
+                <option>Intermediate</option>
+                <option>Advanced</option>
+
+            </select>
+
+        </div>
+
+
+        <div class="field">
+
+            <label>Interview Area</label>
+
+            <select id="aiArea">
+
+                <option>Core CS</option>
+                <option>DBMS</option>
+                <option>Operating Systems</option>
+                <option>Computer Networks</option>
+                <option>OOP</option>
+                <option>DSA</option>
+                <option>Mixed Technical</option>
+
+            </select>
+
+        </div>
+
+
+        <div class="field">
+
+            <label>Number of Questions</label>
+
+            <select id="aiQuestionCount">
+
+                <option value="5">5 Questions</option>
+                <option value="10">10 Questions</option>
+                <option value="15">15 Questions</option>
+
+            </select>
+
+        </div>
+
+
+        <div class="field full">
+
+            <label>Resume Context (Optional)</label>
+
+            <textarea
+                id="resumeContext"
+                rows="5"
+                placeholder="Paste important resume details here if you want the AI interview to consider them..."
+            ></textarea>
+
+        </div>
+
+    </div>
+
+
+    <div class="ai-actions">
+
+        <button class="btn"
+                onclick="startAIInterview()">
+            🚀 Start AI Interview
+        </button>
+
+        <button class="btn secondary"
+                onclick="resetAIInterview()">
+            Reset
+        </button>
+
+    </div>
+
+
+    <div id="aiStatus"
+         class="status">
+    </div>
+
+
+    <div id="aiInterviewBox"
+         class="evaluation hidden">
+
+        <h3 id="aiQuestionNumber"></h3>
+
+        <h2 id="aiQuestion"
+            style="margin-top:10px;">
+        </h2>
+
+
+        <textarea
+            id="aiAnswer"
+            rows="6"
+            placeholder="Type your answer here..."
+            style="margin-top:18px;"
+        ></textarea>
+
+
+        <div class="ai-actions">
+
+            <button class="btn"
+                    onclick="submitAIAnswer()">
+                Submit Answer
+            </button>
+
+            <button class="btn secondary"
+                    onclick="skipAIQuestion()">
+                Skip
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div id="evaluationBox"
+         class="evaluation hidden">
+    </div>
+
+</section>
+
+</main>
+
+
+<script>
+
+/* =====================================================
+   SECTION SWITCH
+===================================================== */
+
+function showSection(sectionId,card){
+
+    document.querySelectorAll(".section")
+        .forEach(section=>{
+            section.classList.add("hidden");
+        });
+
+    document.getElementById(sectionId)
+        .classList.remove("hidden");
+
+    document.querySelectorAll(".mode-card")
+        .forEach(c=>{
+            c.classList.remove("active");
+        });
+
+    card.classList.add("active");
+
+    window.scrollTo({
+        top:document.getElementById(sectionId).offsetTop-80,
+        behavior:"smooth"
+    });
+}
+
+
+/* =====================================================
+   CORE QUESTIONS
+===================================================== */
+
+const coreQuestions=[
+
+/* DBMS */
+
+{
+subject:"DBMS",
+level:"Beginner",
+q:"What is DBMS?",
+a:"DBMS is software used to create, store, manage and retrieve data from databases."
+},
+
+{
+subject:"DBMS",
+level:"Beginner",
+q:"What is the difference between DBMS and RDBMS?",
+a:"RDBMS stores data in related tables and supports relational constraints, while DBMS is a broader term."
+},
+
+{
+subject:"DBMS",
+level:"Beginner",
+q:"What is a primary key?",
+a:"A primary key uniquely identifies each record in a table and cannot contain duplicate values."
+},
+
+{
+subject:"DBMS",
+level:"Intermediate",
+q:"What is normalization?",
+a:"Normalization organizes database tables to reduce redundancy and improve data consistency."
+},
+
+{
+subject:"DBMS",
+level:"Intermediate",
+q:"What are ACID properties?",
+a:"ACID means Atomicity, Consistency, Isolation and Durability."
+},
+
+{
+subject:"DBMS",
+level:"Intermediate",
+q:"What is a foreign key?",
+a:"A foreign key references a key in another table and helps maintain referential integrity."
+},
+
+{
+subject:"DBMS",
+level:"Intermediate",
+q:"What is an index?",
+a:"An index is a data structure that can speed up data retrieval from a database."
+},
+
+{
+subject:"DBMS",
+level:"Advanced",
+q:"What is a transaction?",
+a:"A transaction is a logical unit of database operations."
+},
+
+{
+subject:"DBMS",
+level:"Advanced",
+q:"What is a deadlock in DBMS?",
+a:"A deadlock occurs when transactions wait indefinitely for resources held by each other."
+},
+
+{
+subject:"DBMS",
+level:"Advanced",
+q:"What is concurrency control?",
+a:"Concurrency control manages simultaneous transactions while maintaining database consistency."
+},
+
+
+/* OS */
+
+{
+subject:"OS",
+level:"Beginner",
+q:"What is an Operating System?",
+a:"An operating system manages hardware resources and provides services for application programs."
+},
+
+{
+subject:"OS",
+level:"Beginner",
+q:"What is a process?",
+a:"A process is a program in execution."
+},
+
+{
+subject:"OS",
+level:"Beginner",
+q:"What is a thread?",
+a:"A thread is a lightweight execution unit within a process."
+},
+
+{
+subject:"OS",
+level:"Intermediate",
+q:"Process vs Thread?",
+a:"Processes have separate address spaces, while threads of the same process generally share its resources."
+},
+
+{
+subject:"OS",
+level:"Intermediate",
+q:"What is context switching?",
+a:"Context switching saves the state of one task and loads the state of another."
+},
+
+{
+subject:"OS",
+level:"Intermediate",
+q:"What is deadlock?",
+a:"Deadlock is a state where processes wait indefinitely for resources held by one another."
+},
+
+{
+subject:"OS",
+level:"Intermediate",
+q:"What is virtual memory?",
+a:"Virtual memory allows the OS to use secondary storage as an extension of available main memory."
+},
+
+{
+subject:"OS",
+level:"Advanced",
+q:"What is paging?",
+a:"Paging divides memory into fixed-size pages and frames to manage memory efficiently."
+},
+
+{
+subject:"OS",
+level:"Advanced",
+q:"What is process synchronization?",
+a:"Process synchronization coordinates concurrent processes to avoid inconsistent shared-resource access."
+},
+
+{
+subject:"OS",
+level:"Advanced",
+q:"What are scheduling algorithms?",
+a:"They determine which ready process gets CPU time, such as FCFS, SJF, Priority and Round Robin."
+},
+
+
+/* CN */
+
+{
+subject:"CN",
+level:"Beginner",
+q:"What is a computer network?",
+a:"A computer network connects devices so they can communicate and share resources."
+},
+
+{
+subject:"CN",
+level:"Beginner",
+q:"What is the OSI model?",
+a:"OSI is a seven-layer conceptual model used to understand network communication."
+},
+
+{
+subject:"CN",
+level:"Beginner",
+q:"What is an IP address?",
+a:"An IP address identifies a device or network interface for communication over an IP network."
+},
+
+{
+subject:"CN",
+level:"Intermediate",
+q:"TCP vs UDP?",
+a:"TCP provides connection-oriented reliable delivery, while UDP is connectionless and has lower overhead."
+},
+
+{
+subject:"CN",
+level:"Intermediate",
+q:"What is DNS?",
+a:"DNS translates domain names into IP addresses and other DNS records."
+},
+
+{
+subject:"CN",
+level:"Intermediate",
+q:"What is HTTP?",
+a:"HTTP is an application-layer protocol used for communication between clients and servers."
+},
+
+{
+subject:"CN",
+level:"Intermediate",
+q:"What is HTTPS?",
+a:"HTTPS is HTTP protected using TLS encryption and authentication."
+},
+
+{
+subject:"CN",
+level:"Advanced",
+q:"What is a subnet?",
+a:"A subnet is a logical subdivision of an IP network."
+},
+
+{
+subject:"CN",
+level:"Advanced",
+q:"What is a router?",
+a:"A router forwards packets between networks using routing information."
+},
+
+{
+subject:"CN",
+level:"Advanced",
+q:"What is load balancing?",
+a:"Load balancing distributes requests across multiple servers to improve availability and performance."
+},
+
+
+/* OOP */
+
+{
+subject:"OOP",
+level:"Beginner",
+q:"What is OOP?",
+a:"Object-Oriented Programming organizes software around objects containing data and behavior."
+},
+
+{
+subject:"OOP",
+level:"Beginner",
+q:"What is a class?",
+a:"A class is a blueprint that defines the data and behavior of objects."
+},
+
+{
+subject:"OOP",
+level:"Beginner",
+q:"What is an object?",
+a:"An object is an instance of a class."
+},
+
+{
+subject:"OOP",
+level:"Intermediate",
+q:"What is encapsulation?",
+a:"Encapsulation bundles data and methods and controls access to internal state."
+},
+
+{
+subject:"OOP",
+level:"Intermediate",
+q:"What is inheritance?",
+a:"Inheritance allows a class to derive properties and behavior from another class."
+},
+
+{
+subject:"OOP",
+level:"Intermediate",
+q:"What is polymorphism?",
+a:"Polymorphism allows the same interface or operation to behave differently for different objects."
+},
+
+{
+subject:"OOP",
+level:"Intermediate",
+q:"What is abstraction?",
+a:"Abstraction hides unnecessary implementation details and exposes essential functionality."
+},
+
+{
+subject:"OOP",
+level:"Advanced",
+q:"Overloading vs Overriding?",
+a:"Overloading uses different parameter lists; overriding provides a subclass implementation of inherited behavior."
+},
+
+{
+subject:"OOP",
+level:"Advanced",
+q:"What is an interface?",
+a:"An interface defines a contract of operations that implementing classes provide."
+},
+
+{
+subject:"OOP",
+level:"Advanced",
+q:"What is composition?",
+a:"Composition builds a class using objects of other classes to represent a has-a relationship."
+}
+
+];
+
+
+function renderCoreQuestions(){
+
+    const subject=
+        document.getElementById("coreSubject").value;
+
+    const level=
+        document.getElementById("coreLevel").value;
+
+    const search=
+        document.getElementById("coreSearch")
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    const filtered=coreQuestions.filter(item=>{
+
+        const subjectMatch=
+            subject==="All" ||
+            item.subject===subject;
+
+        const levelMatch=
+            level==="All" ||
+            item.level===level;
+
+        const searchMatch=
+            !search ||
+            item.q.toLowerCase().includes(search) ||
+            item.a.toLowerCase().includes(search);
+
+        return subjectMatch &&
+               levelMatch &&
+               searchMatch;
+    });
+
+
+    const grid=
+        document.getElementById("coreQuestionGrid");
+
+
+    if(filtered.length===0){
+
+        grid.innerHTML=`
+            <div class="empty">
+                No matching questions found.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    grid.innerHTML=
+        filtered.map((item,index)=>`
+
+            <div class="question-card">
+
+                <h3>
+                    ${index+1}. ${item.q}
+                </h3>
+
+                <div class="meta">
+
+                    <span class="tag">
+                        ${item.subject}
+                    </span>
+
+                    <span class="tag">
+                        ${item.level}
+                    </span>
+
+                    <span class="tag">
+                        NEXORA Practice
+                    </span>
+
+                </div>
+
+                <div class="answer">
+
+                    <strong>Answer:</strong><br>
+
+                    ${item.a}
+
+                </div>
+
+            </div>
+
+        `).join("");
+}
+
+
+function resetCoreFilters(){
+
+    document.getElementById("coreSubject").value="All";
+
+    document.getElementById("coreLevel").value="All";
+
+    document.getElementById("coreSearch").value="";
+
+    renderCoreQuestions();
+}
+
+
+/* =====================================================
+   COMPANY QUICK PRACTICE — 13 QUESTIONS
+===================================================== */
+
+const companyQuestions=[
+
+{
+company:"Amazon",
+subject:"DSA",
+level:"Intermediate",
+q:"How does a HashMap work internally?",
+a:"A hash map uses hashing to map keys to buckets and handles collisions using an appropriate collision strategy."
+},
+
+{
+company:"Amazon",
+subject:"OOP",
+level:"Intermediate",
+q:"Explain abstraction and interface.",
+a:"Abstraction exposes essential behavior while hiding implementation details; an interface defines a contract implemented by classes."
+},
+
+{
+company:"Amazon",
+subject:"DBMS",
+level:"Intermediate",
+q:"What are ACID properties?",
+a:"Atomicity, Consistency, Isolation and Durability describe important transaction guarantees."
+},
+
+{
+company:"Amazon",
+subject:"CN",
+level:"Intermediate",
+q:"What is the difference between TCP and UDP?",
+a:"TCP provides reliable connection-oriented delivery while UDP provides connectionless delivery with lower overhead."
+},
+
+{
+company:"Google",
+subject:"OOP",
+level:"Intermediate",
+q:"Explain polymorphism with an example.",
+a:"Polymorphism allows a common interface to represent different implementations or behaviors."
+},
+
+{
+company:"Google",
+subject:"OS",
+level:"Advanced",
+q:"What is process synchronization?",
+a:"It coordinates concurrent processes so shared resources are accessed safely and consistently."
+},
+
+{
+company:"Google",
+subject:"CN",
+level:"Intermediate",
+q:"Explain DNS.",
+a:"DNS maps domain names to IP addresses and other records used by networked applications."
+},
+
+{
+company:"Microsoft",
+subject:"DBMS",
+level:"Intermediate",
+q:"What is normalization?",
+a:"Normalization organizes relational data to reduce redundancy and update anomalies."
+},
+
+{
+company:"Microsoft",
+subject:"OS",
+level:"Intermediate",
+q:"Process vs Thread?",
+a:"Processes generally have separate address spaces; threads within a process share process resources."
+},
+
+{
+company:"Microsoft",
+subject:"CN",
+level:"Intermediate",
+q:"What is the OSI model?",
+a:"OSI is a seven-layer conceptual model for understanding network communication."
+},
+
+{
+company:"Microsoft",
+subject:"OOP",
+level:"Advanced",
+q:"Overloading vs Overriding?",
+a:"Overloading changes the parameter list; overriding changes inherited behavior in a subclass."
+},
+
+{
+company:"Adobe",
+subject:"DBMS",
+level:"Intermediate",
+q:"What is indexing?",
+a:"Indexing can speed up database lookups by maintaining an additional searchable data structure."
+},
+
+{
+company:"Adobe",
+subject:"OOP",
+level:"Intermediate",
+q:"Explain encapsulation.",
+a:"Encapsulation combines data and behavior and controls direct access to internal state."
+}
+
+];
+
+
+function renderCompanyQuestions(){
+
+    const company=
+        document.getElementById("companyFilter").value;
+
+    const subject=
+        document.getElementById("companySubject").value;
+
+    const level=
+        document.getElementById("companyLevel").value;
+
+    const search=
+        document.getElementById("companySearch")
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    const filtered=
+        companyQuestions.filter(item=>{
+
+            const companyMatch=
+                company==="All" ||
+                item.company===company;
+
+            const subjectMatch=
+                subject==="All" ||
+                item.subject===subject;
+
+            const levelMatch=
+                level==="All" ||
+                item.level===level;
+
+            const searchMatch=
+                !search ||
+                item.q.toLowerCase().includes(search) ||
+                item.a.toLowerCase().includes(search) ||
+                item.company.toLowerCase().includes(search);
+
+            return companyMatch &&
+                   subjectMatch &&
+                   levelMatch &&
+                   searchMatch;
+        });
+
+
+    const grid=
+        document.getElementById("companyQuestionGrid");
+
+
+    if(filtered.length===0){
+
+        grid.innerHTML=`
+            <div class="empty">
+                No matching practice questions found.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    grid.innerHTML=
+        filtered.map((item,index)=>`
+
+            <div class="question-card">
+
+                <h3>
+                    ${index+1}. ${item.q}
+                </h3>
+
+                <div class="meta">
+
+                    <span class="tag">
+                        ${item.company}
+                    </span>
+
+                    <span class="tag">
+                        ${item.subject}
+                    </span>
+
+                    <span class="tag">
+                        ${item.level}
+                    </span>
+
+                </div>
+
+                <div class="answer">
+
+                    <strong>Answer:</strong><br>
+
+                    ${item.a}
+
+                </div>
+
+            </div>
+
+        `).join("");
+}
+
+
+/* =====================================================
+   AI MOCK INTERVIEW
+===================================================== */
+
+let aiState={
+    questions:[],
+    currentIndex:0,
+    evaluations:[],
+    answers:[]
+};
+
+
+const aiQuestionBank={
+
+"DBMS":[
+"What is normalization and why is it used?",
+"Explain ACID properties.",
+"What is the difference between primary key and foreign key?",
+"What is indexing in DBMS?",
+"Explain different types of joins."
+],
+
+"Operating Systems":[
+"What is the difference between a process and a thread?",
+"What is deadlock?",
+"Explain virtual memory.",
+"What is context switching?",
+"Explain process scheduling."
+],
+
+"Computer Networks":[
+"What is the difference between TCP and UDP?",
+"Explain DNS.",
+"What is the OSI model?",
+"What is HTTP and HTTPS?",
+"What is an IP address?"
+],
+
+"OOP":[
+"What is polymorphism?",
+"Explain inheritance.",
+"What is encapsulation?",
+"What is abstraction?",
+"What is the difference between overloading and overriding?"
+],
+
+"DSA":[
+"What is the difference between an array and linked list?",
+"Explain binary search.",
+"What is a stack?",
+"What is a queue?",
+"What is recursion?"
+],
+
+"Core CS":[
+"Explain the difference between process and thread.",
+"What are ACID properties?",
+"Explain TCP vs UDP.",
+"What is polymorphism?",
+"What is normalization?",
+"What is DNS?",
+"What is deadlock?",
+"What is indexing?",
+"What is virtual memory?",
+"What is encapsulation."
+],
+
+"Mixed Technical":[
+"Explain polymorphism.",
+"What are ACID properties?",
+"What is deadlock?",
+"Explain TCP vs UDP.",
+"What is normalization?",
+"What is virtual memory?",
+"What is DNS?",
+"What is encapsulation?",
+"What is indexing?",
+"What is process synchronization?"
+]
+
+};
+
+
+function startAIInterview(){
+
+    const area=
+        document.getElementById("aiArea").value;
+
+    const count=
+        parseInt(
+            document.getElementById("aiQuestionCount").value
+        );
+
+
+    const source=
+        aiQuestionBank[area] ||
+        aiQuestionBank["Core CS"];
+
+
+    let questions=[...source];
+
+    questions.sort(
+        ()=>Math.random()-0.5
+    );
+
+
+    while(questions.length<count){
+
+        questions=
+            questions.concat(source);
+    }
+
+
+    aiState={
+
+        questions:questions.slice(0,count),
+
+        currentIndex:0,
+
+        evaluations:[],
+
+        answers:[]
+
+    };
+
+
+    document.getElementById("aiStatus")
+        .textContent=
+        "AI interview started. Answer each question clearly.";
+
+
+    document.getElementById("aiInterviewBox")
+        .classList.remove("hidden");
+
+
+    document.getElementById("evaluationBox")
+        .classList.add("hidden");
+
+
+    showAIQuestion();
+}
+
+
+function showAIQuestion(){
+
+    const total=
+        aiState.questions.length;
+
+    const index=
+        aiState.currentIndex;
+
+
+    if(index>=total){
+
+        finishAIInterview();
+
+        return;
+    }
+
+
+    document.getElementById("aiQuestionNumber")
+        .textContent=
+        `Question ${index+1} of ${total}`;
+
+
+    document.getElementById("aiQuestion")
+        .textContent=
+        aiState.questions[index];
+
+
+    document.getElementById("aiAnswer")
+        .value="";
+
+
+    document.getElementById("aiAnswer")
+        .focus();
+}
+
+
+async function submitAIAnswer(){
+
+    const answer=
+        document.getElementById("aiAnswer")
+        .value
+        .trim();
+
+
+    if(!answer){
+
+        document.getElementById("aiStatus")
+            .textContent=
+            "Please type an answer before submitting.";
+
+        return;
+    }
+
+
+    const question=
+        aiState.questions[
+            aiState.currentIndex
+        ];
+
+
+    const role=
+        document.getElementById("aiRole").value;
+
+
+    const difficulty=
+        document.getElementById("aiDifficulty").value;
+
+
+    const area=
+        document.getElementById("aiArea").value;
+
+
+    const resumeContext=
+        document.getElementById("resumeContext")
+        .value
+        .trim();
+
+
+    document.getElementById("aiStatus")
+        .textContent=
+        "Evaluating your answer...";
+
+
+    try{
+
+        const response=
+            await fetch(
+                "http://localhost:5000/api/interview",
+                {
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":
+                        "application/json"
+                    },
+
+                    body:JSON.stringify({
+
+                        question:question,
+
+                        answer:answer,
+
+                        role:role,
+
+                        difficulty:difficulty,
+
+                        area:area,
+
+                        previousQuestions:
+                            aiState.questions.slice(
+                                0,
+                                aiState.currentIndex
+                            ),
+
+                        resumeContext:
+                            resumeContext
+                    })
+                }
+            );
+
+
+        const data=
+            await response.json();
+
+
+        if(!response.ok || !data.success){
+
+            throw new Error(
+                data.message ||
+                "AI evaluation failed."
+            );
+        }
+
+
+        const evaluation=
+            data.evaluation || {};
+
+
+        aiState.answers.push({
+
+            question:question,
+
+            answer:answer,
+
+            evaluation:evaluation
+
+        });
+
+
+        aiState.evaluations.push(
+            evaluation
+        );
+
+
+        displayEvaluation(
+            evaluation
+        );
+
+
+        aiState.currentIndex++;
+
+
+        setTimeout(()=>{
+
+            document.getElementById(
+                "evaluationBox"
+            ).classList.add("hidden");
+
+            showAIQuestion();
+
+        },1400);
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        document.getElementById("aiStatus")
+            .textContent=
+            "Unable to evaluate answer. Make sure node server.js is running.";
+
+    }
+
+}
+
+
+function displayEvaluation(evaluation){
+
+    const box=
+        document.getElementById(
+            "evaluationBox"
+        );
+
+
+    box.classList.remove("hidden");
+
+
+    const score=
+        Number(
+            evaluation.score ?? 0
+        );
+
+
+    const validity=
+        evaluation.answerValidity ||
+        evaluation.validity ||
+        "";
+
+
+    const message=
+        evaluation.message ||
+        evaluation.feedback ||
+        "";
+
+
+    const strengths=
+        Array.isArray(
+            evaluation.strengths
+        )
+        ? evaluation.strengths
+        : [];
+
+
+    const improvements=
+        Array.isArray(
+            evaluation.improvements
+        )
+        ? evaluation.improvements
+        : [];
+
+
+    let html=`
+
+        <h3>AI Evaluation</h3>
+
+        <div class="score">
+            ${score}/100
+        </div>
+
+    `;
+
+
+    if(validity){
+
+        html+=`
+
+            <div class="tag"
+                 style="
+                 display:inline-block;
+                 margin-bottom:12px;
+                 ">
+
+                ${validity}
+
+            </div>
+
+        `;
+    }
+
+
+    if(message){
+
+        html+=`
+
+            <p style="
+                line-height:1.6;
+                color:#d8cbe0;
+            ">
+
+                ${message}
+
+            </p>
+
+        `;
+    }
+
+
+    if(strengths.length){
+
+        html+=`
+
+            <h4 style="margin-top:17px;">
+                Strengths
+            </h4>
+
+            <ul class="feedback-list">
+
+                ${strengths.map(item=>`
+                    <li>${item}</li>
+                `).join("")}
+
+            </ul>
+
+        `;
+    }
+
+
+    if(improvements.length){
+
+        html+=`
+
+            <h4 style="margin-top:17px;">
+                Improve
+            </h4>
+
+            <ul class="feedback-list">
+
+                ${improvements.map(item=>`
+                    <li>${item}</li>
+                `).join("")}
+
+            </ul>
+
+        `;
+    }
+
+
+    box.innerHTML=html;
+}
+
+
+function skipAIQuestion(){
+
+    const question=
+        aiState.questions[
+            aiState.currentIndex
+        ];
+
+
+    aiState.answers.push({
+
+        question:question,
+
+        answer:"",
+
+        skipped:true
+
+    });
+
+
+    aiState.currentIndex++;
+
+    showAIQuestion();
+}
+
+
+function finishAIInterview(){
+
+    document.getElementById(
+        "aiInterviewBox"
+    ).classList.add("hidden");
+
+
+    const scores=
+        aiState.evaluations
+        .map(
+            e=>Number(e.score||0)
+        )
+        .filter(
+            n=>!isNaN(n)
+        );
+
+
+    const average=
+        scores.length
+        ?
+        Math.round(
+            scores.reduce(
+                (a,b)=>a+b,
+                0
+            ) / scores.length
+        )
+        :
+        0;
+
+
+    document.getElementById(
+        "evaluationBox"
+    ).classList.remove("hidden");
+
+
+    document.getElementById(
+        "evaluationBox"
+    ).innerHTML=`
+
+        <h3>
+            🎉 AI Interview Completed
+        </h3>
+
+        <div class="score">
+            ${average}/100
+        </div>
+
+        <p style="
+            color:#d4c7dc;
+            line-height:1.7;
+        ">
+
+            Your mock interview has been completed.
+            Review your answers and continue practicing
+            your weak Core CS areas.
+
+        </p>
+
+
+        <div class="ai-actions">
+
+            <button class="btn"
+                    onclick="startAIInterview()">
+
+                Start Again
+
+            </button>
+
+
+            <a
+                class="btn secondary"
+                href="Progress.html"
+            >
+
+                View Analytics
+
+            </a>
+
+        </div>
+
+    `;
+
+
+    document.getElementById(
+        "aiStatus"
+    ).textContent=
+        "Interview completed.";
+
+
+    saveInterviewResult(
+        average
+    );
+}
+
+
+function saveInterviewResult(score){
+
+    try{
+
+        localStorage.setItem(
+            "nexoraInterviewScore",
+            String(score)
+        );
+
+
+        localStorage.setItem(
+            "nexoraInterviewAnalytics",
+            JSON.stringify({
+
+                averageScore:score,
+
+                completedAt:
+                    new Date()
+                    .toISOString(),
+
+                questionCount:
+                    aiState.questions.length
+
+            })
+        );
+
+    }
+
+    catch(error){
+
+        console.log(
+            "Could not save interview result."
+        );
+
+    }
+}
+
+
+function resetAIInterview(){
+
+    aiState={
+
+        questions:[],
+
+        currentIndex:0,
+
+        evaluations:[],
+
+        answers:[]
+
+    };
+
+
+    document.getElementById(
+        "aiInterviewBox"
+    ).classList.add("hidden");
+
+
+    document.getElementById(
+        "evaluationBox"
+    ).classList.add("hidden");
+
+
+    document.getElementById(
+        "aiStatus"
+    ).textContent="";
+
+
+    document.getElementById(
+        "aiAnswer"
+    ).value="";
+}
+
+
+/* =====================================================
+   INITIAL LOAD
+===================================================== */
+
+renderCompanyQuestions();
+
+renderCoreQuestions();
+
+</script>
+
+</body>
+</html>

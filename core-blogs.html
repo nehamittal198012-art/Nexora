@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NEXORA | Core CS Blogs</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            background: #171821;
+            color: #eeeeF5;
+        }
+
+        .page {
+            width: 92%;
+            max-width: 1100px;
+            margin: auto;
+            padding: 30px 0 60px;
+        }
+
+        .top-back {
+            display: inline-block;
+            margin-bottom: 25px;
+            color: #a78bfa;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .hero {
+            background: #20212b;
+            padding: 30px;
+            border-radius: 28px;
+            box-shadow:
+                12px 12px 25px #0d0e13,
+                -10px -10px 22px #2b2d38;
+            margin-bottom: 30px;
+        }
+
+        .hero h1 {
+            color: #a78bfa;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: #b8bac5;
+            line-height: 1.7;
+        }
+
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .subject-card {
+            background: #20212b;
+            padding: 28px;
+            border-radius: 24px;
+            box-shadow:
+                10px 10px 20px #0d0e13,
+                -8px -8px 18px #2b2d38;
+            transition: 0.2s;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .subject-card h2 {
+            color: #a78bfa;
+            margin-bottom: 12px;
+        }
+
+        .subject-card p {
+            color: #b8bac5;
+            line-height: 1.6;
+        }
+
+        .subject-card button {
+            width: 100%;
+            margin-top: 18px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="page">
+
+    <a href="core.html" class="top-back">
+        ← Back to Core CS
+    </a>
+
+    <div class="hero">
+
+        <h1>NEXORA 🤖</h1>
+
+        <p>
+            Learn Core CS subjects with placement-focused concepts,
+            examples and interview preparation.
+        </p>
+
+    </div>
+
+
+    <div class="subjects-grid">
+
+
+        <!-- DBMS -->
+
+        <div class="subject-card">
+
+            <h2>🗄️ DBMS</h2>
+
+            <p>
+                Database concepts, SQL, normalization,
+                transactions, indexing and interview preparation.
+            </p>
+
+            <button onclick="openSubject('DBMS')">
+                Explore DBMS
+            </button>
+
+        </div>
+
+
+        <!-- OS -->
+
+        <div class="subject-card">
+
+            <h2>⚙️ Operating System</h2>
+
+            <p>
+                Processes, scheduling, synchronization,
+                deadlocks, memory management and more.
+            </p>
+
+            <button onclick="openSubject('OS')">
+                Explore OS
+            </button>
+
+        </div>
+
+
+        <!-- CN -->
+
+        <div class="subject-card">
+
+            <h2>🌐 Computer Networks</h2>
+
+            <p>
+                OSI, TCP/IP, IP addressing, routing,
+                TCP/UDP, DNS, HTTP and networking concepts.
+            </p>
+
+            <button onclick="openSubject('CN')">
+                Explore CN
+            </button>
+
+        </div>
+
+
+        <!-- OOP -->
+
+        <div class="subject-card">
+
+            <h2>💻 OOP</h2>
+
+            <p>
+                Classes, objects, inheritance, polymorphism,
+                abstraction, encapsulation and design principles.
+            </p>
+
+            <button onclick="openSubject('OOP')">
+                Explore OOP
+            </button>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<script>
+
+function openSubject(subjectName) {
+
+    window.location.href =
+        "subjects.html?subject=" +
+        encodeURIComponent(subjectName);
+
+}
+
+</script>
+
+</body>
+
+</html>

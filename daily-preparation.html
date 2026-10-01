@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>NEXORA - Daily Preparation</title>
+
+<style>
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#171821;
+color:#f4f3ff;
+min-height:100vh;
+}
+
+.container{
+width:92%;
+max-width:1100px;
+margin:auto;
+padding:25px 0 50px;
+}
+
+.topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:30px;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+color:#a78bfa;
+}
+
+button{
+border:none;
+padding:11px 17px;
+border-radius:12px;
+background:#242532;
+color:white;
+cursor:pointer;
+box-shadow:6px 6px 12px #0e0f15,-4px -4px 10px #20222d;
+}
+
+button:hover{
+background:#8b5cf6;
+}
+
+.hero{
+margin-bottom:25px;
+}
+
+.hero h1{
+font-size:32px;
+margin-bottom:8px;
+}
+
+.hero p{
+color:#aaa9b9;
+line-height:1.6;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:20px;
+}
+
+.card{
+background:#1e202a;
+padding:25px;
+border-radius:20px;
+box-shadow:8px 8px 18px #0e0f15,-6px -6px 15px #252734;
+}
+
+.card h2{
+margin-bottom:12px;
+color:#a78bfa;
+}
+
+.card p{
+color:#aaa9b9;
+line-height:1.7;
+}
+
+.score{
+font-size:45px;
+font-weight:bold;
+color:#a78bfa;
+}
+
+.tag{
+display:inline-block;
+padding:7px 11px;
+margin:4px;
+border-radius:20px;
+background:#302d46;
+color:#c4b5fd;
+font-size:13px;
+}
+
+.task{
+display:flex;
+gap:15px;
+align-items:flex-start;
+background:#292b38;
+padding:18px;
+border-radius:15px;
+margin:12px 0;
+}
+
+.task input{
+width:20px;
+height:20px;
+accent-color:#8b5cf6;
+}
+
+.task strong{
+display:block;
+margin-bottom:5px;
+}
+
+.task p{
+font-size:14px;
+}
+
+.actions{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-top:20px;
+}
+
+.actions button{
+background:#8b5cf6;
+}
+
+.empty{
+color:#aaa9b9;
+line-height:1.7;
+}
+
+@media(max-width:800px){
+.grid{
+grid-template-columns:1fr;
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="topbar">
+
+<div class="logo">NEXORA</div>
+
+<button onclick="location.href='progress.html'">
+← Back to Progress
+</button>
+
+</div>
+
+<div class="hero">
+
+<h1>📅 Daily Preparation</h1>
+
+<p>
+Your daily preparation plan is generated from your latest NEXORA interview analysis.
+</p>
+
+</div>
+
+
+<div class="grid">
+
+<div class="card">
+
+<h2>🎯 Your Target</h2>
+
+<div class="score" id="score">0/100</div>
+
+<p id="target">
+Complete an AI Mock Interview to generate your personalized plan.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h2>⚡ Priority Areas</h2>
+
+<div id="priorityAreas"></div>
+
+</div>
+
+</div>
+
+<br>
+
+
+<div class="card">
+
+<h2>🧠 Today's Preparation Tasks</h2>
+
+<div id="tasks"></div>
+
+</div>
+
+<br>
+
+
+<div class="card">
+
+<h2>⚠️ Current Skill Gap</h2>
+
+<div id="skillGap"></div>
+
+</div>
+
+<br>
+
+
+<div class="card">
+
+<h2>💡 NEXORA Recommendations</h2>
+
+<div id="recommendations"></div>
+
+<div class="actions">
+
+<button onclick="location.href='core-interview.html'">
+🤖 Practice AI Interview
+</button>
+
+<button onclick="location.href='core.html'">
+📚 Study Core CS
+</button>
+
+<button onclick="location.href='progress.html'">
+📊 View Analytics
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+function read(key,fallback){
+
+try{
+return JSON.parse(localStorage.getItem(key))||fallback;
+}
+catch{
+return fallback;
+}
+}
+
+const daily=read(
+"nexoraDailyPreparation",
+{}
+);
+
+const analytics=read(
+"nexoraInterviewAnalytics",
+{}
+);
+
+const skillData=read(
+"nexoraInterviewSkillGap",
+{}
+);
+
+const recommendationData=read(
+"nexoraInterviewRecommendations",
+{}
+);
+
+
+const score=
+Number(daily.interviewScore||
+analytics.score||
+localStorage.getItem("nexoraInterviewScore")||
+0);
+
+document.getElementById("score").textContent=
+score+"/100";
+
+
+if(daily.role){
+
+document.getElementById("target").textContent=
+`Target role: ${daily.role}. Focus on the areas identified from your latest interview.`;
+
+}
+
+
+/* PRIORITY */
+
+const priorityBox=
+document.getElementById("priorityAreas");
+
+const priority=
+daily.priorityAreas||
+analytics.weakAreas||
+[];
+
+if(!priority.length){
+
+priorityBox.innerHTML=
+'<p class="empty">No priority areas yet.</p>';
+
+}
+else{
+
+priority.forEach(item=>{
+
+const span=document.createElement("span");
+
+span.className="tag";
+
+span.textContent=item;
+
+priorityBox.appendChild(span);
+
+});
+}
+
+
+/* SKILL GAP */
+
+const gapBox=document.getElementById("skillGap");
+
+const gaps=
+daily.skillGap||
+skillData.skillGap||
+[];
+
+if(!gaps.length){
+
+gapBox.innerHTML=
+'<p class="empty">Complete an AI Mock Interview to identify your skill gaps.</p>';
+
+}
+else{
+
+gaps.forEach(item=>{
+
+const span=document.createElement("span");
+
+span.className="tag";
+
+span.textContent=item;
+
+gapBox.appendChild(span);
+
+});
+}
+
+
+/* RECOMMENDATIONS */
+
+const recommendations=
+daily.recommendations||
+recommendationData.recommendations||
+[];
+
+const recommendationBox=
+document.getElementById("recommendations");
+
+if(!recommendations.length){
+
+recommendationBox.innerHTML=
+'<p class="empty">Your personalized recommendations will appear after your next AI Mock Interview.</p>';
+
+}
+else{
+
+const ul=document.createElement("ul");
+
+ul.style.marginLeft="20px";
+ul.style.lineHeight="1.9";
+
+recommendations.forEach(item=>{
+
+const li=document.createElement("li");
+
+li.textContent=item;
+
+ul.appendChild(li);
+
+});
+
+recommendationBox.appendChild(ul);
+
+}
+
+
+/* TASK GENERATION */
+
+const tasksBox=document.getElementById("tasks");
+
+let tasks=[];
+
+const gapText=gaps.join(" ").toLowerCase();
+
+if(gapText.includes("relevance")){
+tasks.push({
+title:"Practice direct answers",
+text:"Answer 3 interview questions and first address exactly what was asked."
+});
+}
+
+if(
+gapText.includes("technical")||
+gapText.includes("dbms")||
+gapText.includes("os")||
+gapText.includes("network")||
+gapText.includes("oop")
+){
+tasks.push({
+title:"Revise Core CS",
+text:"Spend 30 minutes revising the technical concepts connected to your skill gap."
+});
+}
+
+if(gapText.includes("depth")){
+tasks.push({
+title:"Improve technical depth",
+text:"For each concept, learn one example, one use case and one limitation."
+});
+}
+
+if(gapText.includes("clarity")){
+tasks.push({
+title:"Improve explanation clarity",
+text:"Explain two technical concepts using short, simple sentences."
+});
+}
+
+if(gapText.includes("structure")){
+tasks.push({
+title:"Practice structured answers",
+text:"Use: Definition → Explanation → Example → Conclusion."
+});
+}
+
+tasks.push({
+title:"Interview practice",
+text:"Attempt at least 2 interview questions without looking at the answer first."
+});
+
+if(!tasks.length){
+
+tasks.push({
+title:"Continue preparation",
+text:"Practice Core CS, DSA and interview questions consistently."
+});
+
+}
+
+
+tasks.forEach((task,index)=>{
+
+const div=document.createElement("div");
+
+div.className="task";
+
+div.innerHTML=`
+
+<input type="checkbox" id="task${index}">
+
+<div>
+<strong>${task.title}</strong>
+<p>${task.text}</p>
+</div>
+
+`;
+
+tasksBox.appendChild(div);
+
+});
+
+
+/* SAVE DAILY CHECKLIST */
+
+document.querySelectorAll(".task input")
+.forEach((checkbox,index)=>{
+
+const key="nexoraDailyTask_"+index;
+
+checkbox.checked=
+localStorage.getItem(key)==="true";
+
+checkbox.addEventListener("change",()=>{
+
+localStorage.setItem(
+key,
+String(checkbox.checked)
+);
+
+});
+
+});
+
+</script>
+
+</body>
+</html>

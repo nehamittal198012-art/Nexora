@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>NEXORA | Unified Coding Progress</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <style>
+
+        /* =========================
+           TOP BACK BUTTON
+        ========================= */
+
+        .top-back {
+            position: absolute !important;
+            top: 20px !important;
+            left: 20px !important;
+
+            width: auto !important;
+            margin: 0 !important;
+            padding: 8px 12px !important;
+
+            background: transparent !important;
+            color: #b8bac5 !important;
+
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .top-back:hover {
+            color: #a78bfa !important;
+            transform: none !important;
+        }
+
+
+        /* =========================
+           MAIN WRAPPER
+        ========================= */
+
+        .coding-wrapper {
+            width: 100%;
+            max-width: 1000px;
+            margin: 20px 0;
+        }
+
+
+        /* =========================
+           CARD
+        ========================= */
+
+        .coding-card {
+            width: 100%;
+            margin: 22px 0;
+            padding: 28px;
+
+            background: #20212b;
+            border-radius: 28px;
+
+            box-shadow:
+                12px 12px 25px #0d0e13,
+                -10px -10px 22px #2b2d38;
+        }
+
+        .coding-card h2 {
+            color: #a78bfa;
+            margin-bottom: 10px;
+        }
+
+        .coding-card p {
+            color: #b8bac5;
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           PLATFORM COMPARISON
+        ========================= */
+
+        .data-table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+
+        .data-table {
+            width: 100%;
+            min-width: 650px;
+            border-collapse: collapse;
+        }
+
+        .data-table th {
+            color: #a78bfa;
+            text-align: left;
+            padding: 15px 10px;
+
+            border-bottom: 1px solid #363744;
+        }
+
+        .data-table td {
+            color: #d5d5df;
+            padding: 16px 10px;
+
+            border-bottom: 1px solid #2d2e39;
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+
+        /* =========================
+           COMBINED STATISTICS
+        ========================= */
+
+        .stats-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+
+            margin-top: 22px;
+        }
+
+        .stat-box {
+            padding: 24px;
+
+            background: #1b1c25;
+            border-radius: 20px;
+
+            text-align: center;
+
+            box-shadow:
+                inset 5px 5px 10px #101117,
+                inset -4px -4px 8px #292b38;
+        }
+
+        .stat-box h3 {
+            color: #b8bac5;
+            font-size: 15px;
+            margin-bottom: 12px;
+        }
+
+        .stat-value {
+            color: #a78bfa;
+            font-size: 30px;
+            font-weight: 700;
+        }
+
+
+        /* =========================
+           ACTIVITY TREND
+        ========================= */
+
+        .trend-container {
+            margin-top: 25px;
+        }
+
+        .trend-row {
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+
+            margin: 18px 0;
+        }
+
+        .trend-label {
+            width: 70px;
+
+            color: #c9cad3;
+        }
+
+        .trend-track {
+            flex: 1;
+
+            height: 14px;
+
+            background: #1b1c25;
+
+            border-radius: 20px;
+
+            box-shadow:
+                inset 4px 4px 8px #101117,
+                inset -3px -3px 7px #292b38;
+        }
+
+        .trend-fill {
+            height: 100%;
+
+            width: 0%;
+
+            border-radius: 20px;
+
+            background: #8b5cf6;
+
+            transition:
+                width 0.3s ease;
+        }
+
+        .trend-number {
+            width: 35px;
+
+            text-align: right;
+
+            color: #d5d5df;
+        }
+
+
+        /* =========================
+           NO DATA MESSAGE
+        ========================= */
+
+        .no-data {
+            margin-top: 20px;
+
+            padding: 18px;
+
+            background: #1b1c25;
+
+            border-radius: 18px;
+
+            color: #b8bac5;
+
+            line-height: 1.6;
+
+            box-shadow:
+                inset 5px 5px 10px #101117,
+                inset -4px -4px 8px #292b38;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         BACK
+    ========================= -->
+
+    <button
+        class="top-back"
+        onclick="window.location.href='dashboard.html'"
+    >
+        ← Back
+    </button>
+
+
+    <h1>NEXORA 🤖</h1>
+
+
+    <div class="coding-wrapper">
+
+
+        <!-- =========================
+             INTRO
+        ========================= -->
+
+        <div class="coding-card">
+
+            <h2>
+                🌐 Unified Coding Progress
+            </h2>
+
+            <p>
+                View your coding activity across
+                multiple coding platforms in one place.
+            </p>
+
+            <p>
+                NEXORA combines available platform
+                statistics to give you a unified view
+                of your coding activity.
+            </p>
+
+        </div>
+
+
+        <!-- =========================
+             1. PLATFORM COMPARISON
+        ========================= -->
+
+        <div class="coding-card">
+
+            <h2>
+                📊 Platform Comparison
+            </h2>
+
+            <p>
+                Compare your actual coding statistics
+                across different platforms.
+            </p>
+
+
+            <div class="data-table-wrapper">
+
+                <table class="data-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Platform
+                            </th>
+
+                            <th>
+                                Total Solved
+                            </th>
+
+                            <th>
+                                Easy
+                            </th>
+
+                            <th>
+                                Medium
+                            </th>
+
+                            <th>
+                                Hard
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="platformTable">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             2. COMBINED STATISTICS
+        ========================= -->
+
+        <div class="coding-card">
+
+            <h2>
+                🔢 Combined Coding Statistics
+            </h2>
+
+            <p>
+                Overall coding statistics collected
+                from supported platforms.
+            </p>
+
+
+            <div class="stats-grid">
+
+
+                <div class="stat-box">
+
+                    <h3>
+                        Total Solved
+                    </h3>
+
+                    <div
+                        id="totalSolved"
+                        class="stat-value"
+                    >
+                        0
+                    </div>
+
+                </div>
+
+
+                <div class="stat-box">
+
+                    <h3>
+                        Total Easy
+                    </h3>
+
+                    <div
+                        id="totalEasy"
+                        class="stat-value"
+                    >
+                        0
+                    </div>
+
+                </div>
+
+
+                <div class="stat-box">
+
+                    <h3>
+                        Total Medium
+                    </h3>
+
+                    <div
+                        id="totalMedium"
+                        class="stat-value"
+                    >
+                        0
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="stats-grid">
+
+
+                <div class="stat-box">
+
+                    <h3>
+                        Total Hard
+                    </h3>
+
+                    <div
+                        id="totalHard"
+                        class="stat-value"
+                    >
+                        0
+                    </div>
+
+                </div>
+
+
+                <div class="stat-box">
+
+                    <h3>
+                        Platforms With Data
+                    </h3>
+
+                    <div
+                        id="platformCount"
+                        class="stat-value"
+                    >
+                        0
+                    </div>
+
+                </div>
+
+
+                <div class="stat-box">
+
+                    <h3>
+                        Active Platforms
+                    </h3>
+
+                    <div
+                        id="activePlatforms"
+                        class="stat-value"
+                    >
+                        0
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             3. CODING ACTIVITY TREND
+        ========================= -->
+
+        <div class="coding-card">
+
+            <h2>
+                📈 Coding Activity Trend
+            </h2>
+
+            <p>
+                Track how your coding activity changes
+                over time across supported platforms.
+            </p>
+
+
+            <div
+                id="trendContainer"
+                class="trend-container"
+            >
+
+            </div>
+
+
+            <div
+                id="trendMessage"
+                class="no-data"
+            >
+
+                Historical platform activity will
+                appear here after real platform data
+                and dated activity records are available.
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <script>
+
+
+        /* =========================
+           PLATFORM CONFIGURATION
+        ========================= */
+
+        const platforms = [
+
+            {
+                id: "leetcode",
+                name: "LeetCode"
+            },
+
+            {
+                id: "gfg",
+                name: "GeeksforGeeks"
+            },
+
+            {
+                id: "hackerrank",
+                name: "HackerRank"
+            },
+
+            {
+                id: "codechef",
+                name: "CodeChef"
+            },
+
+            {
+                id: "codeforces",
+                name: "Codeforces"
+            }
+
+        ];
+
+
+        /* =========================
+           REAL DATA WILL COME HERE
+           
+           Currently no API data is
+           available, so we do NOT
+           create fake numbers.
+        ========================= */
+
+        const platformData = {
+
+            leetcode: {
+                total: null,
+                easy: null,
+                medium: null,
+                hard: null
+            },
+
+            gfg: {
+                total: null,
+                easy: null,
+                medium: null,
+                hard: null
+            },
+
+            hackerrank: {
+                total: null,
+                easy: null,
+                medium: null,
+                hard: null
+            },
+
+            codechef: {
+                total: null,
+                easy: null,
+                medium: null,
+                hard: null
+            },
+
+            codeforces: {
+                total: null,
+                easy: null,
+                medium: null,
+                hard: null
+            }
+
+        };
+
+
+        /* =========================
+           PLATFORM TABLE
+        ========================= */
+
+        function loadPlatformTable() {
+
+            const table =
+                document.getElementById(
+                    "platformTable"
+                );
+
+
+            table.innerHTML = "";
+
+
+            platforms.forEach(
+                function(platform) {
+
+                    const data =
+                        platformData[
+                            platform.id
+                        ];
+
+
+                    const row =
+                        document.createElement(
+                            "tr"
+                        );
+
+
+                    row.innerHTML = `
+
+                        <td>
+                            ${platform.name}
+                        </td>
+
+                        <td>
+                            ${
+                                data.total === null
+                                ? "—"
+                                : data.total
+                            }
+                        </td>
+
+                        <td>
+                            ${
+                                data.easy === null
+                                ? "—"
+                                : data.easy
+                            }
+                        </td>
+
+                        <td>
+                            ${
+                                data.medium === null
+                                ? "—"
+                                : data.medium
+                            }
+                        </td>
+
+                        <td>
+                            ${
+                                data.hard === null
+                                ? "—"
+                                : data.hard
+                            }
+                        </td>
+
+                    `;
+
+
+                    table.appendChild(row);
+
+                }
+            );
+
+        }
+
+
+        /* =========================
+           COMBINED STATISTICS
+        ========================= */
+
+        function calculateCombinedStats() {
+
+            let totalSolved = 0;
+
+            let totalEasy = 0;
+
+            let totalMedium = 0;
+
+            let totalHard = 0;
+
+            let platformsWithData = 0;
+
+            let activePlatforms = 0;
+
+
+            platforms.forEach(
+                function(platform) {
+
+                    const data =
+                        platformData[
+                            platform.id
+                        ];
+
+
+                    if (
+                        typeof data.total ===
+                        "number"
+                    ) {
+
+                        totalSolved +=
+                            data.total;
+
+                        platformsWithData++;
+
+                    }
+
+
+                    if (
+                        typeof data.easy ===
+                        "number"
+                    ) {
+
+                        totalEasy +=
+                            data.easy;
+
+                    }
+
+
+                    if (
+                        typeof data.medium ===
+                        "number"
+                    ) {
+
+                        totalMedium +=
+                            data.medium;
+
+                    }
+
+
+                    if (
+                        typeof data.hard ===
+                        "number"
+                    ) {
+
+                        totalHard +=
+                            data.hard;
+
+                    }
+
+
+                    if (
+                        typeof data.total ===
+                        "number" &&
+                        data.total > 0
+                    ) {
+
+                        activePlatforms++;
+
+                    }
+
+                }
+            );
+
+
+            document.getElementById(
+                "totalSolved"
+            ).textContent =
+                totalSolved;
+
+
+            document.getElementById(
+                "totalEasy"
+            ).textContent =
+                totalEasy;
+
+
+            document.getElementById(
+                "totalMedium"
+            ).textContent =
+                totalMedium;
+
+
+            document.getElementById(
+                "totalHard"
+            ).textContent =
+                totalHard;
+
+
+            document.getElementById(
+                "platformCount"
+            ).textContent =
+                platformsWithData;
+
+
+            document.getElementById(
+                "activePlatforms"
+            ).textContent =
+                activePlatforms;
+
+        }
+
+
+        /* =========================
+           ACTIVITY TREND
+        ========================= */
+
+        function loadActivityTrend() {
+
+            const container =
+                document.getElementById(
+                    "trendContainer"
+                );
+
+
+            container.innerHTML = "";
+
+
+            const days = [
+
+                "Mon",
+                "Tue",
+                "Wed",
+                "Thu",
+                "Fri",
+                "Sat",
+                "Sun"
+
+            ];
+
+
+            /*
+             * No fake activity values.
+             * Bars stay empty until actual
+             * dated platform activity is
+             * available.
+             */
+
+            days.forEach(
+                function(day) {
+
+                    const row =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    row.className =
+                        "trend-row";
+
+
+                    row.innerHTML = `
+
+                        <div
+                            class="trend-label"
+                        >
+                            ${day}
+                        </div>
+
+
+                        <div
+                            class="trend-track"
+                        >
+
+                            <div
+                                class="trend-fill"
+                                style="width:0%"
+                            >
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="trend-number"
+                        >
+                            —
+                        </div>
+
+                    `;
+
+
+                    container.appendChild(row);
+
+                }
+            );
+
+        }
+
+
+        /* =========================
+           INITIALIZE PAGE
+        ========================= */
+
+        loadPlatformTable();
+
+        calculateCombinedStats();
+
+        loadActivityTrend();
+
+
+    </script>
+
+
+</body>
+
+</html>

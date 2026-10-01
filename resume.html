@@ -1,0 +1,1816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXORA - Resume Intelligence</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  background:#171821;
+  color:#f5f3ff;
+  min-height:100vh;
+}
+
+.container{
+  width:92%;
+  max-width:1250px;
+  margin:auto;
+  padding:28px 0 60px;
+}
+
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:28px;
+}
+
+.back-btn{
+  background:#242532;
+  color:#fff;
+  border:1px solid #34364a;
+  padding:10px 17px;
+  border-radius:12px;
+  cursor:pointer;
+}
+
+.brand{
+  color:#a78bfa;
+  font-size:25px;
+  font-weight:bold;
+  letter-spacing:1px;
+}
+
+.hero,
+.card,
+.result-card,
+.score-card{
+  background:#20212d;
+  border:1px solid #303243;
+  box-shadow:7px 7px 16px #101117,-5px -5px 12px #252633;
+}
+
+.hero{
+  border-radius:24px;
+  padding:32px;
+  margin-bottom:25px;
+}
+
+.hero h1{
+  font-size:32px;
+  margin-bottom:10px;
+}
+
+.hero h1 span{
+  color:#a78bfa;
+}
+
+.hero p{
+  color:#b7b5c5;
+  line-height:1.6;
+  max-width:850px;
+}
+
+.setup{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+  margin-bottom:25px;
+}
+
+.card{
+  border-radius:20px;
+  padding:24px;
+}
+
+.card h2{
+  font-size:19px;
+  margin-bottom:15px;
+}
+
+label{
+  display:block;
+  color:#c5c2d3;
+  font-size:14px;
+  margin-bottom:8px;
+}
+
+select,
+textarea{
+  width:100%;
+  background:#171821;
+  color:#fff;
+  border:1px solid #38394d;
+  border-radius:12px;
+  padding:13px;
+  outline:none;
+  margin-bottom:15px;
+}
+
+textarea{
+  min-height:145px;
+  resize:vertical;
+}
+
+.upload-box{
+  display:block;
+  border:2px dashed #49445e;
+  border-radius:16px;
+  padding:30px 20px;
+  text-align:center;
+  cursor:pointer;
+}
+
+.upload-box:hover{
+  border-color:#a78bfa;
+  background:#242432;
+}
+
+.upload-icon{
+  font-size:38px;
+  margin-bottom:10px;
+}
+
+.upload-box p{
+  color:#aaa8b8;
+  font-size:14px;
+  margin-top:8px;
+}
+
+#fileName{
+  color:#a78bfa;
+  margin-top:12px;
+  font-size:14px;
+}
+
+input[type=file]{
+  display:none;
+}
+
+.analyze-btn{
+  width:100%;
+  border:none;
+  border-radius:14px;
+  padding:15px;
+  background:linear-gradient(135deg,#8b5cf6,#a78bfa);
+  color:white;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.section-title{
+  font-size:23px;
+  margin:32px 0 17px;
+}
+
+.section-title span{
+  color:#a78bfa;
+}
+
+#results{
+  display:none;
+}
+
+.score-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+}
+
+.score-card{
+  border-radius:18px;
+  padding:22px;
+  text-align:center;
+}
+
+.score-number{
+  font-size:38px;
+  font-weight:bold;
+  color:#a78bfa;
+  margin:8px 0;
+}
+
+.score-label{
+  color:#aaa8b8;
+  font-size:13px;
+}
+
+.result-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+.result-card{
+  border-radius:20px;
+  padding:23px;
+}
+
+.result-card h3{
+  margin-bottom:15px;
+  font-size:18px;
+}
+
+.skill-group{
+  margin-bottom:17px;
+}
+
+.skill-group h4{
+  margin-bottom:9px;
+  font-size:14px;
+}
+
+.chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.chip{
+  padding:7px 11px;
+  border-radius:20px;
+  font-size:12px;
+  background:#303144;
+  color:#ddd9ed;
+}
+
+.chip.good{
+  border:1px solid #66539b;
+  color:#c8b8ff;
+}
+
+.chip.warn{
+  border:1px solid #75622d;
+  color:#e7cf7b;
+}
+
+.chip.bad{
+  border:1px solid #713c48;
+  color:#ff9caf;
+}
+
+.match-bar{
+  width:100%;
+  height:10px;
+  background:#15161e;
+  border-radius:10px;
+  overflow:hidden;
+  margin:13px 0;
+}
+
+.match-fill{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#8b5cf6,#c4b5fd);
+  border-radius:10px;
+  transition:1s;
+}
+
+.match-value{
+  font-size:28px;
+  color:#a78bfa;
+  font-weight:bold;
+}
+
+.sync-box{
+  background:#252332;
+  border:1px solid #493d68;
+  border-radius:18px;
+  padding:22px;
+}
+
+.sync-item{
+  display:flex;
+  justify-content:space-between;
+  padding:13px 0;
+  border-bottom:1px solid #393447;
+  font-size:14px;
+}
+
+.sync-item:last-child{
+  border-bottom:none;
+}
+
+.status{
+  color:#a78bfa;
+  font-weight:bold;
+}
+
+ul{
+  list-style:none;
+}
+
+li{
+  padding:10px 0;
+  border-bottom:1px solid #303243;
+  color:#c5c2d3;
+  line-height:1.45;
+  font-size:14px;
+}
+
+.action{
+  display:flex;
+  align-items:flex-start;
+  gap:13px;
+  background:#272837;
+  border-radius:13px;
+  padding:14px;
+  margin-bottom:10px;
+}
+
+.action-number{
+  min-width:28px;
+  height:28px;
+  border-radius:50%;
+  background:#8b5cf6;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold;
+}
+
+.action p{
+  color:#d0ccdc;
+  font-size:14px;
+  line-height:1.45;
+}
+
+.bullet-box,
+.version-box{
+  background:#181922;
+  border-radius:12px;
+  padding:15px;
+}
+
+.version-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+.notice{
+  background:#252332;
+  border-left:4px solid #a78bfa;
+  padding:15px;
+  border-radius:10px;
+  color:#bbb7c8;
+  font-size:13px;
+  line-height:1.5;
+  margin-top:20px;
+}
+
+.reset-btn{
+  background:#292a38;
+  color:#ddd;
+  border:1px solid #414256;
+  padding:11px 18px;
+  border-radius:11px;
+  cursor:pointer;
+  margin-top:20px;
+}
+
+.error{
+  color:#ff9cac;
+  background:#302027;
+  border:1px solid #603641;
+  padding:12px;
+  border-radius:10px;
+  margin-top:12px;
+  display:none;
+  font-size:13px;
+}
+
+@media(max-width:850px){
+  .setup,
+  .result-grid,
+  .version-grid{
+    grid-template-columns:1fr;
+  }
+
+  .score-grid{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media(max-width:500px){
+  .score-grid{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="topbar">
+  <button class="back-btn" onclick="goBack()">← Back</button>
+  <div class="brand">NEXORA</div>
+</div>
+
+<section class="hero">
+  <h1>Resume <span>Intelligence</span></h1>
+  <p>
+    Analyze your resume against your target role, identify skill gaps,
+    compare job descriptions and connect your resume with NEXORA preparation progress.
+  </p>
+</section>
+
+
+<div class="setup">
+
+<div class="card">
+
+<h2>📄 Upload Resume</h2>
+
+<label class="upload-box" for="resumeFile">
+
+<div class="upload-icon">📎</div>
+
+<strong>Choose your resume</strong>
+
+<p>PDF or DOCX</p>
+
+<div id="fileName">
+No file selected
+</div>
+
+</label>
+
+<input
+  type="file"
+  id="resumeFile"
+  accept=".pdf,.docx"
+>
+
+<div class="error" id="fileError"></div>
+
+</div>
+
+
+<div class="card">
+
+<h2>🎯 Target Role</h2>
+
+<label>What role are you preparing for?</label>
+
+<select id="targetRole">
+
+<option value="Software Developer">Software Developer</option>
+<option value="Frontend Developer">Frontend Developer</option>
+<option value="Backend Developer">Backend Developer</option>
+<option value="Full Stack Developer">Full Stack Developer</option>
+<option value="Data Analyst">Data Analyst</option>
+<option value="Data Scientist">Data Scientist</option>
+<option value="AI/ML Engineer">AI/ML Engineer</option>
+<option value="QA Engineer">QA Engineer</option>
+
+</select>
+
+<label>Job Description (optional)</label>
+
+<textarea
+id="jobDescription"
+placeholder="Paste company's job description here..."
+></textarea>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>🔍 Start Resume Intelligence</h2>
+
+<p style="color:#aaa8b8;font-size:14px;margin-bottom:15px;">
+NEXORA will analyze resume structure, skills, role relevance,
+projects, JD match and preparation alignment.
+</p>
+
+<button
+class="analyze-btn"
+onclick="analyzeResume()"
+>
+Analyze My Resume
+</button>
+
+<div class="error" id="analysisError"></div>
+
+</div>
+
+
+<section id="results">
+
+<h2 class="section-title">
+📊 Resume <span>Overview</span>
+</h2>
+
+<div class="score-grid">
+
+<div class="score-card">
+<div class="score-label">Overall Resume Score</div>
+<div class="score-number" id="overallScore">--</div>
+<div class="score-label">NEXORA analysis</div>
+</div>
+
+<div class="score-card">
+<div class="score-label">ATS Structure</div>
+<div class="score-number" id="atsScore">--</div>
+<div class="score-label">Structure & readability</div>
+</div>
+
+<div class="score-card">
+<div class="score-label">Role Match</div>
+<div class="score-number" id="roleScore">--</div>
+<div class="score-label">Target role relevance</div>
+</div>
+
+<div class="score-card">
+<div class="score-label">Skill Evidence</div>
+<div class="score-number" id="evidenceScore">--</div>
+<div class="score-label">Skills demonstrated</div>
+</div>
+
+</div>
+
+
+<h2 class="section-title">
+🎯 Target Role <span>Analysis</span>
+</h2>
+
+<div class="result-grid">
+
+<div class="result-card">
+
+<h3>Role Match</h3>
+
+<div class="match-value" id="roleMatchText">0%</div>
+
+<div class="match-bar">
+<div class="match-fill" id="roleMatchBar"></div>
+</div>
+
+<p id="roleExplanation"
+style="color:#aaa8b8;font-size:14px;line-height:1.5;">
+</p>
+
+</div>
+
+
+<div class="result-card">
+
+<h3>🧩 Skill Classification</h3>
+
+<div class="skill-group">
+<h4>Strong / Detected</h4>
+<div class="chips" id="strongSkills"></div>
+</div>
+
+<div class="skill-group">
+<h4>Needs Evidence</h4>
+<div class="chips" id="weakSkills"></div>
+</div>
+
+<div class="skill-group">
+<h4>Missing / Recommended</h4>
+<div class="chips" id="missingSkills"></div>
+</div>
+
+</div>
+
+</div>
+
+
+<h2 class="section-title">
+💼 Job Description <span>Gap Analysis</span>
+</h2>
+
+<div class="result-card">
+
+<h3>JD ↔ Resume Match</h3>
+
+<div class="match-value" id="jdScore">
+Not Added
+</div>
+
+<div class="match-bar">
+<div class="match-fill" id="jdBar"></div>
+</div>
+
+<div class="result-grid">
+
+<div>
+
+<h3>Required Skills Found</h3>
+
+<div class="chips" id="jdFound">
+<span class="chip">
+Add a Job Description first
+</span>
+</div>
+
+</div>
+
+
+<div>
+
+<h3>Important Gaps</h3>
+
+<div class="chips" id="jdMissing">
+<span class="chip">
+JD skill analysis unavailable
+</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<h2 class="section-title">
+🔗 Resume ↔ <span>NEXORA Progress</span>
+</h2>
+
+<div class="sync-box">
+
+<div class="sync-item">
+<span>DSA / Coding Progress</span>
+<span class="status" id="syncDsa">Checking...</span>
+</div>
+
+<div class="sync-item">
+<span>Core CS Preparation</span>
+<span class="status" id="syncCore">Checking...</span>
+</div>
+
+<div class="sync-item">
+<span>Coding Profile</span>
+<span class="status" id="syncCoding">Checking...</span>
+</div>
+
+<div class="sync-item">
+<span>Projects</span>
+<span class="status" id="syncProjects">Checking...</span>
+</div>
+
+<div class="sync-item">
+<span>Target Role</span>
+<span class="status" id="syncRole">Checking...</span>
+</div>
+
+</div>
+
+
+<div class="notice">
+💡 <strong>NEXORA Insight:</strong>
+A skill written on a resume is stronger when there is evidence
+through projects, coding practice or preparation progress.
+</div>
+
+
+<h2 class="section-title">
+🛠️ Project & <span>Bullet Analysis</span>
+</h2>
+
+<div class="result-grid">
+
+<div class="result-card">
+<h3>Project Evidence</h3>
+<ul id="projectAnalysis"></ul>
+</div>
+
+<div class="result-card">
+<h3>Bullet Improvement</h3>
+<div id="bulletSuggestions"></div>
+</div>
+
+</div>
+
+
+<h2 class="section-title">
+✨ Resume <span>Improvement Suggestions</span>
+</h2>
+
+<div class="result-grid">
+
+<div class="result-card">
+<h3>⚠️ Issues Found</h3>
+<ul id="issuesList"></ul>
+</div>
+
+<div class="result-card">
+<h3>✅ Recommendations</h3>
+<ul id="improvementsList"></ul>
+</div>
+
+</div>
+
+
+<h2 class="section-title">
+🚀 Your <span>Next Actions</span>
+</h2>
+
+<div class="result-card">
+<div id="actionPlan"></div>
+</div>
+
+
+<h2 class="section-title">
+🔄 Resume <span>Version Tracking</span>
+</h2>
+
+<div class="result-card">
+
+<div class="version-grid">
+
+<div class="version-box">
+<h4>Current Analysis</h4>
+<div class="score-number" id="currentVersionScore">--</div>
+</div>
+
+<div class="version-box">
+<h4>Previous Analysis</h4>
+<div class="score-number" id="previousVersionScore">--</div>
+</div>
+
+</div>
+
+<div
+id="versionMessage"
+style="margin-top:15px;color:#aaa8b8;font-size:14px;"
+></div>
+
+<button
+class="reset-btn"
+onclick="clearResumeData()"
+>
+Clear Saved Resume Analysis
+</button>
+
+</div>
+
+</section>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   BACK
+===================================================== */
+
+function goBack(){
+  window.location.href="dashboard.html";
+}
+
+
+/* =====================================================
+   FILE
+===================================================== */
+
+const fileInput=document.getElementById("resumeFile");
+
+fileInput.addEventListener("change",function(){
+
+  const file=this.files[0];
+
+  document.getElementById("fileName").textContent=
+    file ? file.name : "No file selected";
+
+});
+
+
+/* =====================================================
+   CHIP HELPER
+===================================================== */
+
+function renderChips(id,items,type=""){
+
+  const el=document.getElementById(id);
+
+  el.innerHTML="";
+
+  if(!Array.isArray(items) || items.length===0){
+
+    el.innerHTML=
+      `<span class="chip ${type}">
+        None detected
+      </span>`;
+
+    return;
+  }
+
+  items.forEach(item=>{
+
+    const span=document.createElement("span");
+
+    span.className="chip "+type;
+
+    span.textContent=item;
+
+    el.appendChild(span);
+
+  });
+
+}
+
+
+/* =====================================================
+   LIST HELPER
+===================================================== */
+
+function addListItem(id,text){
+
+  const list=document.getElementById(id);
+
+  const li=document.createElement("li");
+
+  li.textContent=text;
+
+  list.appendChild(li);
+
+}
+
+
+/* =====================================================
+   ANALYZE RESUME
+===================================================== */
+
+async function analyzeResume(){
+
+  const file=fileInput.files[0];
+
+  const role=
+    document.getElementById("targetRole").value;
+
+  const jd=
+    document.getElementById("jobDescription")
+    .value
+    .trim();
+
+  const errorBox=
+    document.getElementById("analysisError");
+
+  errorBox.style.display="none";
+
+
+  if(!file){
+
+    errorBox.textContent=
+      "Please upload your resume first.";
+
+    errorBox.style.display="block";
+
+    return;
+  }
+
+
+  const extension=
+    file.name.split(".").pop().toLowerCase();
+
+
+  if(!["pdf","docx"].includes(extension)){
+
+    errorBox.textContent=
+      "Please upload a PDF or DOCX resume.";
+
+    errorBox.style.display="block";
+
+    return;
+  }
+
+
+  try{
+
+    const formData=new FormData();
+
+    formData.append("resume",file);
+
+    formData.append("targetRole",role);
+
+    formData.append("jobDescription",jd);
+
+
+    const response=
+      await fetch(
+        "http://localhost:5000/api/resume",
+        {
+          method:"POST",
+          body:formData
+        }
+      );
+
+
+    const data=await response.json();
+    console.log("RESUME API STATUS:", response.status);
+console.log("RESUME API RESPONSE:", JSON.stringify(data, null, 2));
+
+
+    if(!response.ok || !data.success){
+
+      throw new Error(
+        data.message ||
+        "Resume analysis failed."
+      );
+
+    }
+
+
+    displayBackendAnalysis(data);
+
+  }
+
+  catch(error){
+
+    console.error(error);
+
+    errorBox.textContent=
+      error.message ||
+      "Unable to connect with Resume Analyzer backend.";
+
+    errorBox.style.display="block";
+
+  }
+
+}
+
+
+/* =====================================================
+   BACKEND NORMALIZATION
+===================================================== */
+
+function displayBackendAnalysis(data){
+
+  const normalized={
+
+    overall:Number(
+      data.overall ??
+      data.score ??
+      0
+    ),
+
+    atsScore:Number(
+      data.atsScore ??
+      0
+    ),
+
+    roleScore:Number(
+      data.roleScore ??
+      0
+    ),
+
+    evidenceScore:Number(
+      data.evidenceScore ??
+      0
+    ),
+
+    strong:data.strongSkills ||
+      data.skills ||
+      [],
+
+    weak:data.weakSkills || [],
+
+    missing:data.missingSkills || [],
+
+    jdFound:data.jdFound || [],
+
+    jdMissing:data.jdMissing || [],
+
+    jdScore:
+      data.jdScore !== null &&
+      data.jdScore !== undefined
+      ? Number(data.jdScore)
+      : null,
+
+    role:
+      data.targetRole ||
+      data.jobRole ||
+      document.getElementById("targetRole").value
+
+  };
+
+
+  const previous=
+    localStorage.getItem(
+      "nexoraResumeScore"
+    );
+
+
+  saveAnalysis(
+    normalized.overall,
+    normalized
+  );
+
+
+  displayAnalysis(
+    normalized,
+    previous,
+    data
+  );
+
+}
+
+
+/* =====================================================
+   DISPLAY ANALYSIS
+===================================================== */
+
+function displayAnalysis(
+  data,
+  previous,
+  backendData
+){
+
+  document.getElementById("results")
+    .style.display="block";
+
+
+  /* SCORES */
+
+  document.getElementById("overallScore")
+    .textContent=
+      data.overall+"/100";
+
+
+  document.getElementById("atsScore")
+    .textContent=
+      data.atsScore+"/100";
+
+
+  document.getElementById("roleScore")
+    .textContent=
+      data.roleScore+"%";
+
+
+  document.getElementById("evidenceScore")
+    .textContent=
+      data.evidenceScore+"%";
+
+
+  /* ROLE */
+
+  document.getElementById("roleMatchText")
+    .textContent=
+      data.roleScore+"%";
+
+
+  document.getElementById("roleMatchBar")
+    .style.width=
+      data.roleScore+"%";
+
+
+  document.getElementById("roleExplanation")
+    .textContent=
+      `Resume match for ${data.role} is ${data.roleScore}%. `+
+      `Detected ${data.strong.length} relevant skill(s) and `+
+      `${data.missing.length} recommended skill(s).`;
+
+
+  /* SKILLS */
+
+  renderChips(
+    "strongSkills",
+    data.strong,
+    "good"
+  );
+
+  renderChips(
+    "weakSkills",
+    data.weak,
+    "warn"
+  );
+
+  renderChips(
+    "missingSkills",
+    data.missing,
+    "bad"
+  );
+
+
+  /* =====================================================
+     JD GAP ANALYSIS
+  ===================================================== */
+
+  const jdText=
+    document.getElementById("jobDescription")
+    .value
+    .trim();
+
+
+  const jdScoreElement=
+    document.getElementById("jdScore");
+
+  const jdBarElement=
+    document.getElementById("jdBar");
+
+  const jdFoundElement=
+    document.getElementById("jdFound");
+
+  const jdMissingElement=
+    document.getElementById("jdMissing");
+
+
+  if(!jdText){
+
+    jdScoreElement.textContent=
+      "Not Added";
+
+    jdBarElement.style.width="0%";
+
+
+    jdFoundElement.innerHTML=`
+      <span class="chip">
+        Add a Job Description first
+      </span>
+    `;
+
+
+    jdMissingElement.innerHTML=`
+      <span class="chip">
+        JD skill analysis unavailable
+      </span>
+    `;
+
+  }
+
+  else{
+
+    const jdScore=
+      data.jdScore !== null &&
+      data.jdScore !== undefined
+      ? Number(data.jdScore)
+      : 0;
+
+
+    jdScoreElement.textContent=
+      jdScore+"%";
+
+
+    jdBarElement.style.width=
+      jdScore+"%";
+
+
+    if(
+      Array.isArray(data.jdFound) &&
+      data.jdFound.length>0
+    ){
+
+      jdFoundElement.innerHTML=
+        data.jdFound.map(skill=>
+          `<span class="chip good">
+            ${skill}
+          </span>`
+        ).join("");
+
+    }
+
+    else{
+
+      jdFoundElement.innerHTML=`
+        <span class="chip warn">
+          No matching skills detected
+        </span>
+      `;
+
+    }
+
+
+    if(
+      Array.isArray(data.jdMissing) &&
+      data.jdMissing.length>0
+    ){
+
+      jdMissingElement.innerHTML=
+        data.jdMissing.map(skill=>
+          `<span class="chip bad">
+            ${skill}
+          </span>`
+        ).join("");
+
+    }
+
+    else{
+
+      jdMissingElement.innerHTML=`
+        <span class="chip good">
+          No important gaps detected
+        </span>
+      `;
+
+    }
+
+  }
+
+
+  /* NEXORA */
+
+  syncNexoraData();
+
+
+  /* PROJECT */
+
+  renderProjectAnalysis(backendData);
+
+
+  /* BULLET */
+
+  renderBulletSuggestions(backendData);
+
+
+  /* ISSUES */
+
+  renderIssues(data,backendData);
+
+
+  /* RECOMMENDATIONS */
+
+  renderImprovements(data,backendData);
+
+
+  /* ACTION PLAN */
+
+  renderActionPlan(data,backendData);
+
+
+  /* VERSION */
+
+  document.getElementById(
+    "currentVersionScore"
+  ).textContent=
+    data.overall+"/100";
+
+
+  if(previous!==null){
+
+    document.getElementById(
+      "previousVersionScore"
+    ).textContent=
+      previous+"/100";
+
+
+    const difference=
+      data.overall-Number(previous);
+
+
+    if(difference>0){
+
+      document.getElementById(
+        "versionMessage"
+      ).textContent=
+        `↑ Score improved by ${difference} points.`;
+
+    }
+
+    else if(difference<0){
+
+      document.getElementById(
+        "versionMessage"
+      ).textContent=
+        `Score decreased by ${Math.abs(difference)} points.`;
+
+    }
+
+    else{
+
+      document.getElementById(
+        "versionMessage"
+      ).textContent=
+        "Score remained unchanged.";
+
+    }
+
+  }
+
+  else{
+
+    document.getElementById(
+      "previousVersionScore"
+    ).textContent=
+      "First";
+
+
+    document.getElementById(
+      "versionMessage"
+    ).textContent=
+      "This is your first saved resume analysis.";
+
+  }
+
+
+  document.getElementById("results")
+    .scrollIntoView({
+      behavior:"smooth"
+    });
+
+}
+
+
+/* =====================================================
+   NEXORA SYNC
+===================================================== */
+
+function syncNexoraData(){
+
+  const progress=
+    localStorage.getItem("nexoraProgress");
+
+  const coding=
+    localStorage.getItem("codingProfiles") ||
+    localStorage.getItem("nexoraCodingProfiles");
+
+  const projects=
+    localStorage.getItem("nexoraProjects");
+
+  const role=
+    localStorage.getItem("targetRole");
+
+
+  document.getElementById("syncDsa")
+    .textContent=
+      progress
+      ? "Tracking available"
+      : "Tracking available";
+
+
+  document.getElementById("syncCore")
+    .textContent=
+      "Core CS tracking available";
+
+
+  document.getElementById("syncCoding")
+    .textContent=
+      coding
+      ? "Profile connected"
+      : "Tracking available";
+
+
+  document.getElementById("syncProjects")
+    .textContent=
+      projects
+      ? "Project data available"
+      : "Project tracking available";
+
+
+  document.getElementById("syncRole")
+    .textContent=
+      role ||
+      document.getElementById("targetRole").value;
+
+}
+
+
+/* =====================================================
+   PROJECT ANALYSIS
+===================================================== */
+
+function renderProjectAnalysis(backendData){
+
+  const list=
+    document.getElementById("projectAnalysis");
+
+  list.innerHTML="";
+
+
+  if(
+    backendData &&
+    backendData.projectAnalysis
+  ){
+
+    const project=
+      backendData.projectAnalysis;
+
+
+    addListItem(
+      "projectAnalysis",
+      project.detected
+      ? "Projects section detected."
+      : "Projects section was not detected."
+    );
+
+
+    if(project.message){
+
+      addListItem(
+        "projectAnalysis",
+        project.message
+      );
+
+    }
+
+  }
+
+
+  addListItem(
+    "projectAnalysis",
+    "Mention technologies actually used in each project."
+  );
+
+
+  addListItem(
+    "projectAnalysis",
+    "Explain your personal contribution."
+  );
+
+
+  addListItem(
+    "projectAnalysis",
+    "Add genuine measurable results when available."
+  );
+
+}
+
+
+/* =====================================================
+   BULLET
+===================================================== */
+
+function renderBulletSuggestions(backendData){
+
+  const box=
+    document.getElementById("bulletSuggestions");
+
+  box.innerHTML="";
+
+
+  const suggestion=
+    backendData &&
+    backendData.bulletImprovement
+    ? backendData.bulletImprovement
+    : "Use action verbs, clear technical contribution and genuine impact.";
+
+
+  box.innerHTML=`
+
+    <div class="bullet-box">
+
+      <strong>Suggestion</strong>
+
+      <p style="color:#d9d4ea;margin-top:8px;line-height:1.5;">
+        ${suggestion}
+      </p>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   ISSUES
+===================================================== */
+
+function renderIssues(data,backendData){
+
+  const list=
+    document.getElementById("issuesList");
+
+  list.innerHTML="";
+
+
+  if(
+    backendData &&
+    Array.isArray(backendData.issues) &&
+    backendData.issues.length
+  ){
+
+    backendData.issues.forEach(issue=>{
+
+      addListItem(
+        "issuesList",
+        "⚠ "+issue
+      );
+
+    });
+
+    return;
+
+  }
+
+
+  if(data.roleScore<60){
+
+    addListItem(
+      "issuesList",
+      "Resume has limited alignment with the selected target role."
+    );
+
+  }
+
+
+  if(data.missing.length>0){
+
+    addListItem(
+      "issuesList",
+      "Some target-role skills need stronger evidence."
+    );
+
+  }
+
+
+  if(data.evidenceScore<70){
+
+    addListItem(
+      "issuesList",
+      "Some skills need stronger supporting evidence."
+    );
+
+  }
+
+
+  if(
+    data.roleScore>=60 &&
+    data.missing.length===0 &&
+    data.evidenceScore>=70
+  ){
+
+    addListItem(
+      "issuesList",
+      "No major skill-alignment issue detected."
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   RECOMMENDATIONS
+===================================================== */
+
+function renderImprovements(data,backendData){
+
+  const list=
+    document.getElementById("improvementsList");
+
+  list.innerHTML="";
+
+
+  if(
+    backendData &&
+    Array.isArray(backendData.actionPlan)
+  ){
+
+    backendData.actionPlan.forEach(item=>{
+
+      addListItem(
+        "improvementsList",
+        "✓ "+item
+      );
+
+    });
+
+  }
+
+
+  if(data.missing.length>0){
+
+    addListItem(
+      "improvementsList",
+      "✓ Strengthen genuine evidence for missing skills."
+    );
+
+  }
+
+
+  addListItem(
+    "improvementsList",
+    "✓ Keep the resume focused on the selected target role."
+  );
+
+
+  addListItem(
+    "improvementsList",
+    "✓ Use clear technical project descriptions."
+  );
+
+
+  addListItem(
+    "improvementsList",
+    "✓ Keep important skills easy for ATS systems to scan."
+  );
+
+}
+
+
+/* =====================================================
+   ACTION PLAN
+===================================================== */
+
+function renderActionPlan(data,backendData){
+
+  const box=
+    document.getElementById("actionPlan");
+
+  box.innerHTML="";
+
+
+  let actions=[];
+
+
+  if(
+    backendData &&
+    Array.isArray(backendData.actionPlan) &&
+    backendData.actionPlan.length
+  ){
+
+    actions=
+      backendData.actionPlan;
+
+  }
+
+
+  if(!actions.length){
+
+    if(data.missing.length){
+
+      actions.push(
+        "Strengthen: "+
+        data.missing.slice(0,3).join(", ")+
+        "."
+      );
+
+    }
+
+
+    actions.push(
+      `Improve alignment with ${data.role}.`
+    );
+
+
+    actions.push(
+      "Add stronger evidence through projects and coding practice."
+    );
+
+
+    actions.push(
+      "Improve project bullets using technology and contribution."
+    );
+
+
+    actions.push(
+      "Re-analyze the resume after genuine improvements."
+    );
+
+  }
+
+
+  actions
+    .slice(0,5)
+    .forEach((action,index)=>{
+
+      const div=
+        document.createElement("div");
+
+      div.className="action";
+
+
+      div.innerHTML=`
+
+        <div class="action-number">
+          ${index+1}
+        </div>
+
+        <p>${action}</p>
+
+      `;
+
+
+      box.appendChild(div);
+
+    });
+
+}
+
+
+/* =====================================================
+   SAVE VERSION
+===================================================== */
+
+function saveAnalysis(score,data){
+
+  const old=
+    localStorage.getItem(
+      "nexoraResumeScore"
+    );
+
+
+  if(old!==null){
+
+    localStorage.setItem(
+      "nexoraPreviousResumeScore",
+      old
+    );
+
+  }
+
+
+  localStorage.setItem(
+    "nexoraResumeScore",
+    score
+  );
+
+
+  localStorage.setItem(
+    "nexoraResumeAnalysis",
+    JSON.stringify(data)
+  );
+
+}
+
+
+/* =====================================================
+   CLEAR
+===================================================== */
+
+function clearResumeData(){
+
+  if(
+    !confirm(
+      "Clear saved NEXORA resume analysis?"
+    )
+  ){
+
+    return;
+
+  }
+
+
+  localStorage.removeItem(
+    "nexoraResumeScore"
+  );
+
+  localStorage.removeItem(
+    "nexoraPreviousResumeScore"
+  );
+
+  localStorage.removeItem(
+    "nexoraResumeAnalysis"
+  );
+
+
+  document.getElementById("results")
+    .style.display="none";
+
+}
+
+
+/* =====================================================
+   LOAD
+===================================================== */
+
+window.addEventListener("load",()=>{
+
+  const saved=
+    localStorage.getItem(
+      "nexoraResumeAnalysis"
+    );
+
+
+  if(!saved) return;
+
+
+  try{
+
+    const data=
+      JSON.parse(saved);
+
+
+    if(data.overall!==undefined){
+
+      document.getElementById(
+        "currentVersionScore"
+      ).textContent=
+        data.overall+"/100";
+
+    }
+
+
+  }catch(error){
+
+    console.log(
+      "Saved resume data could not be loaded."
+    );
+
+  }
+
+});
+
+</script>
+
+</body>
+</html>

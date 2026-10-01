@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NEXORA | Dashboard</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+.back-button{
+    position:absolute !important;
+    top:20px !important;
+    left:20px !important;
+    width:auto !important;
+    margin:0 !important;
+    padding:8px 12px !important;
+    background:transparent !important;
+    color:#b8bac5 !important;
+    border:none !important;
+    box-shadow:none !important;
+    font-size:15px !important;
+    text-align:left !important;
+    cursor:pointer !important;
+}
+
+.back-button:hover{
+    color:#a78bfa !important;
+    transform:none !important;
+}
+
+
+/* =========================
+   WELCOME
+========================= */
+
+.welcome-card{
+    width:100%;
+    max-width:700px;
+    margin:20px 0;
+    padding:30px;
+    background:#20212b;
+    border-radius:28px;
+    box-shadow:
+        12px 12px 25px #0d0e13,
+        -10px -10px 22px #2b2d38;
+}
+
+.welcome-card h2{
+    color:#a78bfa;
+    margin-bottom:12px;
+}
+
+.welcome-card p{
+    color:#b8bac5;
+    line-height:1.6;
+}
+
+
+/* =========================
+   DASHBOARD PROGRESS
+========================= */
+
+.dashboard-progress-bar{
+    width:100%;
+    height:10px;
+    background:#15161d;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:12px;
+}
+
+.dashboard-progress-fill{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,#a78bfa,#e879f9);
+    border-radius:20px;
+    transition:width .4s ease;
+}
+
+
+/* =========================
+   SMALL STATUS
+========================= */
+
+.status-text{
+    color:#a99bb5;
+    font-size:13px;
+}
+
+.connected{
+    color:#86efac;
+}
+
+.score-good{
+    color:#86efac;
+}
+
+.score-medium{
+    color:#facc15;
+}
+
+.score-low{
+    color:#fca5a5;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:700px){
+
+    .welcome-card{
+        padding:22px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     BACK
+========================= -->
+
+<button
+    class="back-button"
+    onclick="history.back()"
+>
+    ← Back
+</button>
+
+
+<!-- =========================
+     LOGO
+========================= -->
+
+<h1>NEXORA 🤖</h1>
+
+
+<!-- =========================
+     WELCOME
+========================= -->
+
+<div class="welcome-card">
+
+    <h2 id="welcomeMessage">
+        Welcome 👋
+    </h2>
+
+    <p>
+        Ready for your placement preparation?
+    </p>
+
+</div>
+
+
+<!-- =========================
+     PROFILE
+========================= -->
+
+<div class="dashboard-card">
+
+    <h2>👤 My Profile</h2>
+
+    <p>
+        <strong>Name:</strong>
+        <span id="userName">-</span>
+    </p>
+
+    <p>
+        <strong>Email:</strong>
+        <span id="userEmail">-</span>
+    </p>
+
+    <p>
+        <strong>College:</strong>
+        <span id="userCollege">-</span>
+    </p>
+
+    <p>
+        <strong>Branch:</strong>
+        <span id="userBranch">-</span>
+    </p>
+
+    <p>
+        <strong>Year:</strong>
+        <span id="userYear">-</span>
+    </p>
+
+    <p>
+        <strong>Graduation Year:</strong>
+        <span id="userGraduation">-</span>
+    </p>
+
+    <p>
+        <strong>Target Role:</strong>
+        <span id="userTargetRole">-</span>
+    </p>
+
+    <p>
+        <strong>Preparation Type:</strong>
+        <span id="userPreparation">-</span>
+    </p>
+
+    <p>
+        <strong>Current Level:</strong>
+        <span id="userLevel">-</span>
+    </p>
+
+    <p>
+        <strong>Daily Goal:</strong>
+        <span id="userDailyGoal">-</span>
+    </p>
+
+</div>
+
+
+<!-- =========================
+     STREAK
+========================= -->
+
+<div class="dashboard-card">
+
+    <h2>🔥 Streak</h2>
+
+    <p>
+        Current Streak:
+        <strong id="currentStreak">0 Days</strong>
+    </p>
+
+    <p>
+        Longest Streak:
+        <strong id="longestStreak">0 Days</strong>
+    </p>
+
+</div>
+
+
+<!-- =========================
+     PLACEMENT READINESS
+========================= -->
+
+<div class="dashboard-card">
+
+    <h2>🎯 Overall Placement Readiness</h2>
+
+    <p>
+        Your current overall preparation progress:
+    </p>
+
+    <h2 id="overallReadiness">0%</h2>
+
+    <div class="dashboard-progress-bar">
+
+        <div
+            id="readinessFill"
+            class="dashboard-progress-fill"
+        ></div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     DSA
+========================= -->
+
+<div class="dashboard-card">
+
+    <h2>💻 DSA</h2>
+
+    <p>
+        <strong>Total Solved:</strong>
+        <span id="dsaSolved">0</span>
+    </p>
+
+    <p>
+        LeetCode:
+        <span id="leetcodeSolved">Not connected</span>
+    </p>
+
+    <p>
+        GFG:
+        <span id="gfgSolved">Not connected</span>
+    </p>
+
+    <p>
+        CodeChef:
+        <span id="codechefSolved">Not connected</span>
+    </p>
+
+    <p>
+        <strong>Weak Topics:</strong>
+        <span id="dsaWeakTopics">
+            Not available yet
+        </span>
+    </p>
+
+    <button
+        onclick="window.location.href='dsa-hub.html'"
+    >
+        💻 DSA Hub
+    </button>
+
+    <button
+        onclick="window.location.href='DSA Sheets.html'"
+    >
+        📑 DSA Sheets
+    </button>
+
+    <button
+        onclick="window.location.href='coding-profiles.html'"
+    >
+        🔗 Coding Profiles
+    </button>
+
+</div>
+
+
+<!-- =========================
+     CORE CS
+========================= -->
+
+<div class="dashboard-card">
+
+    <h2>📚 Core CS</h2>
+
+    <p>
+        DBMS:
+        <strong id="dbmsProgress">0%</strong>
+    </p>
+
+    <p>
+        OS:
+        <strong id="osProgress">0%</strong>
+    </p>
+
+    <p>
+        CN:
+        <strong id="cnProgress">0%</strong>
+    </p>
+
+    <p>
+        OOP:
+        <strong id="oopProgress">0%</strong>
+    </p>
+
+    <button
+        onclick="window.location.href='Core.html'"
+    >
+        📚 Prepare Core CS
+    </button>
+
+</div>
+
+
+<!-- =========================
+     APTITUDE
+========================= -->
+
+<div class="dashboard-card">
+
+    <h2>🧮 Aptitude</h2>
+
+    <p>
+        Accuracy:
+        <strong id="aptitudeAccuracy">0%</strong>
+    </p>
+
+    <p>
+        Tests Completed:
+        <strong id="aptitudeTests">0</strong>
+    </p>
+
+    <p>
+        Weak Topic:
+        <strong id="aptitudeWeakTopic">
+            Not available yet
+        </strong>
+    </p>
+
+    <button
+        onclick="window.location.href='Aptitude.html'"
+    >
+        🧮 Practice Aptitude
+    </button>
+
+</div>
+
+
+<!-- =========================
+     RESUME
+========================= -->
+
+<div class="dashboard-card">
+
+    <h2>📄 Resume</h2>
+
+    <p>
+        Resume Score:
+        <strong id="resumeScore">
+            Not analyzed yet
+        </strong>
+    </p>
+
+    <button
+        onclick="window.location.href='Resume.html'"
+    >
+        📄 Analyze Resume
+    </button>
+
+</div>
+
+
+<!-- =========================
+     INTERVIEW
+========================= -->
+
+<div class="dashboard-card">
+
+    <h2>🤖 Interview</h2>
+
+    <p>
+        Mock Interviews:
+        <strong id="mockInterviews">0</strong>
+    </p>
+
+    <p>
+        Average Score:
+        <strong id="interviewScore">0%</strong>
+    </p>
+
+    <button
+        onclick="window.location.href='Interview.html'"
+    >
+        🤖 Practice Interview
+    </button>
+
+</div>
+
+
+<!-- =========================
+     TODAY'S TASKS
+========================= -->
+
+<div class="dashboard-card">
+
+    <h2>📋 Today's Task Progress</h2>
+
+    <p id="dashboardTaskProgress">
+        Completed: 0 / 5
+    </p>
+
+    <div class="dashboard-progress-bar">
+
+        <div
+            id="dashboardProgressFill"
+            class="dashboard-progress-fill"
+        ></div>
+
+    </div>
+
+    <button
+        onclick="window.location.href='Tasks.html'"
+    >
+        📋 My Daily Tasks
+    </button>
+
+</div>
+
+
+<!-- =========================
+     QUICK ACCESS
+========================= -->
+
+<div class="dashboard-card">
+
+    <h2>⚡ Quick Access</h2>
+
+    <button
+        onclick="window.location.href='Progress.html'"
+    >
+        📊 Track My Progress
+    </button>
+
+    <button
+        onclick="window.location.href='Aptitude.html'"
+    >
+        🧮 Aptitude
+    </button>
+
+    <button
+        onclick="window.location.href='DSA Practice.html'"
+    >
+        💻 DSA Practice
+    </button>
+
+    <button
+        onclick="window.location.href='Core.html'"
+    >
+        📚 Core CS
+    </button>
+
+    <button
+        onclick="window.location.href='Interview.html'"
+    >
+        🎤 Interview Practice
+    </button>
+
+    <button
+        onclick="window.location.href='Resume.html'"
+    >
+        📄 Resume Analyzer
+    </button>
+
+</div>
+
+
+<!-- =========================
+     LOGOUT
+========================= -->
+
+<button
+    id="logoutButton"
+    onclick="logout()"
+>
+    🚪 Logout
+</button>
+
+
+<script>
+
+
+/* =====================================================
+   USER DATA
+===================================================== */
+
+let user = null;
+
+
+/* Try all possible saved user keys */
+
+const userKeys = [
+    "nexoraUser",
+    "user",
+    "loggedInUser",
+    "currentUser"
+];
+
+
+for(const key of userKeys){
+
+    const stored =
+        localStorage.getItem(key);
+
+    if(!stored) continue;
+
+    try{
+
+        const parsed =
+            JSON.parse(stored);
+
+        if(parsed && typeof parsed === "object"){
+
+            user =
+                parsed.user || parsed;
+
+            break;
+
+        }
+
+    }catch(error){
+
+        console.log(
+            "Could not read user data from",
+            key
+        );
+
+    }
+
+}
+
+
+/* Login check */
+
+if(!user){
+
+    window.location.href =
+        "Login.html";
+
+}
+
+
+/* =====================================================
+   HELPER
+===================================================== */
+
+function getNumber(key, fallback = 0){
+
+    const value =
+        localStorage.getItem(key);
+
+    if(value === null) return fallback;
+
+    const number =
+        Number(value);
+
+    return Number.isFinite(number)
+        ? number
+        : fallback;
+
+}
+
+
+function getJSON(key, fallback = null){
+
+    const value =
+        localStorage.getItem(key);
+
+    if(!value) return fallback;
+
+    try{
+
+        return JSON.parse(value);
+
+    }catch(error){
+
+        return fallback;
+
+    }
+
+}
+
+
+/* =====================================================
+   USER DISPLAY
+===================================================== */
+
+if(user){
+
+    /* Greeting */
+
+    const hour =
+        new Date().getHours();
+
+    let greeting;
+
+    if(hour < 12){
+
+        greeting =
+            "Good morning";
+
+    }
+    else if(hour < 17){
+
+        greeting =
+            "Good afternoon";
+
+    }
+    else{
+
+        greeting =
+            "Good evening";
+
+    }
+
+
+    document.getElementById(
+        "welcomeMessage"
+    ).textContent =
+        greeting +
+        ", " +
+        (user.name || "there") +
+        " 👋";
+
+
+    /* Profile */
+
+    document.getElementById(
+        "userName"
+    ).textContent =
+        user.name || "-";
+
+
+    document.getElementById(
+        "userEmail"
+    ).textContent =
+        user.email || "-";
+
+
+    document.getElementById(
+        "userCollege"
+    ).textContent =
+        user.college || "-";
+
+
+    document.getElementById(
+        "userBranch"
+    ).textContent =
+        user.branch || "-";
+
+
+    document.getElementById(
+        "userYear"
+    ).textContent =
+        user.year || "-";
+
+
+    document.getElementById(
+        "userGraduation"
+    ).textContent =
+        user.graduationYear || "-";
+
+
+    document.getElementById(
+        "userTargetRole"
+    ).textContent =
+        user.targetRole || "-";
+
+
+    document.getElementById(
+        "userPreparation"
+    ).textContent =
+        user.preparationType || "-";
+
+
+    document.getElementById(
+        "userLevel"
+    ).textContent =
+        user.currentLevel || "-";
+
+
+    /* Daily Goal */
+
+    const goal =
+        Number(user.dailyGoal || 60);
+
+    let goalText = "1 hour";
+
+    if(goal === 30){
+
+        goalText =
+            "30 minutes";
+
+    }
+    else if(goal === 60){
+
+        goalText =
+            "1 hour";
+
+    }
+    else if(goal === 120){
+
+        goalText =
+            "2 hours";
+
+    }
+    else if(goal === 180){
+
+        goalText =
+            "3+ hours";
+
+    }
+
+    document.getElementById(
+        "userDailyGoal"
+    ).textContent =
+        goalText;
+
+}
+
+
+/* =====================================================
+   STREAK
+===================================================== */
+
+/*
+   Support both old and current keys.
+*/
+
+let currentStreak =
+    getNumber(
+        "nexoraCurrentStreak",
+        getNumber("nexoraStreak", 0)
+    );
+
+
+let longestStreak =
+    getNumber(
+        "nexoraLongestStreak",
+        currentStreak
+    );
+
+
+document.getElementById(
+    "currentStreak"
+).textContent =
+    currentStreak + " Days";
+
+
+document.getElementById(
+    "longestStreak"
+).textContent =
+    longestStreak + " Days";
+
+
+/* =====================================================
+   DSA
+===================================================== */
+
+const dsaProgress =
+    getNumber(
+        "nexoraDSAProgress",
+        getNumber("nexoraDSAScore", 0)
+    );
+
+
+const codingProgress =
+    getNumber(
+        "nexoraCodingProgress",
+        0
+    );
+
+
+const dsaSolved =
+    getNumber(
+        "nexoraDSASolved",
+        0
+    );
+
+
+document.getElementById(
+    "dsaSolved"
+).textContent =
+    dsaSolved;
+
+
+/* Coding profiles */
+
+const leetcodeProfile =
+    localStorage.getItem(
+        "nexora_leetcode"
+    );
+
+
+const gfgProfile =
+    localStorage.getItem(
+        "nexora_gfg"
+    );
+
+
+const codechefProfile =
+    localStorage.getItem(
+        "nexora_codechef"
+    );
+
+
+document.getElementById(
+    "leetcodeSolved"
+).textContent =
+    leetcodeProfile
+        ? "Connected ✓"
+        : "Not connected";
+
+
+document.getElementById(
+    "gfgSolved"
+).textContent =
+    gfgProfile
+        ? "Connected ✓"
+        : "Not connected";
+
+
+document.getElementById(
+    "codechefSolved"
+).textContent =
+    codechefProfile
+        ? "Connected ✓"
+        : "Not connected";
+
+
+/* Weak topics */
+
+const dsaWeak =
+    localStorage.getItem(
+        "nexoraDSAWeakTopics"
+    );
+
+
+if(dsaWeak){
+
+    document.getElementById(
+        "dsaWeakTopics"
+    ).textContent =
+        dsaWeak;
+
+}
+
+
+/* =====================================================
+   CORE CS
+===================================================== */
+
+const coreProgress =
+    getNumber(
+        "nexoraCoreProgress",
+        getNumber("nexoraCoreScore", 0)
+    );
+
+
+const coreScore =
+    getNumber(
+        "nexoraCoreScore",
+        coreProgress
+    );
+
+
+/*
+   If separate subject scores exist,
+   show them. Otherwise use overall Core score.
+*/
+
+const dbms =
+    getNumber(
+        "nexoraDBMSProgress",
+        coreScore
+    );
+
+
+const os =
+    getNumber(
+        "nexoraOSProgress",
+        coreScore
+    );
+
+
+const cn =
+    getNumber(
+        "nexoraCNProgress",
+        coreScore
+    );
+
+
+const oop =
+    getNumber(
+        "nexoraOOPProgress",
+        coreScore
+    );
+
+
+document.getElementById(
+    "dbmsProgress"
+).textContent =
+    Math.round(dbms) + "%";
+
+
+document.getElementById(
+    "osProgress"
+).textContent =
+    Math.round(os) + "%";
+
+
+document.getElementById(
+    "cnProgress"
+).textContent =
+    Math.round(cn) + "%";
+
+
+document.getElementById(
+    "oopProgress"
+).textContent =
+    Math.round(oop) + "%";
+
+
+/* =====================================================
+   APTITUDE
+===================================================== */
+
+const aptitudeScore =
+    getNumber(
+        "nexoraAptitudeScore",
+        getNumber("nexoraAptitudeProgress", 0)
+    );
+
+
+const aptitudeProgress =
+    getNumber(
+        "nexoraAptitudeProgress",
+        aptitudeScore
+    );
+
+
+const aptitudeTests =
+    getNumber(
+        "nexoraAptitudeTests",
+        0
+    );
+
+
+document.getElementById(
+    "aptitudeAccuracy"
+).textContent =
+    Math.round(aptitudeScore) + "%";
+
+
+document.getElementById(
+    "aptitudeTests"
+).textContent =
+    aptitudeTests;
+
+
+const aptitudeWeak =
+    localStorage.getItem(
+        "nexoraAptitudeWeakTopic"
+    );
+
+
+if(aptitudeWeak){
+
+    document.getElementById(
+        "aptitudeWeakTopic"
+    ).textContent =
+        aptitudeWeak;
+
+}
+
+
+/* =====================================================
+   RESUME
+===================================================== */
+
+const resumeScore =
+    getNumber(
+        "nexoraResumeScore",
+        0
+    );
+
+
+document.getElementById(
+    "resumeScore"
+).textContent =
+    resumeScore > 0
+        ? Math.round(resumeScore) + "%"
+        : "Not analyzed yet";
+
+
+/* =====================================================
+   INTERVIEW
+===================================================== */
+
+const interviewScore =
+    getNumber(
+        "nexoraInterviewScore",
+        0
+    );
+
+
+const interviewAnalytics =
+    getJSON(
+        "nexoraInterviewAnalytics",
+        null
+    );
+
+
+let interviewCount = 0;
+
+
+/*
+   Try common analytics structures.
+*/
+
+if(interviewAnalytics){
+
+    if(Array.isArray(interviewAnalytics)){
+
+        interviewCount =
+            interviewAnalytics.length;
+
+    }
+    else if(
+        typeof interviewAnalytics.interviewCount === "number"
+    ){
+
+        interviewCount =
+            interviewAnalytics.interviewCount;
+
+    }
+    else if(
+        typeof interviewAnalytics.count === "number"
+    ){
+
+        interviewCount =
+            interviewAnalytics.count;
+
+    }
+
+}
+
+
+document.getElementById(
+    "mockInterviews"
+).textContent =
+    interviewCount;
+
+
+document.getElementById(
+    "interviewScore"
+).textContent =
+    Math.round(interviewScore) + "%";
+
+
+/* =====================================================
+   OVERALL PLACEMENT READINESS
+===================================================== */
+
+/*
+   Same five major components used by
+   Progress & Analytics.
+*/
+
+const readinessValues = [
+
+    aptitudeScore,
+
+    dsaProgress,
+
+    coreScore,
+
+    interviewScore,
+
+    resumeScore
+
+];
+
+
+const validReadinessValues =
+    readinessValues.filter(
+        value =>
+            Number.isFinite(value) &&
+            value >= 0
+    );
+
+
+let readiness = 0;
+
+
+if(validReadinessValues.length > 0){
+
+    readiness =
+        validReadinessValues.reduce(
+            (sum,value) => sum + value,
+            0
+        ) / 5;
+
+}
+
+
+readiness =
+    Math.round(
+        Math.max(
+            0,
+            Math.min(
+                100,
+                readiness
+            )
+        )
+    );
+
+
+document.getElementById(
+    "overallReadiness"
+).textContent =
+    readiness + "%";
+
+
+document.getElementById(
+    "readinessFill"
+).style.width =
+    readiness + "%";
+
+
+/* =====================================================
+   TODAY'S TASKS
+===================================================== */
+
+/*
+   Support both:
+   nexoraTask0 style
+   and
+   nexoraDailyTask_0 style.
+*/
+
+const totalTasks = 5;
+
+let completedTasks = 0;
+
+
+for(let i = 0; i < totalTasks; i++){
+
+    const oldKey =
+        "nexoraTask" + i;
+
+    const newKey =
+        "nexoraDailyTask_" + i;
+
+
+    const oldValue =
+        localStorage.getItem(oldKey);
+
+    const newValue =
+        localStorage.getItem(newKey);
+
+
+    if(
+        oldValue === "true" ||
+        newValue === "true"
+    ){
+
+        completedTasks++;
+
+    }
+
+}
+
+
+document.getElementById(
+    "dashboardTaskProgress"
+).textContent =
+    "Completed: " +
+    completedTasks +
+    " / " +
+    totalTasks;
+
+
+const taskPercentage =
+    (completedTasks / totalTasks) * 100;
+
+
+document.getElementById(
+    "dashboardProgressFill"
+).style.width =
+    taskPercentage + "%";
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+function logout(){
+
+    const confirmLogout =
+        confirm(
+            "Are you sure you want to logout?"
+        );
+
+
+    if(!confirmLogout){
+
+        return;
+
+    }
+
+
+    localStorage.removeItem(
+        "nexoraUser"
+    );
+
+    localStorage.removeItem(
+        "user"
+    );
+
+    localStorage.removeItem(
+        "loggedInUser"
+    );
+
+    localStorage.removeItem(
+        "currentUser"
+    );
+
+
+    window.location.href =
+        "Login.html";
+
+}
+
+</script>
+
+</body>
+
+</html>

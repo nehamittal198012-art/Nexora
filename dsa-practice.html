@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>NEXORA | DSA Practice</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        .top-back {
+            position: absolute !important;
+            top: 20px !important;
+            left: 20px !important;
+            width: auto !important;
+            margin: 0 !important;
+            padding: 8px 12px !important;
+            background: transparent !important;
+            color: #b8bac5 !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .top-back:hover {
+            color: #a78bfa !important;
+            transform: none !important;
+        }
+
+        .practice-card {
+            width: 100%;
+            max-width: 850px;
+            margin: 20px 0;
+            padding: 28px;
+            background: #20212b;
+            border-radius: 28px;
+            box-shadow:
+                12px 12px 25px #0d0e13,
+                -10px -10px 22px #2b2d38;
+        }
+
+        .practice-card h2 {
+            color: #a78bfa;
+            margin-bottom: 18px;
+        }
+
+        .question-box {
+            padding: 25px;
+            background: #1b1c25;
+            border-radius: 20px;
+            box-shadow:
+                inset 5px 5px 10px #101117,
+                inset -4px -4px 8px #292b38;
+        }
+
+        .question-box h3 {
+            color: #a78bfa;
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .question-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .tag {
+            padding: 7px 12px;
+            background: #292b38;
+            border-radius: 12px;
+            color: #d5d5df;
+            font-size: 13px;
+        }
+
+        .question-description {
+            color: #c9cad3;
+            line-height: 1.7;
+        }
+
+        .company-tag {
+            color: #a78bfa;
+            font-weight: 600;
+        }
+
+        .action-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        .completed-message {
+            color: #a78bfa;
+            font-weight: 600;
+            margin-top: 18px;
+        }
+
+        .notes-area {
+            width: 100%;
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .status-message {
+            color: #a78bfa;
+            margin-top: 12px;
+        }
+
+        .next-box {
+            margin-top: 20px;
+            padding: 20px;
+            background: #1b1c25;
+            border-radius: 18px;
+            box-shadow:
+                inset 5px 5px 10px #101117,
+                inset -4px -4px 8px #292b38;
+        }
+
+        .next-box h3 {
+            color: #a78bfa;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 600px) {
+
+            .action-row {
+                flex-direction: column;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <button
+        class="top-back"
+        onclick="window.location.href='dsa-hub.html'"
+    >
+        ← Back
+    </button>
+
+
+    <h1>NEXORA 🤖</h1>
+
+
+    <div class="practice-card">
+
+        <h2>💻 DSA Practice</h2>
+
+        <p>
+            Solve problems on the original coding platform
+            and use NEXORA to track your preparation.
+        </p>
+
+    </div>
+
+
+    <div class="practice-card">
+
+        <div
+            class="question-box"
+            id="questionBox"
+        >
+
+            <!-- Question loaded by JavaScript -->
+
+        </div>
+
+    </div>
+
+
+    <div class="practice-card">
+
+        <h2>📝 My Notes</h2>
+
+        <textarea
+            id="questionNotes"
+            class="notes-area"
+            placeholder="Write your approach, mistakes, or revision notes..."
+        ></textarea>
+
+        <button
+            onclick="saveNotes()"
+        >
+            💾 Save Notes
+        </button>
+
+        <p
+            id="notesStatus"
+            class="status-message"
+        ></p>
+
+    </div>
+
+
+    <div class="practice-card">
+
+        <h2>🚀 What's Next?</h2>
+
+        <div class="next-box">
+
+            <h3 id="nextTitle">
+                Keep practicing
+            </h3>
+
+            <p id="nextText">
+                Complete a problem to continue
+                building your DSA progress.
+            </p>
+
+            <button
+                onclick="nextQuestion()"
+            >
+                Next Question →
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+
+        /* =========================
+           QUESTION DATA
+        ========================= */
+
+        const questions = [
+
+            {
+                id: 1,
+                title: "Two Sum",
+                topic: "Arrays",
+                difficulty: "Easy",
+                platform: "LeetCode",
+                company: "Amazon, Google",
+                description:
+                    "Find two numbers in an array whose sum equals the target.",
+                link:
+                    "https://leetcode.com/problems/two-sum/"
+            },
+
+            {
+                id: 2,
+                title: "Best Time to Buy and Sell Stock",
+                topic: "Arrays",
+                difficulty: "Easy",
+                platform: "LeetCode",
+                company: "Amazon, Microsoft",
+                description:
+                    "Find the maximum profit possible from buying and selling a stock.",
+                link:
+                    "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/"
+            },
+
+            {
+                id: 3,
+                title: "Valid Anagram",
+                topic: "Strings",
+                difficulty: "Easy",
+                platform: "LeetCode",
+                company: "Amazon, Google",
+                description:
+                    "Determine whether two strings are anagrams of each other.",
+                link:
+                    "https://leetcode.com/problems/valid-anagram/"
+            },
+
+            {
+                id: 4,
+                title: "Reverse Linked List",
+                topic: "Linked List",
+                difficulty: "Easy",
+                platform: "LeetCode",
+                company: "Amazon, Microsoft",
+                description:
+                    "Reverse a singly linked list.",
+                link:
+                    "https://leetcode.com/problems/reverse-linked-list/"
+            },
+
+            {
+                id: 5,
+                title: "Valid Parentheses",
+                topic: "Stack",
+                difficulty: "Easy",
+                platform: "LeetCode",
+                company: "Amazon, Google",
+                description:
+                    "Check whether brackets in a string are correctly balanced.",
+                link:
+                    "https://leetcode.com/problems/valid-parentheses/"
+            },
+
+            {
+                id: 6,
+                title: "Binary Tree Inorder Traversal",
+                topic: "Trees",
+                difficulty: "Easy",
+                platform: "LeetCode",
+                company: "Amazon, Microsoft",
+                description:
+                    "Return the inorder traversal of a binary tree.",
+                link:
+                    "https://leetcode.com/problems/binary-tree-inorder-traversal/"
+            },
+
+            {
+                id: 7,
+                title: "Validate Binary Search Tree",
+                topic: "BST",
+                difficulty: "Medium",
+                platform: "LeetCode",
+                company: "Amazon, Microsoft",
+                description:
+                    "Determine whether a binary tree is a valid binary search tree.",
+                link:
+                    "https://leetcode.com/problems/validate-binary-search-tree/"
+            },
+
+            {
+                id: 8,
+                title: "Number of Islands",
+                topic: "Graph",
+                difficulty: "Medium",
+                platform: "LeetCode",
+                company: "Amazon, Google",
+                description:
+                    "Count the number of connected islands in a grid.",
+                link:
+                    "https://leetcode.com/problems/number-of-islands/"
+            },
+
+            {
+                id: 9,
+                title: "Subsets",
+                topic: "Backtracking",
+                difficulty: "Medium",
+                platform: "LeetCode",
+                company: "Amazon, Microsoft",
+                description:
+                    "Generate all possible subsets of a set of distinct integers.",
+                link:
+                    "https://leetcode.com/problems/subsets/"
+            },
+
+            {
+                id: 10,
+                title: "Climbing Stairs",
+                topic: "DP",
+                difficulty: "Easy",
+                platform: "LeetCode",
+                company: "Amazon, Google",
+                description:
+                    "Count the number of distinct ways to climb a staircase.",
+                link:
+                    "https://leetcode.com/problems/climbing-stairs/"
+            }
+
+        ];
+
+
+        /* =========================
+           CURRENT QUESTION
+        ========================= */
+
+        let currentIndex =
+            Number(
+                localStorage.getItem(
+                    "nexoraCurrentQuestion"
+                ) || 0
+            );
+
+
+        if (
+            currentIndex < 0 ||
+            currentIndex >= questions.length
+        ) {
+
+            currentIndex = 0;
+
+        }
+
+
+        /* =========================
+           LOAD QUESTION
+        ========================= */
+
+        function loadQuestion() {
+
+            const question =
+                questions[currentIndex];
+
+
+            const solved =
+                localStorage.getItem(
+                    "nexoraSolved_" +
+                    question.id
+                ) === "true";
+
+
+            const box =
+                document.getElementById(
+                    "questionBox"
+                );
+
+
+            box.innerHTML = `
+
+                <h3>
+                    ${question.title}
+                </h3>
+
+                <div class="question-meta">
+
+                    <span class="tag">
+                        Topic: ${question.topic}
+                    </span>
+
+                    <span class="tag">
+                        Difficulty:
+                        ${question.difficulty}
+                    </span>
+
+                    <span class="tag">
+                        Platform:
+                        ${question.platform}
+                    </span>
+
+                </div>
+
+                <p class="company-tag">
+                    🏢 Company Relevance:
+                    ${question.company}
+                </p>
+
+                <p class="question-description">
+                    ${question.description}
+                </p>
+
+                <div class="action-row">
+
+                    <button
+                        onclick="openProblem()"
+                    >
+                        🔗 Solve on ${question.platform}
+                    </button>
+
+                    ${
+                        solved
+                        ?
+                        `
+                        <button
+                            disabled
+                        >
+                            ✓ Completed
+                        </button>
+                        `
+                        :
+                        `
+                        <button
+                            onclick="markCompleted()"
+                        >
+                            ✓ Mark as Completed
+                        </button>
+                        `
+                    }
+
+                </div>
+
+                ${
+                    solved
+                    ?
+                    `
+                    <p class="completed-message">
+                        ✓ NEXORA completion recorded.
+                    </p>
+                    `
+                    :
+                    ""
+                }
+
+            `;
+
+
+            loadNotes();
+
+            updateNextMessage();
+
+        }
+
+
+        /* =========================
+           OPEN ORIGINAL PROBLEM
+        ========================= */
+
+        function openProblem() {
+
+            window.open(
+                questions[currentIndex].link,
+                "_blank"
+            );
+
+        }
+
+
+        /* =========================
+           MARK COMPLETED
+        ========================= */
+
+        function markCompleted() {
+
+            const question =
+                questions[currentIndex];
+
+
+            localStorage.setItem(
+                "nexoraSolved_" +
+                question.id,
+                "true"
+            );
+
+
+            /* Topic progress */
+
+            const topicKey =
+                "nexoraTopic_" +
+                question.topic
+                    .toLowerCase()
+                    .replace(
+                        /[^a-z0-9]/g,
+                        ""
+                    );
+
+
+            let currentProgress =
+                Number(
+                    localStorage.getItem(
+                        topicKey
+                    ) || 0
+                );
+
+
+            currentProgress =
+                Math.min(
+                    100,
+                    currentProgress + 10
+                );
+
+
+            localStorage.setItem(
+                topicKey,
+                currentProgress
+            );
+
+
+            /* =========================
+               STREAK
+            ========================= */
+
+            updateStreak();
+
+
+            loadQuestion();
+
+        }
+
+
+        /* =========================
+           STREAK
+        ========================= */
+
+        function updateStreak() {
+
+            const today =
+                new Date()
+                    .toISOString()
+                    .split("T")[0];
+
+
+            const lastDate =
+                localStorage.getItem(
+                    "nexoraLastActivityDate"
+                );
+
+
+            let current =
+                Number(
+                    localStorage.getItem(
+                        "nexoraCurrentStreak"
+                    ) || 0
+                );
+
+
+            let longest =
+                Number(
+                    localStorage.getItem(
+                        "nexoraLongestStreak"
+                    ) || 0
+                );
+
+
+            if (lastDate === today) {
+
+                return;
+
+            }
+
+
+            if (lastDate) {
+
+                const previous =
+                    new Date(lastDate);
+
+                const todayDate =
+                    new Date(today);
+
+
+                const difference =
+                    Math.floor(
+                        (
+                            todayDate -
+                            previous
+                        ) /
+                        (
+                            1000 *
+                            60 *
+                            60 *
+                            24
+                        )
+                    );
+
+
+                if (difference === 1) {
+
+                    current++;
+
+                } else {
+
+                    current = 1;
+
+                }
+
+            } else {
+
+                current = 1;
+
+            }
+
+
+            if (current > longest) {
+
+                longest = current;
+
+            }
+
+
+            localStorage.setItem(
+                "nexoraLastActivityDate",
+                today
+            );
+
+
+            localStorage.setItem(
+                "nexoraCurrentStreak",
+                current
+            );
+
+
+            localStorage.setItem(
+                "nexoraLongestStreak",
+                longest
+            );
+
+        }
+
+
+        /* =========================
+           NOTES
+        ========================= */
+
+        function saveNotes() {
+
+            const question =
+                questions[currentIndex];
+
+
+            const notes =
+                document.getElementById(
+                    "questionNotes"
+                ).value;
+
+
+            localStorage.setItem(
+                "nexoraNotes_" +
+                question.id,
+                notes
+            );
+
+
+            document.getElementById(
+                "notesStatus"
+            ).textContent =
+                "Notes saved ✓";
+
+        }
+
+
+        function loadNotes() {
+
+            const question =
+                questions[currentIndex];
+
+
+            const notes =
+                localStorage.getItem(
+                    "nexoraNotes_" +
+                    question.id
+                ) || "";
+
+
+            document.getElementById(
+                "questionNotes"
+            ).value =
+                notes;
+
+
+            document.getElementById(
+                "notesStatus"
+            ).textContent =
+                "";
+
+        }
+
+
+        /* =========================
+           NEXT QUESTION
+        ========================= */
+
+        function nextQuestion() {
+
+            currentIndex++;
+
+
+            if (
+                currentIndex >=
+                questions.length
+            ) {
+
+                currentIndex = 0;
+
+            }
+
+
+            localStorage.setItem(
+                "nexoraCurrentQuestion",
+                currentIndex
+            );
+
+
+            loadQuestion();
+
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+
+        /* =========================
+           NEXT MESSAGE
+        ========================= */
+
+        function updateNextMessage() {
+
+            const question =
+                questions[currentIndex];
+
+
+            document.getElementById(
+                "nextTitle"
+            ).textContent =
+                "Continue with " +
+                question.topic;
+
+
+            document.getElementById(
+                "nextText"
+            ).textContent =
+                "Complete this problem to update your NEXORA DSA progress, topic mastery and streak.";
+
+        }
+
+
+        /* =========================
+           START
+        ========================= */
+
+        loadQuestion();
+
+    </script>
+
+
+</body>
+
+</html>

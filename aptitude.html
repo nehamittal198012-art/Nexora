@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXORA - Aptitude</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #171821;
+      color: #f5f5f5;
+      min-height: 100vh;
+      padding: 30px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .back {
+      display: inline-block;
+      color: #a78bfa;
+      text-decoration: none;
+      font-weight: bold;
+      margin-bottom: 25px;
+    }
+
+    .header {
+      margin-bottom: 35px;
+    }
+
+    .header h1 {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    .header p {
+      color: #aaa;
+      line-height: 1.7;
+      max-width: 850px;
+    }
+
+    .section-title {
+      font-size: 28px;
+      margin: 35px 0 20px;
+    }
+
+    .topic-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
+    }
+
+    .topic-card,
+    .company-card,
+    .test-card {
+      background: #1d1f29;
+      border-radius: 22px;
+      padding: 24px;
+
+      box-shadow:
+        8px 8px 18px #101117,
+        -6px -6px 15px #252735;
+    }
+
+    .icon {
+      width: 52px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: #292b38;
+      color: #a78bfa;
+      border-radius: 14px;
+      font-weight: bold;
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+      font-size: 21px;
+    }
+
+    .topic-card p,
+    .company-card p,
+    .test-card p {
+      color: #aaa;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .topics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      background: #292b38;
+      color: #cfc4ff;
+      padding: 7px 10px;
+      border-radius: 8px;
+      font-size: 12px;
+    }
+
+    .company-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 22px;
+    }
+
+    .company-card .year {
+      color: #a78bfa;
+      font-size: 13px;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+
+    .year-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .year-links a,
+    .primary-btn {
+      display: inline-block;
+      text-decoration: none;
+      padding: 10px 13px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .year-links a {
+      background: #292b38;
+      color: #ddd;
+    }
+
+    .primary-btn {
+      background: #8b5cf6;
+      color: white;
+    }
+
+    .year-links a:hover,
+    .primary-btn:hover {
+      opacity: 0.82;
+    }
+
+    .test-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 22px;
+    }
+
+    .test-card ul {
+      margin: 10px 0 18px 20px;
+      color: #aaa;
+      line-height: 1.8;
+    }
+
+    .note {
+      margin-top: 35px;
+      padding: 20px;
+      border-radius: 18px;
+      background: #1d1f29;
+      color: #aaa;
+      line-height: 1.7;
+
+      box-shadow:
+        inset 3px 3px 8px #101117,
+        inset -3px -3px 8px #252735;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 18px;
+      }
+
+      .header h1 {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <a href="dashboard.html" class="back">← Back to Dashboard</a>
+
+  <div class="header">
+    <h1>🎯 Aptitude Preparation</h1>
+
+    <p>
+      Build the quantitative, logical and verbal aptitude skills required
+      for campus placements and company assessment tests.
+      Learn the important topics first, then practice from company-wise
+      previous-year and placement-test resources.
+    </p>
+  </div>
+
+
+  <!-- APTITUDE TOPICS -->
+
+  <h2 class="section-title">📚 Aptitude Topics</h2>
+
+  <div class="topic-grid">
+
+    <div class="topic-card">
+      <div class="icon">QA</div>
+      <h3>Quantitative Aptitude</h3>
+      <p>
+        Numerical and mathematical problems commonly seen in placement tests.
+      </p>
+
+      <div class="topics">
+        <span class="tag">Percentages</span>
+        <span class="tag">Profit & Loss</span>
+        <span class="tag">Ratio</span>
+        <span class="tag">Average</span>
+        <span class="tag">SI & CI</span>
+        <span class="tag">Time & Work</span>
+        <span class="tag">Time Speed Distance</span>
+        <span class="tag">Problems on Ages</span>
+        <span class="tag">Mixture</span>
+        <span class="tag">Partnership</span>
+        <span class="tag">Number System</span>
+        <span class="tag">LCM & HCF</span>
+        <span class="tag">Probability</span>
+        <span class="tag">Permutation</span>
+        <span class="tag">Combination</span>
+        <span class="tag">Data Interpretation</span>
+        <span class="tag">Mensuration</span>
+        <span class="tag">Algebra</span>
+      </div>
+    </div>
+
+
+    <div class="topic-card">
+      <div class="icon">LR</div>
+      <h3>Logical Reasoning</h3>
+      <p>
+        Improve logical thinking and problem-solving for aptitude assessments.
+      </p>
+
+      <div class="topics">
+        <span class="tag">Number Series</span>
+        <span class="tag">Letter Series</span>
+        <span class="tag">Coding-Decoding</span>
+        <span class="tag">Blood Relations</span>
+        <span class="tag">Direction Sense</span>
+        <span class="tag">Syllogism</span>
+        <span class="tag">Seating Arrangement</span>
+        <span class="tag">Puzzles</span>
+        <span class="tag">Analogy</span>
+        <span class="tag">Classification</span>
+        <span class="tag">Data Sufficiency</span>
+        <span class="tag">Statement & Conclusion</span>
+        <span class="tag">Clocks</span>
+        <span class="tag">Calendars</span>
+      </div>
+    </div>
+
+
+    <div class="topic-card">
+      <div class="icon">VA</div>
+      <h3>Verbal Ability</h3>
+      <p>
+        Strengthen English language skills used in company assessments.
+      </p>
+
+      <div class="topics">
+        <span class="tag">Reading Comprehension</span>
+        <span class="tag">Vocabulary</span>
+        <span class="tag">Synonyms</span>
+        <span class="tag">Antonyms</span>
+        <span class="tag">Grammar</span>
+        <span class="tag">Sentence Correction</span>
+        <span class="tag">Error Spotting</span>
+        <span class="tag">Fill in the Blanks</span>
+        <span class="tag">Para Jumbles</span>
+        <span class="tag">Sentence Completion</span>
+        <span class="tag">Idioms</span>
+        <span class="tag">One Word Substitution</span>
+      </div>
+    </div>
+
+
+    <div class="topic-card">
+      <div class="icon">DI</div>
+      <h3>Data Interpretation</h3>
+      <p>
+        Learn to analyse numerical information quickly using charts and tables.
+      </p>
+
+      <div class="topics">
+        <span class="tag">Tables</span>
+        <span class="tag">Bar Graphs</span>
+        <span class="tag">Line Graphs</span>
+        <span class="tag">Pie Charts</span>
+        <span class="tag">Caselets</span>
+        <span class="tag">Data Comparison</span>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- COMPANY PAPERS -->
+
+  <h2 class="section-title">🏢 Company Aptitude Tests</h2>
+
+  <p style="color:#aaa; margin-bottom:22px;">
+    Practice recent placement-test material from the last few hiring cycles.
+    These are external resources; NEXORA does not copy or host the papers.
+  </p>
+
+  <div class="company-grid">
+
+
+    <!-- TCS -->
+
+    <div class="company-card">
+
+      <h3>TCS</h3>
+
+      <div class="year">
+        TCS NQT • Recent Papers
+      </div>
+
+      <p>
+        Numerical Ability, Verbal Ability, Reasoning Ability and
+        other sections of TCS NQT.
+      </p>
+
+      <div class="year-links">
+
+        <a
+          href="https://placementpapers.app/tcs/2025/"
+          target="_blank">
+          2025
+        </a>
+
+        <a
+          href="https://placementpapers.app/tcs/previous-year-question-papers/"
+          target="_blank">
+          2024–2022
+        </a>
+
+      </div>
+
+      <br>
+
+      <a
+        href="https://placementpapers.app/tcs/previous-year-question-papers/"
+        target="_blank"
+        class="primary-btn">
+        Open TCS Papers ↗
+      </a>
+
+    </div>
+
+
+    <!-- INFOSYS -->
+
+    <div class="company-card">
+
+      <h3>Infosys</h3>
+
+      <div class="year">
+        Infosys IRT • Recent Papers
+      </div>
+
+      <p>
+        Quantitative, Reasoning and Verbal aptitude resources,
+        along with recent Infosys IRT papers.
+      </p>
+
+      <div class="year-links">
+
+        <a
+          href="https://placementpapers.app/infosys/2025/"
+          target="_blank">
+          2025
+        </a>
+
+        <a
+          href="https://placementpapers.app/infosys/2024/"
+          target="_blank">
+          2024
+        </a>
+
+        <a
+          href="https://placementpapers.app/infosys/previous-year-question-papers/"
+          target="_blank">
+          2023–2022
+        </a>
+
+      </div>
+
+      <br>
+
+      <a
+        href="https://placementpapers.app/infosys/previous-year-question-papers/"
+        target="_blank"
+        class="primary-btn">
+        Open Infosys Papers ↗
+      </a>
+
+    </div>
+
+
+    <!-- ACCENTURE -->
+
+    <div class="company-card">
+
+      <h3>Accenture</h3>
+
+      <div class="year">
+        NLT • Recent Papers
+      </div>
+
+      <p>
+        Cognitive assessment resources covering quantitative,
+        logical reasoning and verbal ability.
+      </p>
+
+      <div class="year-links">
+
+        <a
+          href="https://placementpapers.app/accenture/2025/"
+          target="_blank">
+          2025
+        </a>
+
+        <a
+          href="https://placementpapers.app/accenture/2024/"
+          target="_blank">
+          2024
+        </a>
+
+        <a
+          href="https://placementpapers.app/accenture/previous-year-question-papers/"
+          target="_blank">
+          2023–2022
+        </a>
+
+      </div>
+
+      <br>
+
+      <a
+        href="https://placementpapers.app/accenture/previous-year-question-papers/"
+        target="_blank"
+        class="primary-btn">
+        Open Accenture Papers ↗
+      </a>
+
+    </div>
+
+
+    <!-- WIPRO -->
+
+    <div class="company-card">
+
+      <h3>Wipro</h3>
+
+      <div class="year">
+        Placement Test • Recent Resources
+      </div>
+
+      <p>
+        Quantitative aptitude, logical reasoning, verbal and
+        placement-test practice resources.
+      </p>
+
+      <div class="year-links">
+
+        <a
+          href="https://www.geeksforgeeks.org/interview-experiences/wipro-placement-paper-1-written-test/"
+          target="_blank">
+          Recent Paper
+        </a>
+
+        <a
+          href="https://www.indiabix.com/placement-papers/wipro/"
+          target="_blank">
+          Previous Papers
+        </a>
+
+      </div>
+
+      <br>
+
+      <a
+        href="https://www.geeksforgeeks.org/interview-experiences/wipro-placement-paper-1-written-test/"
+        target="_blank"
+        class="primary-btn">
+        Open Wipro Papers ↗
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <!-- GENERAL PRACTICE -->
+
+  <h2 class="section-title">📝 General Practice</h2>
+
+  <div class="test-grid">
+
+    <div class="test-card">
+
+      <h3>General Aptitude Practice</h3>
+
+      <p>
+        Practice quantitative, logical and verbal aptitude
+        questions from a large external question collection.
+      </p>
+
+      <ul>
+        <li>Quantitative Aptitude</li>
+        <li>Logical Reasoning</li>
+        <li>Verbal Ability</li>
+        <li>Topic-wise practice</li>
+      </ul>
+
+      <a
+        href="https://www.indiabix.com/"
+        target="_blank"
+        class="primary-btn">
+        Start Practice ↗
+      </a>
+
+    </div>
+
+
+    <div class="test-card">
+
+      <h3>Placement Papers</h3>
+
+      <p>
+        Browse placement papers and company-wise practice
+        resources in one place.
+      </p>
+
+      <ul>
+        <li>Company-wise papers</li>
+        <li>Previous-year practice</li>
+        <li>Solutions</li>
+        <li>Placement preparation</li>
+      </ul>
+
+      <a
+        href="https://placementpapers.app/"
+        target="_blank"
+        class="primary-btn">
+        Browse Papers ↗
+      </a>
+
+    </div>
+
+
+    <div class="test-card">
+
+      <h3>Timed Test</h3>
+
+      <p>
+        Use a timed external practice test to improve
+        speed and accuracy before company assessments.
+      </p>
+
+      <ul>
+        <li>Time management</li>
+        <li>Speed practice</li>
+        <li>Accuracy</li>
+        <li>Mock-test practice</li>
+      </ul>
+
+      <a
+        href="https://www.indiabix.com/online-test/"
+        target="_blank"
+        class="primary-btn">
+        Start Timed Test ↗
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <div class="note">
+
+    <strong>How NEXORA handles aptitude resources</strong>
+    <br><br>
+
+    NEXORA organizes aptitude topics and company-wise preparation
+    resources. Third-party questions and papers remain on their
+    original websites instead of being copied into NEXORA.
+
+    <br><br>
+
+    <strong>Important:</strong>
+    Placement-test patterns can change between hiring cycles,
+    so recent papers should be treated as preparation material,
+    not as a guarantee of the exact next test.
+
+  </div>
+
+</div>
+
+</body>
+</html>

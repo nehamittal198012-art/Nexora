@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>NEXORA - Core CS</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #171821;
+      color: #f5f5f5;
+      min-height: 100vh;
+      padding: 30px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .back {
+      display: inline-block;
+      color: #a78bfa;
+      text-decoration: none;
+      font-weight: bold;
+      margin-bottom: 25px;
+    }
+
+    .header {
+      margin-bottom: 35px;
+    }
+
+    .header h1 {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    .header p {
+      color: #aaa;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .subject-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+    }
+
+    .subject-card {
+      background: #1d1f29;
+      border-radius: 22px;
+      padding: 25px;
+
+      box-shadow:
+        8px 8px 18px #101117,
+        -6px -6px 15px #252735;
+
+      transition: 0.25s;
+    }
+
+    .subject-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .icon {
+      width: 55px;
+      height: 55px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: #292b38;
+      border-radius: 15px;
+
+      color: #a78bfa;
+      font-size: 25px;
+      font-weight: bold;
+
+      margin-bottom: 18px;
+
+      box-shadow:
+        inset 3px 3px 7px #101117,
+        inset -3px -3px 7px #252735;
+    }
+
+    .subject-card h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .subject-card p {
+      color: #aaa;
+      line-height: 1.6;
+      min-height: 75px;
+      margin-bottom: 20px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn {
+      text-decoration: none;
+      padding: 11px 15px;
+      border-radius: 11px;
+      font-size: 14px;
+      font-weight: bold;
+      display: inline-block;
+      transition: 0.2s;
+    }
+
+    .learn {
+      background: #8b5cf6;
+      color: white;
+    }
+
+    .practice {
+      background: #292b38;
+      color: #cfc4ff;
+    }
+
+    .interview {
+      background: #292b38;
+      color: #ddd;
+    }
+
+    .btn:hover {
+      opacity: 0.82;
+      transform: translateY(-1px);
+    }
+
+    .bottom-section {
+      margin-top: 45px;
+    }
+
+    .bottom-section h2 {
+      font-size: 27px;
+      margin-bottom: 20px;
+    }
+
+    .extra-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .extra-card {
+      background: #1d1f29;
+      border-radius: 20px;
+      padding: 24px;
+
+      box-shadow:
+        7px 7px 16px #101117,
+        -5px -5px 12px #252735;
+    }
+
+    .extra-card h3 {
+      color: #a78bfa;
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .extra-card p {
+      color: #aaa;
+      line-height: 1.6;
+      margin-bottom: 17px;
+    }
+
+    .extra-btn {
+      display: inline-block;
+      padding: 11px 16px;
+      border-radius: 11px;
+
+      background: #8b5cf6;
+      color: white;
+
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .info {
+      margin-top: 35px;
+      padding: 20px;
+
+      background: #1d1f29;
+      border-radius: 18px;
+
+      color: #aaa;
+      line-height: 1.6;
+
+      box-shadow:
+        inset 3px 3px 8px #101117,
+        inset -3px -3px 8px #252735;
+    }
+
+    @media (max-width: 600px) {
+
+      body {
+        padding: 18px;
+      }
+
+      .header h1 {
+        font-size: 30px;
+      }
+
+      .buttons {
+        flex-direction: column;
+      }
+
+      .btn {
+        text-align: center;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- BACK -->
+
+  <a href="dashboard.html" class="back">
+    ← Back to Dashboard
+  </a>
+
+
+  <!-- HEADER -->
+
+  <div class="header">
+
+    <h1>Core CS</h1>
+
+    <p>
+      Master the core computer science subjects required for
+      placements, technical interviews and software engineering roles.
+    </p>
+
+  </div>
+
+
+  <!-- SUBJECTS -->
+
+  <div class="subject-grid">
+
+
+    <!-- DBMS -->
+
+    <div class="subject-card">
+
+      <div class="icon">
+        DB
+      </div>
+
+      <h2>DBMS</h2>
+
+      <p>
+        Learn databases, SQL, keys, normalization, transactions,
+        indexing, ER diagrams and important interview concepts.
+      </p>
+
+      <div class="buttons">
+
+        <a
+          href="subjects.html?subject=DBMS"
+          class="btn learn">
+          Learn
+        </a>
+
+        <a
+          href="core-practice.html?subject=DBMS"
+          class="btn practice">
+          Practice
+        </a>
+
+        <a
+          href="core-interview.html?subject=DBMS"
+          class="btn interview">
+          Interview
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <!-- OS -->
+
+    <div class="subject-card">
+
+      <div class="icon">
+        OS
+      </div>
+
+      <h2>Operating System</h2>
+
+      <p>
+        Study processes, threads, CPU scheduling, synchronization,
+        deadlocks, memory management, paging and virtual memory.
+      </p>
+
+      <div class="buttons">
+
+        <a
+          href="subjects.html?subject=OS"
+          class="btn learn">
+          Learn
+        </a>
+
+        <a
+          href="core-practice.html?subject=OS"
+          class="btn practice">
+          Practice
+        </a>
+
+        <a
+          href="core-interview.html?subject=OS"
+          class="btn interview">
+          Interview
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <!-- CN -->
+
+    <div class="subject-card">
+
+      <div class="icon">
+        CN
+      </div>
+
+      <h2>Computer Networks</h2>
+
+      <p>
+        Learn OSI model, TCP/IP, protocols, routing, switching,
+        HTTP, DNS, networking concepts and interview questions.
+      </p>
+
+      <div class="buttons">
+
+        <a
+          href="subjects.html?subject=CN"
+          class="btn learn">
+          Learn
+        </a>
+
+        <a
+          href="core-practice.html?subject=CN"
+          class="btn practice">
+          Practice
+        </a>
+
+        <a
+          href="core-interview.html?subject=CN"
+          class="btn interview">
+          Interview
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <!-- OOP -->
+
+    <div class="subject-card">
+
+      <div class="icon">
+        OP
+      </div>
+
+      <h2>OOP</h2>
+
+      <p>
+        Understand classes, objects, inheritance, polymorphism,
+        abstraction, encapsulation and important OOP interview concepts.
+      </p>
+
+      <div class="buttons">
+
+        <a
+          href="subjects.html?subject=OOP"
+          class="btn learn">
+          Learn
+        </a>
+
+        <a
+          href="core-practice.html?subject=OOP"
+          class="btn practice">
+          Practice
+        </a>
+
+        <a
+          href="core-interview.html?subject=OOP"
+          class="btn interview">
+          Interview
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- EXTRA CORE FEATURES -->
+
+  <div class="bottom-section">
+
+    <h2>Placement Preparation</h2>
+
+    <div class="extra-grid">
+
+
+      <!-- BLOGS -->
+
+      <div class="extra-card">
+
+        <h3>📚 Core CS Blogs</h3>
+
+        <p>
+          Simple explanations, examples, diagrams, common mistakes
+          and placement-focused concepts for DBMS, OS, CN and OOP.
+        </p>
+
+        <a
+          href="core-blogs.html"
+          class="extra-btn">
+          Explore Blogs →
+        </a>
+
+      </div>
+
+
+      <!-- INTERVIEW -->
+
+      <div class="extra-card">
+
+        <h3>💬 Core Interview Questions</h3>
+
+        <p>
+          Practice subject-wise and company-oriented technical
+          interview questions for placement preparation.
+        </p>
+
+        <a
+          href="core-interview.html"
+          class="extra-btn">
+          Start Interview Prep →
+        </a>
+
+      </div>
+
+
+      <!-- PRACTICE -->
+
+      <div class="extra-card">
+
+        <h3>🎯 Practice Resources</h3>
+
+        <p>
+          Access external practice resources without copying
+          third-party question banks into NEXORA.
+        </p>
+
+        <a
+          href="core-practice.html"
+          class="extra-btn">
+          Open Practice →
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- INFO -->
+
+  <div class="info">
+
+    <strong>NEXORA Core CS Journey</strong>
+    <br><br>
+
+    Learn a concept →
+    Practice from trusted resources →
+    Prepare interview questions →
+    Track your preparation →
+    Improve your placement readiness.
+
+  </div>
+
+</div>
+
+</body>
+</html>

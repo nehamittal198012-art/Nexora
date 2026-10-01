@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXORA | Settings</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    color:#f8f5ff;
+    background:
+        radial-gradient(circle at top left,#4c1d95 0%,transparent 35%),
+        radial-gradient(circle at bottom right,#831843 0%,transparent 35%),
+        #0b0614;
+    padding:25px;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+}
+
+/* TOP BAR */
+.topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:28px;
+}
+
+.back-btn{
+    text-decoration:none;
+    color:white;
+    background:rgba(126,34,206,.35);
+    border:1px solid rgba(216,180,254,.2);
+    padding:11px 18px;
+    border-radius:14px;
+    font-size:14px;
+    transition:.2s;
+}
+
+.back-btn:hover{
+    background:rgba(168,85,247,.5);
+    transform:translateX(-3px);
+}
+
+.logo{
+    font-size:24px;
+    font-weight:800;
+    letter-spacing:2px;
+    color:#e879f9;
+}
+
+/* HEADER */
+.header{
+    margin-bottom:22px;
+}
+
+.header h1{
+    font-size:30px;
+    margin-bottom:7px;
+}
+
+.header p{
+    color:#a99bb5;
+    font-size:14px;
+}
+
+/* CARD */
+.card{
+    padding:25px;
+    margin-bottom:20px;
+    border-radius:24px;
+    background:rgba(30,16,49,.75);
+    border:1px solid rgba(216,180,254,.13);
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.28),
+        inset 0 1px 1px rgba(255,255,255,.03);
+}
+
+.card h2{
+    font-size:19px;
+    color:#f3d8ff;
+    margin-bottom:20px;
+}
+
+/* FORM */
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:17px;
+}
+
+.field label{
+    display:block;
+    color:#b6a8c2;
+    font-size:12px;
+    margin-bottom:8px;
+}
+
+.field select{
+    width:100%;
+    padding:13px 14px;
+    border-radius:13px;
+    border:1px solid rgba(216,180,254,.15);
+    outline:none;
+    color:white;
+    background:#160d21;
+}
+
+.field select:focus{
+    border-color:#c084fc;
+}
+
+.save-btn{
+    margin-top:20px;
+    border:none;
+    cursor:pointer;
+    padding:13px 25px;
+    border-radius:14px;
+    color:white;
+    font-weight:bold;
+    background:linear-gradient(135deg,#b967e8,#7e22ce);
+}
+
+.save-btn:hover{
+    transform:translateY(-2px);
+}
+
+/* TOGGLE */
+.setting-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    padding:17px 0;
+    border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.setting-row:last-child{
+    border-bottom:none;
+}
+
+.setting-info h3{
+    font-size:15px;
+    margin-bottom:5px;
+}
+
+.setting-info p{
+    color:#93869e;
+    font-size:12px;
+    line-height:1.5;
+}
+
+/* SWITCH */
+.switch{
+    position:relative;
+    width:48px;
+    height:26px;
+    flex-shrink:0;
+}
+
+.switch input{
+    opacity:0;
+    width:0;
+    height:0;
+}
+
+.slider{
+    position:absolute;
+    inset:0;
+    cursor:pointer;
+    border-radius:30px;
+    background:#34243f;
+    transition:.25s;
+}
+
+.slider:before{
+    content:"";
+    position:absolute;
+    width:20px;
+    height:20px;
+    left:3px;
+    top:3px;
+    border-radius:50%;
+    background:#ddd;
+    transition:.25s;
+}
+
+.switch input:checked + .slider{
+    background:#7e22ce;
+}
+
+.switch input:checked + .slider:before{
+    transform:translateX(22px);
+    background:#fff;
+}
+
+/* QUICK LINKS */
+.quick-links{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.quick-link{
+    text-decoration:none;
+    color:white;
+    padding:18px;
+    border-radius:17px;
+    background:rgba(255,255,255,.035);
+    border:1px solid rgba(216,180,254,.08);
+    transition:.2s;
+}
+
+.quick-link:hover{
+    background:rgba(126,34,206,.2);
+    transform:translateY(-2px);
+}
+
+.quick-link strong{
+    display:block;
+    margin-bottom:6px;
+}
+
+.quick-link span{
+    color:#9f8cab;
+    font-size:12px;
+}
+
+/* LOGOUT */
+.logout-card{
+    border-color:rgba(248,113,113,.15);
+}
+
+.logout-btn{
+    border:1px solid rgba(248,113,113,.3);
+    background:rgba(127,29,29,.18);
+    color:#fca5a5;
+    padding:12px 24px;
+    border-radius:14px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.logout-btn:hover{
+    background:rgba(127,29,29,.3);
+}
+
+/* MESSAGE */
+.message{
+    margin-top:15px;
+    color:#86efac;
+    font-size:13px;
+    display:none;
+}
+
+/* MOBILE */
+@media(max-width:700px){
+
+    body{
+        padding:15px;
+    }
+
+    .form-grid,
+    .quick-links{
+        grid-template-columns:1fr;
+    }
+
+    .header h1{
+        font-size:25px;
+    }
+
+    .topbar{
+        margin-bottom:20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+
+        <a href="dashboard.html" class="back-btn">
+            ← Back to Dashboard
+        </a>
+
+        <div class="logo">
+            NEXORA
+        </div>
+
+    </div>
+
+
+    <!-- HEADER -->
+    <div class="header">
+
+        <h1>⚙️ Settings</h1>
+
+        <p>
+            Manage your NEXORA preparation preferences and account.
+        </p>
+
+    </div>
+
+
+    <!-- PREPARATION SETTINGS -->
+    <section class="card">
+
+        <h2>🎯 Preparation Settings</h2>
+
+        <div class="form-grid">
+
+            <div class="field">
+
+                <label>Target Role</label>
+
+                <select id="targetRole">
+
+                    <option value="">Select Role</option>
+
+                    <option>Software Engineer</option>
+                    <option>Frontend Developer</option>
+                    <option>Backend Developer</option>
+                    <option>Full Stack Developer</option>
+                    <option>Data Analyst</option>
+                    <option>Other</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>Preparing For</label>
+
+                <select id="preparationType">
+
+                    <option value="">Select</option>
+
+                    <option>Placement</option>
+                    <option>Internship</option>
+                    <option>Both</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>Current Level</label>
+
+                <select id="currentLevel">
+
+                    <option value="">Select Level</option>
+
+                    <option>Beginner</option>
+                    <option>Intermediate</option>
+                    <option>Advanced</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>Daily Preparation Goal</label>
+
+                <select id="dailyGoal">
+
+                    <option value="30">30 minutes</option>
+                    <option value="60">1 hour</option>
+                    <option value="120">2 hours</option>
+                    <option value="180">3+ hours</option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <button class="save-btn" onclick="saveSettings()">
+            Save Settings
+        </button>
+
+        <div class="message" id="saveMessage">
+            Settings saved successfully!
+        </div>
+
+    </section>
+
+
+    <!-- NOTIFICATIONS -->
+    <section class="card">
+
+        <h2>🔔 Notifications</h2>
+
+
+        <div class="setting-row">
+
+            <div class="setting-info">
+
+                <h3>Daily Preparation Reminder</h3>
+
+                <p>
+                    Show reminders for your daily preparation goal.
+                </p>
+
+            </div>
+
+            <label class="switch">
+
+                <input
+                    type="checkbox"
+                    id="dailyReminder"
+                    onchange="saveNotificationSettings()"
+                >
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+
+        <div class="setting-row">
+
+            <div class="setting-info">
+
+                <h3>Streak Reminder</h3>
+
+                <p>
+                    Get a reminder when your learning streak needs attention.
+                </p>
+
+            </div>
+
+            <label class="switch">
+
+                <input
+                    type="checkbox"
+                    id="streakReminder"
+                    onchange="saveNotificationSettings()"
+                >
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+
+        <div class="setting-row">
+
+            <div class="setting-info">
+
+                <h3>Weak Topic Alerts</h3>
+
+                <p>
+                    Show alerts when your analytics identify weak areas.
+                </p>
+
+            </div>
+
+            <label class="switch">
+
+                <input
+                    type="checkbox"
+                    id="weakTopicAlerts"
+                    onchange="saveNotificationSettings()"
+                >
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+
+        <div class="setting-row">
+
+            <div class="setting-info">
+
+                <h3>Interview Reminders</h3>
+
+                <p>
+                    Show reminders for your AI mock interview practice.
+                </p>
+
+            </div>
+
+            <label class="switch">
+
+                <input
+                    type="checkbox"
+                    id="interviewReminder"
+                    onchange="saveNotificationSettings()"
+                >
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+    </section>
+
+
+    <!-- QUICK ACCESS -->
+    <section class="card">
+
+        <h2>🔗 Quick Access</h2>
+
+        <div class="quick-links">
+
+            <a href="profile.html" class="quick-link">
+
+                <strong>👤 Profile</strong>
+
+                <span>
+                    View and edit your personal information.
+                </span>
+
+            </a>
+
+
+            <a href="coding profile.html" class="quick-link">
+
+                <strong>💻 Coding Profiles</strong>
+
+                <span>
+                    Manage your LeetCode, GFG and other profiles.
+                </span>
+
+            </a>
+
+
+            <a href="DSA Sheets.html" class="quick-link">
+
+                <strong>📚 DSA Sheets</strong>
+
+                <span>
+                    Manage your selected DSA preparation sheet.
+                </span>
+
+            </a>
+
+
+            <a href="progress.html" class="quick-link">
+
+                <strong>📊 Progress & Analytics</strong>
+
+                <span>
+                    View placement readiness and preparation analytics.
+                </span>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ACCOUNT -->
+    <section class="card logout-card">
+
+        <h2>🔐 Account</h2>
+
+        <p style="
+            color:#9f8cab;
+            font-size:13px;
+            margin-bottom:18px;
+            line-height:1.6;
+        ">
+            Logout from your current NEXORA account on this device.
+        </p>
+
+        <button class="logout-btn" onclick="logout()">
+            Logout
+        </button>
+
+    </section>
+
+</div>
+
+
+<script>
+
+/* ================================
+   USER
+================================ */
+
+let user = null;
+
+
+function getUser(){
+
+    const keys = [
+        "nexoraUser",
+        "user",
+        "loggedInUser",
+        "currentUser"
+    ];
+
+    for(const key of keys){
+
+        const stored = localStorage.getItem(key);
+
+        if(!stored) continue;
+
+        try{
+
+            const data = JSON.parse(stored);
+
+            if(data && typeof data === "object"){
+
+                if(data.user){
+                    return data.user;
+                }
+
+                return data;
+            }
+
+        }catch(error){
+
+            continue;
+
+        }
+    }
+
+    return null;
+}
+
+
+/* ================================
+   LOAD SETTINGS
+================================ */
+
+function loadSettings(){
+
+    user = getUser();
+
+    if(user){
+
+        document.getElementById("targetRole").value =
+            user.targetRole || "";
+
+        document.getElementById("preparationType").value =
+            user.preparationType || "";
+
+        document.getElementById("currentLevel").value =
+            user.currentLevel || "";
+
+        document.getElementById("dailyGoal").value =
+            convertGoal(user.dailyGoal);
+    }
+
+
+    loadNotificationSettings();
+}
+
+
+/* ================================
+   DAILY GOAL
+================================ */
+
+function convertGoal(value){
+
+    if(value === 1 || value === "1")
+        return "60";
+
+    if(value === 2 || value === "2")
+        return "120";
+
+    if(value === 3 || value === "3")
+        return "180";
+
+    if(value === 30 || value === "30")
+        return "30";
+
+    if(value === 60 || value === "60")
+        return "60";
+
+    if(value === 120 || value === "120")
+        return "120";
+
+    if(value === 180 || value === "180")
+        return "180";
+
+    return "60";
+}
+
+
+/* ================================
+   SAVE SETTINGS
+================================ */
+
+function saveSettings(){
+
+    if(!user){
+
+        alert("Please login first.");
+
+        window.location.href = "login.html";
+
+        return;
+    }
+
+
+    user.targetRole =
+        document.getElementById("targetRole").value;
+
+    user.preparationType =
+        document.getElementById("preparationType").value;
+
+    user.currentLevel =
+        document.getElementById("currentLevel").value;
+
+    user.dailyGoal =
+        Number(document.getElementById("dailyGoal").value);
+
+
+    /* Save main user */
+
+    localStorage.setItem(
+        "nexoraUser",
+        JSON.stringify(user)
+    );
+
+
+    /* Keep existing keys updated only if present */
+
+    if(localStorage.getItem("user")){
+
+        localStorage.setItem(
+            "user",
+            JSON.stringify(user)
+        );
+
+    }
+
+
+    if(localStorage.getItem("loggedInUser")){
+
+        localStorage.setItem(
+            "loggedInUser",
+            JSON.stringify(user)
+        );
+
+    }
+
+
+    if(localStorage.getItem("currentUser")){
+
+        localStorage.setItem(
+            "currentUser",
+            JSON.stringify(user)
+        );
+
+    }
+
+
+    const message =
+        document.getElementById("saveMessage");
+
+    message.style.display = "block";
+
+    setTimeout(()=>{
+
+        message.style.display = "none";
+
+    },2500);
+}
+
+
+/* ================================
+   NOTIFICATIONS
+================================ */
+
+function saveNotificationSettings(){
+
+    const settings = {
+
+        dailyReminder:
+            document.getElementById("dailyReminder").checked,
+
+        streakReminder:
+            document.getElementById("streakReminder").checked,
+
+        weakTopicAlerts:
+            document.getElementById("weakTopicAlerts").checked,
+
+        interviewReminder:
+            document.getElementById("interviewReminder").checked
+
+    };
+
+
+    localStorage.setItem(
+        "nexoraNotificationSettings",
+        JSON.stringify(settings)
+    );
+}
+
+
+function loadNotificationSettings(){
+
+    const stored =
+        localStorage.getItem(
+            "nexoraNotificationSettings"
+        );
+
+    if(!stored) return;
+
+    try{
+
+        const settings = JSON.parse(stored);
+
+        document.getElementById("dailyReminder").checked =
+            settings.dailyReminder ?? true;
+
+        document.getElementById("streakReminder").checked =
+            settings.streakReminder ?? true;
+
+        document.getElementById("weakTopicAlerts").checked =
+            settings.weakTopicAlerts ?? true;
+
+        document.getElementById("interviewReminder").checked =
+            settings.interviewReminder ?? true;
+
+    }catch(error){
+
+        console.log("Notification settings could not be loaded.");
+
+    }
+}
+
+
+/* ================================
+   LOGOUT
+================================ */
+
+function logout(){
+
+    const confirmLogout =
+        confirm("Are you sure you want to logout?");
+
+    if(!confirmLogout) return;
+
+
+    localStorage.removeItem("nexoraUser");
+    localStorage.removeItem("user");
+    localStorage.removeItem("loggedInUser");
+    localStorage.removeItem("currentUser");
+
+
+    window.location.href = "login.html";
+}
+
+
+/* ================================
+   START
+================================ */
+
+loadSettings();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,507 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: #171821;
+    color: #f5f5f7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 45px 20px;
+}
+
+/* NEXORA Logo */
+
+h1 {
+    font-size: 42px;
+    letter-spacing: 2px;
+    color: #a78bfa;
+    margin-bottom: 8px;
+
+    text-shadow:
+        4px 4px 8px #0d0e14,
+        -2px -2px 5px #292b38;
+}
+
+body > p {
+    color: #a7a9b5;
+    margin-bottom: 30px;
+}
+
+/* Headings */
+
+h2 {
+    color: #e8e8ee;
+    margin-bottom: 25px;
+}
+
+/* Claymorphism Form Card */
+
+form {
+    width: 100%;
+    max-width: 540px;
+
+    padding: 35px;
+
+    background: #20212b;
+
+    border-radius: 28px;
+
+    box-shadow:
+        12px 12px 25px #0d0e13,
+        -10px -10px 22px #2b2d38;
+
+    border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+/* Form heading */
+
+form h2 {
+    text-align: center;
+    color: #a78bfa;
+}
+
+/* Labels */
+
+label {
+    display: block;
+    margin-bottom: 8px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    color: #c9cad3;
+}
+
+/* Inputs */
+
+input,
+select {
+    width: 100%;
+
+    padding: 14px 16px;
+
+    border: none;
+    outline: none;
+
+    border-radius: 14px;
+
+    background: #1b1c25;
+
+    color: #f5f5f7;
+
+    font-size: 14px;
+
+    box-shadow:
+        inset 5px 5px 10px #101117,
+        inset -4px -4px 8px #272934;
+
+    transition: 0.2s;
+}
+
+input::placeholder {
+    color: #777985;
+}
+
+input:focus,
+select:focus {
+    box-shadow:
+        inset 4px 4px 8px #101117,
+        inset -3px -3px 7px #292b38,
+        0 0 0 2px #8b5cf6;
+}
+
+select {
+    cursor: pointer;
+}
+
+select option {
+    background: #20212b;
+    color: white;
+}
+
+/* Buttons */
+
+button {
+    width: 100%;
+
+    padding: 15px;
+
+    border: none;
+    outline: none;
+
+    border-radius: 16px;
+
+    background: #8b5cf6;
+
+    color: white;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow:
+        6px 6px 12px #0d0e13,
+        -5px -5px 10px #292b38;
+
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #9b72f8;
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(1px);
+
+    box-shadow:
+        inset 4px 4px 8px #6840c2,
+        inset -3px -3px 6px #a984ff;
+}
+
+/* Message */
+
+#message {
+    margin-top: 18px;
+    color: #a78bfa;
+    font-weight: 600;
+}
+
+/* Links */
+
+a {
+    color: #a78bfa;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+a:hover {
+    color: #c4b5fd;
+    text-decoration: underline;
+}
+
+/* Bottom text */
+
+body > p:last-child {
+    margin-top: 22px;
+    color: #898b98;
+    font-size: 14px;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 30px 15px;
+    }
+
+    h1 {
+        font-size: 34px;
+    }
+
+    form {
+        padding: 25px 20px;
+        border-radius: 22px;
+    }
+
+}
+.dashboard-card {
+    width: 100%;
+    max-width: 700px;
+
+    margin: 15px 0;
+    padding: 30px;
+
+    background: #20212b;
+
+    border-radius: 28px;
+
+    box-shadow:
+        12px 12px 25px #0d0e13,
+        -10px -10px 22px #2b2d38;
+}
+
+.dashboard-card h2 {
+    color: #a78bfa;
+    margin-bottom: 20px;
+}
+
+.dashboard-card p {
+    color: #b8bac5;
+    margin: 13px 0;
+    line-height: 1.6;
+}
+
+.dashboard-card strong {
+    color: #e8e8ee;
+}
+
+.dashboard-card button {
+    margin-top: 5px;
+}
+
+#logoutButton {
+    max-width: 700px;
+    margin-top: 15px;
+    background: #292b38;
+}
+/* ================================
+   PROGRESS PAGE
+================================ */
+
+.progress-item {
+    margin: 25px 0;
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    color: #d5d5df;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 14px;
+    background: #1b1c25;
+    border-radius: 20px;
+
+    box-shadow:
+        inset 4px 4px 8px #101117,
+        inset -3px -3px 7px #292b38;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    border-radius: 20px;
+    background: #8b5cf6;
+
+    box-shadow:
+        3px 3px 8px #0d0e13,
+        -2px -2px 5px #a78bfa;
+}
+/* ================================
+   TASK PAGE
+================================ */
+
+.task-item {
+    margin: 18px 0;
+    padding: 18px;
+
+    background: #1b1c25;
+
+    border-radius: 16px;
+
+    box-shadow:
+        inset 4px 4px 8px #101117,
+        inset -3px -3px 7px #292b38;
+}
+
+.task-item label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin: 0;
+
+    color: #d5d5df;
+    cursor: pointer;
+}
+
+.task-checkbox {
+    width: 20px;
+    height: 20px;
+
+    accent-color: #8b5cf6;
+
+    cursor: pointer;
+}
+
+#taskProgress {
+    margin-top: 25px;
+
+    color: #a78bfa;
+    font-weight: 600;
+}
+/* ================================
+   DASHBOARD TASK PROGRESS
+================================ */
+
+.dashboard-task-progress {
+    margin-top: 25px;
+    padding: 20px;
+
+    background: #1b1c25;
+    border-radius: 18px;
+
+    box-shadow:
+        inset 5px 5px 10px #101117,
+        inset -4px -4px 8px #292b38;
+}
+
+.dashboard-task-progress h3 {
+    color: #a78bfa;
+    margin-bottom: 12px;
+}
+
+.dashboard-task-progress p {
+    color: #c9cad3;
+}
+
+.dashboard-progress-bar {
+    width: 100%;
+    height: 12px;
+
+    margin-top: 15px;
+
+    background: #20212b;
+    border-radius: 20px;
+
+    box-shadow:
+        inset 4px 4px 8px #101117,
+        inset -3px -3px 7px #292b38;
+}
+
+.dashboard-progress-fill {
+    width: 0%;
+    height: 100%;
+
+    border-radius: 20px;
+
+    background: #8b5cf6;
+
+    transition: width 0.3s ease;
+}
+/* ================================
+   CODING PROFILE PAGE
+================================ */
+
+.profile-connect {
+    margin-top: 25px;
+    padding: 20px;
+
+    background: #1b1c25;
+    border-radius: 18px;
+
+    box-shadow:
+        inset 5px 5px 10px #101117,
+        inset -4px -4px 8px #292b38;
+}
+
+.profile-connect input {
+    margin: 8px 0 12px;
+}
+
+.profile-connect button {
+    margin-top: 5px;
+}
+
+.profile-success {
+    color: #a78bfa !important;
+    margin-top: 10px;
+}
+/* ================================
+   DSA SHEETS
+================================ */
+
+.sheet-card {
+    margin-top: 25px;
+    padding: 22px;
+
+    background: #1b1c25;
+
+    border-radius: 20px;
+
+    box-shadow:
+        inset 5px 5px 10px #101117,
+        inset -4px -4px 8px #292b38;
+}
+
+.sheet-card h3 {
+    color: #a78bfa;
+    margin-bottom: 10px;
+}
+
+.sheet-card p {
+    color: #b8bac5;
+    line-height: 1.5;
+}
+
+.sheet-card button {
+    margin-top: 12px;
+}
+
+.sheet-status {
+    color: #a78bfa !important;
+    font-weight: 600;
+}.back-button {
+    display: block;
+    width: auto;
+    margin: 20px 0 10px 20px;
+    padding: 10px 16px;
+    background: transparent;
+    color: #b8bac5;
+    box-shadow: none;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.back-button:hover {
+    color: #a78bfa;
+    transform: none;
+}
+.back-button {
+    display: block !important;
+    width: fit-content !important;
+    margin: 15px 0 10px 15px !important;
+    padding: 8px 14px !important;
+    background: transparent !important;
+    color: #b8bac5 !important;
+    box-shadow: none !important;
+    border: none !important;
+    font-size: 15px !important;
+}
+/* DSA Sheets - Top Left Back Button */
+
+.back-button {
+    position: absolute !important;
+
+    top: 20px !important;
+    left: 20px !important;
+
+    width: auto !important;
+
+    margin: 0 !important;
+
+    padding: 8px 12px !important;
+
+    background: transparent !important;
+
+    color: #b8bac5 !important;
+
+    border: none !important;
+
+    box-shadow: none !important;
+
+    font-size: 15px !important;
+
+    text-align: left !important;
+
+    cursor: pointer !important;
+}
+
+
+.back-button:hover {
+    color: #a78bfa !important;
+
+    transform: none !important;
+}

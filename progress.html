@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>NEXORA - Progress</title>
+
+<style>
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#171821;
+color:#f4f3ff;
+min-height:100vh;
+}
+
+.container{
+width:92%;
+max-width:1200px;
+margin:auto;
+padding:25px 0 50px;
+}
+
+.topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:25px;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+color:#a78bfa;
+}
+
+button{
+border:none;
+padding:11px 17px;
+border-radius:12px;
+background:#242532;
+color:white;
+cursor:pointer;
+box-shadow:6px 6px 12px #0e0f15,-4px -4px 10px #20222d;
+}
+
+button:hover{
+background:#8b5cf6;
+}
+
+.hero{
+margin-bottom:25px;
+}
+
+.hero h1{
+font-size:32px;
+margin-bottom:8px;
+}
+
+.hero p{
+color:#aaa9b9;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:20px;
+}
+
+.card{
+background:#1e202a;
+padding:25px;
+border-radius:20px;
+box-shadow:8px 8px 18px #0e0f15,-6px -6px 15px #252734;
+}
+
+.card h2{
+margin-bottom:15px;
+}
+
+.progress-item{
+margin:18px 0;
+}
+
+.progress-head{
+display:flex;
+justify-content:space-between;
+margin-bottom:8px;
+}
+
+.bar{
+height:10px;
+background:#292b38;
+border-radius:20px;
+overflow:hidden;
+}
+
+.fill{
+height:100%;
+width:0%;
+background:#a78bfa;
+transition:.4s;
+}
+
+.big-score{
+font-size:45px;
+font-weight:bold;
+color:#a78bfa;
+}
+
+.stat-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:12px;
+margin-top:20px;
+}
+
+.stat{
+background:#292b38;
+padding:18px;
+border-radius:15px;
+}
+
+.stat strong{
+display:block;
+font-size:25px;
+color:#a78bfa;
+margin-top:7px;
+}
+
+.list{
+margin-left:20px;
+line-height:1.8;
+}
+
+.tag{
+display:inline-block;
+background:#302d46;
+color:#c4b5fd;
+padding:7px 11px;
+border-radius:20px;
+margin:4px;
+font-size:13px;
+}
+
+.actions{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-top:20px;
+}
+
+.actions button{
+background:#8b5cf6;
+}
+
+.empty{
+color:#aaa9b9;
+line-height:1.6;
+}
+
+@media(max-width:800px){
+.grid{
+grid-template-columns:1fr;
+}
+
+.stat-grid{
+grid-template-columns:1fr 1fr;
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="topbar">
+
+<div class="logo">NEXORA</div>
+
+<button onclick="location.href='dashboard.html'">
+← Back to Dashboard
+</button>
+
+</div>
+
+<div class="hero">
+<h1>📊 Progress & Analytics</h1>
+<p>
+Track your placement preparation and understand what you should improve next.
+</p>
+</div>
+
+
+<!-- READINESS -->
+
+<div class="card">
+
+<h2>🎯 Placement Readiness</h2>
+
+<div class="big-score" id="readinessScore">0%</div>
+
+<p>
+Combined preparation across Aptitude, DSA, Core CS, Interview and Resume.
+</p>
+
+<div class="stat-grid">
+
+<div class="stat">
+Aptitude
+<strong id="readyAptitude">0%</strong>
+</div>
+
+<div class="stat">
+DSA
+<strong id="readyDSA">0%</strong>
+</div>
+
+<div class="stat">
+Core CS
+<strong id="readyCore">0%</strong>
+</div>
+
+<div class="stat">
+Interview
+<strong id="readyInterview">0%</strong>
+</div>
+
+<div class="stat">
+Resume
+<strong id="readyResume">0%</strong>
+</div>
+
+</div>
+
+</div>
+
+<br>
+
+
+<!-- MAIN PROGRESS -->
+
+<div class="grid">
+
+<div class="card">
+
+<h2>📚 Preparation Progress</h2>
+
+<div class="progress-item">
+<div class="progress-head">
+<span>Aptitude</span>
+<strong id="aptitudePercent">0%</strong>
+</div>
+<div class="bar">
+<div class="fill" id="aptitudeFill"></div>
+</div>
+</div>
+
+<div class="progress-item">
+<div class="progress-head">
+<span>DSA</span>
+<strong id="dsaPercent">0%</strong>
+</div>
+<div class="bar">
+<div class="fill" id="dsaFill"></div>
+</div>
+</div>
+
+<div class="progress-item">
+<div class="progress-head">
+<span>Core CS</span>
+<strong id="corePercent">0%</strong>
+</div>
+<div class="bar">
+<div class="fill" id="coreFill"></div>
+</div>
+</div>
+
+<div class="progress-item">
+<div class="progress-head">
+<span>AI Interview</span>
+<strong id="interviewPercent">0%</strong>
+</div>
+<div class="bar">
+<div class="fill" id="interviewFill"></div>
+</div>
+</div>
+
+<div class="progress-item">
+<div class="progress-head">
+<span>Resume</span>
+<strong id="resumePercent">0%</strong>
+</div>
+<div class="bar">
+<div class="fill" id="resumeFill"></div>
+</div>
+</div>
+
+</div>
+
+
+<!-- INTERVIEW ANALYTICS -->
+
+<div class="card">
+
+<h2>🤖 AI Interview Analytics</h2>
+
+<div class="big-score" id="interviewScore">0/100</div>
+
+<p id="interviewMeta" class="empty">
+Complete an AI Mock Interview to generate analytics.
+</p>
+
+<br>
+
+<h3>Performance Dimensions</h3>
+
+<ul class="list" id="dimensionsList"></ul>
+
+</div>
+
+</div>
+
+<br>
+
+
+<!-- SKILL GAP -->
+
+<div class="grid">
+
+<div class="card">
+
+<h2>🎯 Interview Skill Analysis</h2>
+
+<h3>Strengths</h3>
+
+<div id="strengths"></div>
+
+<br>
+
+<h3>Weak Areas</h3>
+
+<div id="weakAreas"></div>
+
+</div>
+
+
+<div class="card">
+
+<h2>⚠️ Skill Gap</h2>
+
+<div id="skillGap"></div>
+
+</div>
+
+</div>
+
+<br>
+
+
+<!-- RECOMMENDATIONS -->
+
+<div class="card">
+
+<h2>🧠 Personalized Recommendations</h2>
+
+<div id="recommendations"></div>
+
+<div class="actions">
+
+<button onclick="location.href='daily-preparation.html'">
+📅 Daily Preparation
+</button>
+
+<button onclick="location.href='core-interview.html'">
+🤖 Practice Interview
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+function read(key,fallback){
+
+try{
+return JSON.parse(localStorage.getItem(key))||fallback;
+}
+catch{
+return fallback;
+}
+}
+
+
+/* BASIC PROGRESS */
+
+function getNumber(key){
+
+const value=Number(localStorage.getItem(key));
+
+return Number.isFinite(value)?Math.max(0,Math.min(100,value)):0;
+}
+
+const aptitude=getNumber("nexoraAptitudeProgress")||
+getNumber("nexoraAptitudeScore");
+
+const dsa=getNumber("nexoraDSAProgress")||
+getNumber("nexoraDSAScore")||
+getNumber("nexoraCodingProgress");
+
+const core=getNumber("nexoraCoreProgress")||
+getNumber("nexoraCoreScore");
+
+const resume=getNumber("nexoraResumeScore");
+
+const interview=Number(
+localStorage.getItem("nexoraInterviewScore")||0
+);
+
+
+/* SET PROGRESS */
+
+function setProgress(fillId,percentId,value){
+
+document.getElementById(fillId).style.width=value+"%";
+
+document.getElementById(percentId).textContent=
+Math.round(value)+"%";
+}
+
+setProgress("aptitudeFill","aptitudePercent",aptitude);
+setProgress("dsaFill","dsaPercent",dsa);
+setProgress("coreFill","corePercent",core);
+setProgress("interviewFill","interviewPercent",interview);
+setProgress("resumeFill","resumePercent",resume);
+
+
+/* READINESS */
+
+const readiness=Math.round(
+(aptitude+dsa+core+interview+resume)/5
+);
+
+document.getElementById("readinessScore").textContent=
+readiness+"%";
+
+document.getElementById("readyAptitude").textContent=
+Math.round(aptitude)+"%";
+
+document.getElementById("readyDSA").textContent=
+Math.round(dsa)+"%";
+
+document.getElementById("readyCore").textContent=
+Math.round(core)+"%";
+
+document.getElementById("readyInterview").textContent=
+Math.round(interview)+"%";
+
+document.getElementById("readyResume").textContent=
+Math.round(resume)+"%";
+
+
+/* INTERVIEW */
+
+const analytics=read(
+"nexoraInterviewAnalytics",
+{}
+);
+
+const skillData=read(
+"nexoraInterviewSkillGap",
+{}
+);
+
+const recommendationData=read(
+"nexoraInterviewRecommendations",
+{}
+);
+
+document.getElementById("interviewScore").textContent=
+interview+"/100";
+
+if(analytics.role){
+
+document.getElementById("interviewMeta").textContent=
+`${analytics.role} • ${analytics.difficulty||"Intermediate"} • ${analytics.area||"Mixed Core CS"} • ${analytics.questions||0} questions`;
+}
+
+
+/* DIMENSIONS */
+
+const dimensionsList=document.getElementById("dimensionsList");
+
+dimensionsList.innerHTML="";
+
+const dimensions=analytics.averages||skillData.dimensions||{};
+
+Object.keys(dimensions).forEach(key=>{
+
+const li=document.createElement("li");
+
+li.textContent=
+formatDimension(key)+": "+
+Number(dimensions[key]).toFixed(1)+"/10";
+
+dimensionsList.appendChild(li);
+
+});
+
+
+/* STRENGTHS */
+
+renderTags(
+"strengths",
+analytics.strengths||[]
+);
+
+
+/* WEAK AREAS */
+
+renderTags(
+"weakAreas",
+analytics.weakAreas||skillData.weakAreas||[]
+);
+
+
+/* SKILL GAP */
+
+renderTags(
+"skillGap",
+skillData.skillGap||[]
+);
+
+
+/* RECOMMENDATIONS */
+
+const recBox=document.getElementById("recommendations");
+
+recBox.innerHTML="";
+
+const recommendations=
+recommendationData.recommendations||[];
+
+if(!recommendations.length){
+
+recBox.innerHTML=
+`<p class="empty">
+Complete an AI Mock Interview to receive personalized recommendations.
+</p>`;
+
+}
+else{
+
+const ul=document.createElement("ul");
+
+ul.className="list";
+
+recommendations.forEach(item=>{
+
+const li=document.createElement("li");
+
+li.textContent=item;
+
+ul.appendChild(li);
+
+});
+
+recBox.appendChild(ul);
+
+}
+
+
+/* TAGS */
+
+function renderTags(id,items){
+
+const box=document.getElementById(id);
+
+box.innerHTML="";
+
+if(!Array.isArray(items)||!items.length){
+
+box.innerHTML=
+'<p class="empty">No data available yet.</p>';
+
+return;
+
+}
+
+items.forEach(item=>{
+
+const span=document.createElement("span");
+
+span.className="tag";
+
+span.textContent=item;
+
+box.appendChild(span);
+
+});
+}
+
+
+/* NAME */
+
+function formatDimension(name){
+
+const names={
+relevance:"Relevance",
+technicalCorrectness:"Technical Correctness",
+technicalDepth:"Technical Depth",
+clarity:"Clarity",
+structure:"Structure"
+};
+
+return names[name]||name;
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NEXORA | AI-Powered Placement Preparation</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: "Segoe UI", Arial, sans-serif;
+            color: #ffffff;
+            background:
+                radial-gradient(circle at 85% 15%, rgba(192, 132, 252, 0.20), transparent 28%),
+                radial-gradient(circle at 15% 80%, rgba(190, 24, 93, 0.16), transparent 30%),
+                linear-gradient(135deg, #090511, #160b27 48%, #0b0614);
+            overflow-x: hidden;
+        }
+
+        /* Background glow */
+
+        .glow {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(90px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .glow.one {
+            width: 260px;
+            height: 260px;
+            background: rgba(126, 34, 206, 0.18);
+            top: 80px;
+            right: -80px;
+        }
+
+        .glow.two {
+            width: 220px;
+            height: 220px;
+            background: rgba(232, 121, 249, 0.10);
+            bottom: 30px;
+            left: -80px;
+        }
+
+        /* Navigation */
+
+        nav {
+            width: 100%;
+            max-width: 1180px;
+            margin: auto;
+            padding: 26px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: #d8a4ff;
+        }
+
+        .nav-login {
+            text-decoration: none;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            padding: 10px 20px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            transition: 0.25s ease;
+        }
+
+        .nav-login:hover {
+            background: rgba(192, 132, 252, 0.15);
+            border-color: rgba(216, 164, 255, 0.5);
+        }
+
+        /* Hero */
+
+        .hero {
+            width: 100%;
+            max-width: 1180px;
+            margin: auto;
+            min-height: 550px;
+            padding: 65px 25px 45px;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 650px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 30px;
+            background: rgba(192, 132, 252, 0.10);
+            border: 1px solid rgba(216, 164, 255, 0.22);
+            color: #dfbaff;
+            font-size: 13px;
+            margin-bottom: 22px;
+        }
+
+        h1 {
+            font-size: clamp(48px, 7vw, 82px);
+            line-height: 0.95;
+            letter-spacing: -3px;
+            margin-bottom: 24px;
+        }
+
+        h1 span {
+            color: #d8a4ff;
+        }
+
+        .hero h2 {
+            font-size: clamp(24px, 3vw, 38px);
+            line-height: 1.15;
+            margin-bottom: 18px;
+            color: #f5eaff;
+        }
+
+        .hero-description {
+            color: #b9acc8;
+            font-size: 17px;
+            line-height: 1.7;
+            max-width: 580px;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .primary-btn,
+        .secondary-btn {
+            border: none;
+            text-decoration: none;
+            padding: 14px 25px;
+            border-radius: 13px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.25s ease;
+        }
+
+        .primary-btn {
+            color: #ffffff;
+            background: linear-gradient(135deg, #a855f7, #7e22ce);
+            box-shadow: 0 10px 30px rgba(126, 34, 206, 0.25);
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 35px rgba(126, 34, 206, 0.38);
+        }
+
+        .secondary-btn {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .secondary-btn:hover {
+            background: rgba(255, 255, 255, 0.09);
+            transform: translateY(-2px);
+        }
+
+        /* Dashboard visual */
+
+        .visual {
+            position: relative;
+            min-height: 390px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dashboard-card {
+            width: min(100%, 420px);
+            padding: 25px;
+            border-radius: 25px;
+            background: rgba(24, 14, 39, 0.78);
+            border: 1px solid rgba(216, 164, 255, 0.17);
+            box-shadow:
+                0 30px 80px rgba(0, 0, 0, 0.35),
+                inset 0 1px rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(18px);
+            transform: rotate(1.5deg);
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+        }
+
+        .card-title {
+            font-weight: 700;
+            color: #eee1ff;
+        }
+
+        .status {
+            font-size: 11px;
+            color: #d8a4ff;
+            background: rgba(192, 132, 252, 0.10);
+            padding: 6px 10px;
+            border-radius: 20px;
+        }
+
+        .readiness {
+            padding: 20px;
+            border-radius: 18px;
+            background: linear-gradient(
+                135deg,
+                rgba(126, 34, 206, 0.18),
+                rgba(190, 24, 93, 0.12)
+            );
+            margin-bottom: 16px;
+        }
+
+        .readiness-label {
+            color: #aaa0b7;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .readiness-score {
+            font-size: 38px;
+            font-weight: 800;
+        }
+
+        .progress-line {
+            height: 7px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            margin-top: 12px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 15%;
+            height: 100%;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #9333ea, #e879f9);
+        }
+
+        .mini-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .mini-card {
+            padding: 16px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.045);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .mini-card strong {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .mini-card small {
+            color: #9f94aa;
+        }
+
+        /* Features */
+
+        .features-section {
+            width: 100%;
+            max-width: 1180px;
+            margin: auto;
+            padding: 60px 25px 85px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-heading h2 {
+            font-size: 31px;
+            margin-bottom: 10px;
+        }
+
+        .section-heading p {
+            color: #a89db3;
+            line-height: 1.6;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .feature {
+            padding: 25px;
+            min-height: 165px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.035);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: 0.25s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            border-color: rgba(216, 164, 255, 0.28);
+            background: rgba(192, 132, 252, 0.06);
+        }
+
+        .feature-icon {
+            font-size: 27px;
+            margin-bottom: 15px;
+        }
+
+        .feature h3 {
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        .feature p {
+            color: #a99ead;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Bottom CTA */
+
+        .cta {
+            max-width: 900px;
+            margin: 0 auto 70px;
+            padding: 45px 25px;
+            text-align: center;
+            border-radius: 25px;
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(126, 34, 206, 0.15),
+                    rgba(190, 24, 93, 0.10)
+                );
+            border: 1px solid rgba(216, 164, 255, 0.14);
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .cta p {
+            color: #aaa0b1;
+            margin-bottom: 22px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #766b7e;
+            font-size: 13px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Mobile */
+
+        @media (max-width: 850px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding-top: 45px;
+            }
+
+            .hero-content {
+                margin: auto;
+            }
+
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .buttons {
+                justify-content: center;
+            }
+
+            .visual {
+                min-height: 320px;
+            }
+
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 560px) {
+            nav {
+                padding: 20px 18px;
+            }
+
+            .hero {
+                padding: 40px 18px 30px;
+            }
+
+            h1 {
+                font-size: 56px;
+            }
+
+            .hero h2 {
+                font-size: 25px;
+            }
+
+            .hero-description {
+                font-size: 15px;
+            }
+
+            .features-section {
+                padding-left: 18px;
+                padding-right: 18px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard-card {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="glow one"></div>
+    <div class="glow two"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">NEX<span>ORA</span></div>
+
+        <a href="Login.html" class="nav-login">
+            Login
+        </a>
+    </nav>
+
+
+    <!-- Hero Section -->
+    <main class="hero">
+
+        <section class="hero-content">
+
+            <div class="badge">
+                AI-Powered Placement Preparation
+            </div>
+
+            <h1>
+                NEX<span>ORA</span>
+            </h1>
+
+            <h2>
+                Prepare smarter.<br>
+                Track better.<br>
+                Get placement ready.
+            </h2>
+
+            <p class="hero-description">
+                One intelligent platform to prepare for placements,
+                practice DSA, strengthen Core CS, improve aptitude,
+                analyze your resume and practice AI mock interviews.
+            </p>
+
+            <div class="buttons">
+
+                <a href="Sign Up.html" class="primary-btn">
+                    Get Started →
+                </a>
+
+                <a href="Login.html" class="secondary-btn">
+                    Login
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- Product Preview -->
+        <section class="visual">
+
+            <div class="dashboard-card">
+
+                <div class="card-top">
+                    <span class="card-title">
+                        NEXORA Dashboard
+                    </span>
+
+                    <span class="status">
+                        AI READY
+                    </span>
+                </div>
+
+                <div class="readiness">
+
+                    <div class="readiness-label">
+                        Placement Readiness
+                    </div>
+
+                    <div class="readiness-score">
+                        Ready to Start
+                    </div>
+
+                    <div class="progress-line">
+                        <div class="progress-fill"></div>
+                    </div>
+
+                </div>
+
+                <div class="mini-grid">
+
+                    <div class="mini-card">
+                        <strong>DSA</strong>
+                        <small>Practice & Progress</small>
+                    </div>
+
+                    <div class="mini-card">
+                        <strong>Core CS</strong>
+                        <small>Learn & Practice</small>
+                    </div>
+
+                    <div class="mini-card">
+                        <strong>Resume</strong>
+                        <small>AI Analysis</small>
+                    </div>
+
+                    <div class="mini-card">
+                        <strong>Interview</strong>
+                        <small>AI Mock Interview</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Features -->
+    <section class="features-section">
+
+        <div class="section-heading">
+
+            <h2>Everything for your placement journey</h2>
+
+            <p>
+                NEXORA brings your preparation, practice and progress
+                together in one place.
+            </p>
+
+        </div>
+
+
+        <div class="features">
+
+            <div class="feature">
+
+                <div class="feature-icon">💻</div>
+
+                <h3>DSA Intelligence</h3>
+
+                <p>
+                    Track DSA sheets, coding progress,
+                    weak topics and next practice areas.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">📚</div>
+
+                <h3>Core CS</h3>
+
+                <p>
+                    Prepare DBMS, OS, CN and OOP
+                    with learning and interview practice.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">🧮</div>
+
+                <h3>Aptitude</h3>
+
+                <p>
+                    Practice quantitative, logical and verbal
+                    aptitude with timed tests.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">📄</div>
+
+                <h3>Resume Analyzer</h3>
+
+                <p>
+                    Analyze your resume and identify
+                    areas that can be improved.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">🤖</div>
+
+                <h3>AI Mock Interview</h3>
+
+                <p>
+                    Practice interview questions and receive
+                    structured AI feedback.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">📊</div>
+
+                <h3>Smart Analytics</h3>
+
+                <p>
+                    Understand your progress, skill gaps
+                    and placement readiness.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CTA -->
+    <section class="cta">
+
+        <h2>
+            Your placement preparation, organized.
+        </h2>
+
+        <p>
+            Start building consistent preparation with NEXORA.
+        </p>
+
+        <a href="Sign Up.html" class="primary-btn">
+            Start Preparing →
+        </a>
+
+    </section>
+
+
+    <footer>
+        © 2026 NEXORA · AI-Powered Placement Preparation Platform
+    </footer>
+
+</body>
+
+</html>

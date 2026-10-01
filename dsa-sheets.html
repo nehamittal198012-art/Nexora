@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NEXORA | DSA Sheets</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* Back Button */
+
+        .back-button {
+            position: absolute !important;
+            top: 20px !important;
+            left: 20px !important;
+
+            width: auto !important;
+            margin: 0 !important;
+            padding: 8px 12px !important;
+
+            background: transparent !important;
+            color: #b8bac5 !important;
+
+            border: none !important;
+            box-shadow: none !important;
+
+            font-size: 15px !important;
+            text-align: left !important;
+            cursor: pointer !important;
+        }
+
+        .back-button:hover {
+            color: #a78bfa !important;
+            transform: none !important;
+        }
+
+
+        /* Selected Sheet Box */
+
+        .current-sheet {
+            margin-top: 25px;
+            padding: 22px;
+
+            background: #1b1c25;
+            border-radius: 20px;
+
+            box-shadow:
+                inset 5px 5px 10px #101117,
+                inset -4px -4px 8px #292b38;
+        }
+
+        .current-sheet h3 {
+            color: #a78bfa;
+            margin-bottom: 10px;
+        }
+
+        .current-sheet-name {
+            color: #e8e8ee;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+
+        /* Sheet Card */
+
+        .sheet-card {
+            position: relative;
+        }
+
+
+        /* Selected Label */
+
+        .selected-label {
+            display: none;
+
+            margin-top: 12px;
+
+            color: #a78bfa;
+
+            font-weight: 600;
+        }
+
+
+        .sheet-card.selected {
+            border: 1px solid #8b5cf6;
+        }
+
+        .sheet-card.selected .selected-label {
+            display: block;
+        }
+
+
+        /* Change Button */
+
+        .change-button {
+            display: none;
+
+            margin-top: 12px;
+
+            background: #292b38;
+        }
+
+
+        .has-selection .change-button {
+            display: inline-block;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- Back -->
+
+    <button
+        class="back-button"
+        onclick="history.back()"
+    >
+        ← Back
+    </button>
+
+
+    <h1>NEXORA 🤖</h1>
+
+    <h2>📑 DSA Sheet Selection</h2>
+
+
+    <!-- Current Selected Sheet -->
+
+    <div class="dashboard-card">
+
+        <div class="current-sheet">
+
+            <h3>📌 Current Selected Sheet</h3>
+
+            <p
+                id="currentSheetName"
+                class="current-sheet-name"
+            >
+                No sheet selected yet.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Sheet Selection -->
+
+    <div class="dashboard-card">
+
+        <h2>Choose Your DSA Sheet</h2>
+
+        <p>
+            Select one DSA sheet for your preparation.
+            NEXORA will track your progress separately.
+        </p>
+
+
+        <!-- Striver -->
+
+        <div
+            class="sheet-card"
+            id="card-striver"
+        >
+
+            <h3>🔥 Striver A2Z DSA Sheet</h3>
+
+            <p>
+                A structured DSA roadmap covering
+                important DSA concepts and problems.
+            </p>
+
+            <button onclick="selectSheet('Striver A2Z', 'striver')">
+                Select Sheet
+            </button>
+
+            <button onclick="openSheet('striver')">
+                Open Original Sheet ↗
+            </button>
+
+            <p class="selected-label">
+                ✓ Selected
+            </p>
+
+        </div>
+
+
+        <!-- Love Babbar -->
+
+        <div
+            class="sheet-card"
+            id="card-lovebabbar"
+        >
+
+            <h3>💻 Love Babbar 450 DSA</h3>
+
+            <p>
+                A popular DSA problem list for
+                placement preparation.
+            </p>
+
+            <button onclick="selectSheet('Love Babbar 450', 'lovebabbar')">
+                Select Sheet
+            </button>
+
+            <button onclick="openSheet('lovebabbar')">
+                Open Original Sheet ↗
+            </button>
+
+            <p class="selected-label">
+                ✓ Selected
+            </p>
+
+        </div>
+
+
+        <!-- Apna College -->
+
+        <div
+            class="sheet-card"
+            id="card-apnacollege"
+        >
+
+            <h3>📚 Apna College DSA</h3>
+
+            <p>
+                DSA learning and placement preparation
+                resources.
+            </p>
+
+            <button onclick="selectSheet('Apna College', 'apnacollege')">
+                Select Sheet
+            </button>
+
+            <button onclick="openSheet('apnacollege')">
+                Open Original Source ↗
+            </button>
+
+            <p class="selected-label">
+                ✓ Selected
+            </p>
+
+        </div>
+
+
+        <!-- Rohit Negi -->
+
+        <div
+            class="sheet-card"
+            id="card-rohitnegi"
+        >
+
+            <h3>🎯 Rohit Negi DSA</h3>
+
+            <p>
+                DSA learning and placement preparation
+                resources.
+            </p>
+
+            <button onclick="selectSheet('Rohit Negi', 'rohitnegi')">
+                Select Sheet
+            </button>
+
+            <button onclick="openSheet('rohitnegi')">
+                Open Original Source ↗
+            </button>
+
+            <p class="selected-label">
+                ✓ Selected
+            </p>
+
+        </div>
+
+
+        <!-- Arsh Goyal -->
+
+        <div
+            class="sheet-card"
+            id="card-arshgoyal"
+        >
+
+            <h3>🚀 Arsh Goyal DSA</h3>
+
+            <p>
+                DSA and programming resources for
+                interview preparation.
+            </p>
+
+            <button onclick="selectSheet('Arsh Goyal', 'arshgoyal')">
+                Select Sheet
+            </button>
+
+            <button onclick="openSheet('arshgoyal')">
+                Open Original Source ↗
+            </button>
+
+            <p class="selected-label">
+                ✓ Selected
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+
+        /* Original Source Links */
+
+        const sheetLinks = {
+
+            striver:
+                "https://takeuforward.org/strivers-a2z-dsa-course/strivers-a2z-dsa-course-sheet-2",
+
+            lovebabbar:
+                "https://450dsa.com/",
+
+            apnacollege:
+                "https://www.apnacollege.in/course/dsa-supreme",
+
+            rohitnegi:
+                "https://www.youtube.com/@RohitNegi",
+
+            arshgoyal:
+                "https://www.youtube.com/@ArshGoyal"
+
+        };
+
+
+        /* Select Sheet */
+
+        function selectSheet(sheetName, sheetId) {
+
+
+            localStorage.setItem(
+                "nexoraSelectedSheet",
+                sheetName
+            );
+
+
+            localStorage.setItem(
+                "nexoraSelectedSheetId",
+                sheetId
+            );
+
+
+            updateSelectedSheet();
+
+
+        }
+
+
+        /* Update UI */
+
+        function updateSelectedSheet() {
+
+
+            const selectedSheet =
+                localStorage.getItem(
+                    "nexoraSelectedSheet"
+                );
+
+
+            const selectedSheetId =
+                localStorage.getItem(
+                    "nexoraSelectedSheetId"
+                );
+
+
+            const currentSheetName =
+                document.getElementById(
+                    "currentSheetName"
+                );
+
+
+            if (selectedSheet) {
+
+                currentSheetName.textContent =
+                    "✓ " + selectedSheet;
+
+            }
+
+
+            /* Remove selected state */
+
+            const cards =
+                document.querySelectorAll(
+                    ".sheet-card"
+                );
+
+
+            cards.forEach(function(card) {
+
+                card.classList.remove(
+                    "selected"
+                );
+
+            });
+
+
+            /* Add selected state */
+
+            if (selectedSheetId) {
+
+                const selectedCard =
+                    document.getElementById(
+                        "card-" + selectedSheetId
+                    );
+
+
+                if (selectedCard) {
+
+                    selectedCard.classList.add(
+                        "selected"
+                    );
+
+                }
+
+            }
+
+        }
+
+
+        /* Open Original Source */
+
+        function openSheet(platform) {
+
+            window.open(
+                sheetLinks[platform],
+                "_blank"
+            );
+
+        }
+
+
+        /* Load Saved Selection */
+
+        updateSelectedSheet();
+
+    </script>
+
+
+</body>
+
+</html>

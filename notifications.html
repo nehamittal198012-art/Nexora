@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NEXORA | Notifications</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#171821;
+    color:#f4f3ff;
+    min-height:100vh;
+}
+
+.container{
+    width:92%;
+    max-width:1100px;
+    margin:auto;
+    padding:25px 0 50px;
+}
+
+/* TOPBAR */
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    color:#a78bfa;
+}
+
+.back-btn{
+    border:none;
+    padding:11px 17px;
+    border-radius:12px;
+    background:#242532;
+    color:white;
+    cursor:pointer;
+
+    box-shadow:
+        6px 6px 12px #0e0f15,
+        -4px -4px 10px #20222d;
+}
+
+.back-btn:hover{
+    background:#8b5cf6;
+}
+
+/* HERO */
+
+.hero{
+    margin-bottom:25px;
+}
+
+.hero h1{
+    font-size:34px;
+    margin-bottom:10px;
+}
+
+.hero p{
+    color:#aaa9b9;
+    line-height:1.6;
+}
+
+/* CARD */
+
+.card{
+    background:#1e202a;
+    padding:25px;
+    border-radius:20px;
+    margin-bottom:25px;
+
+    box-shadow:
+        8px 8px 18px #0e0f15,
+        -6px -6px 15px #252734;
+}
+
+.card h2{
+    margin-bottom:15px;
+}
+
+/* SETTINGS */
+
+.setting{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:16px 0;
+    border-bottom:1px solid #292b38;
+}
+
+.setting:last-child{
+    border-bottom:none;
+}
+
+.setting-info h3{
+    margin-bottom:5px;
+}
+
+.setting-info p{
+    color:#aaa9b9;
+    font-size:14px;
+}
+
+/* SWITCH */
+
+.switch{
+    position:relative;
+    width:52px;
+    height:28px;
+    flex-shrink:0;
+}
+
+.switch input{
+    opacity:0;
+    width:0;
+    height:0;
+}
+
+.slider{
+    position:absolute;
+    inset:0;
+    background:#292b38;
+    border-radius:30px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.slider:before{
+    content:"";
+    position:absolute;
+    height:20px;
+    width:20px;
+    left:4px;
+    top:4px;
+    background:#aaa9b9;
+    border-radius:50%;
+    transition:.3s;
+}
+
+.switch input:checked + .slider{
+    background:#8b5cf6;
+}
+
+.switch input:checked + .slider:before{
+    transform:translateX(24px);
+    background:white;
+}
+
+/* NOTIFICATIONS */
+
+.notification-list{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+.notification{
+    background:#292b38;
+    padding:17px;
+    border-radius:15px;
+    border-left:4px solid #8b5cf6;
+}
+
+.notification h3{
+    margin-bottom:6px;
+}
+
+.notification p{
+    color:#aaa9b9;
+    line-height:1.5;
+    font-size:14px;
+}
+
+.empty{
+    color:#aaa9b9;
+    line-height:1.6;
+}
+
+/* MOBILE */
+
+@media(max-width:650px){
+
+    .topbar{
+        align-items:flex-start;
+        gap:15px;
+    }
+
+    .hero h1{
+        font-size:28px;
+    }
+
+    .setting{
+        gap:15px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<!-- TOPBAR -->
+
+<div class="topbar">
+
+<div class="logo">
+NEXORA
+</div>
+
+<button
+    class="back-btn"
+    onclick="location.href='dashboard.html'"
+>
+← Back to Dashboard
+</button>
+
+</div>
+
+
+<!-- HERO -->
+
+<div class="hero">
+
+<h1>🔔 Notifications</h1>
+
+<p>
+Stay updated with your preparation goals, streaks,
+weak areas and important NEXORA activities.
+</p>
+
+</div>
+
+
+<!-- NOTIFICATION SETTINGS -->
+
+<div class="card">
+
+<h2>⚙️ Notification Settings</h2>
+
+
+<div class="setting">
+
+<div class="setting-info">
+
+<h3>🔥 Streak Reminder</h3>
+
+<p>
+Get reminded when your preparation streak needs activity.
+</p>
+
+</div>
+
+<label class="switch">
+
+<input
+    type="checkbox"
+    id="streakNotification"
+    checked
+>
+
+<span class="slider"></span>
+
+</label>
+
+</div>
+
+
+<div class="setting">
+
+<div class="setting-info">
+
+<h3>📅 Daily Preparation</h3>
+
+<p>
+Receive reminders about your daily preparation.
+</p>
+
+</div>
+
+<label class="switch">
+
+<input
+    type="checkbox"
+    id="dailyNotification"
+    checked
+>
+
+<span class="slider"></span>
+
+</label>
+
+</div>
+
+
+<div class="setting">
+
+<div class="setting-info">
+
+<h3>⚠️ Weak Topic Alerts</h3>
+
+<p>
+Get notified when an area needs more preparation.
+</p>
+
+</div>
+
+<label class="switch">
+
+<input
+    type="checkbox"
+    id="weakNotification"
+    checked
+>
+
+<span class="slider"></span>
+
+</label>
+
+</div>
+
+
+<div class="setting">
+
+<div class="setting-info">
+
+<h3>🤖 Interview Reminder</h3>
+
+<p>
+Get reminders to practice AI mock interviews.
+</p>
+
+</div>
+
+<label class="switch">
+
+<input
+    type="checkbox"
+    id="interviewNotification"
+    checked
+>
+
+<span class="slider"></span>
+
+</label>
+
+</div>
+
+</div>
+
+
+<!-- GENERATED NOTIFICATIONS -->
+
+<div class="card">
+
+<h2>📬 Your NEXORA Notifications</h2>
+
+<div
+    id="notificationList"
+    class="notification-list"
+>
+</div>
+
+</div>
+
+
+</div>
+
+
+<script>
+
+/* =========================================
+   LOCAL STORAGE HELPERS
+========================================= */
+
+function getNumber(key){
+
+    const value =
+        Number(localStorage.getItem(key));
+
+    return Number.isFinite(value)
+        ? value
+        : 0;
+
+}
+
+
+function readJSON(key,fallback){
+
+    try{
+
+        const value =
+            JSON.parse(
+                localStorage.getItem(key)
+            );
+
+        return value || fallback;
+
+    }
+    catch{
+
+        return fallback;
+
+    }
+
+}
+
+
+/* =========================================
+   SETTINGS
+========================================= */
+
+const settingsKey =
+    "nexoraNotificationSettings";
+
+
+const defaultSettings = {
+
+    streak:true,
+    daily:true,
+    weak:true,
+    interview:true
+
+};
+
+
+let settings =
+    readJSON(
+        settingsKey,
+        defaultSettings
+    );
+
+
+document.getElementById(
+    "streakNotification"
+).checked =
+    settings.streak !== false;
+
+
+document.getElementById(
+    "dailyNotification"
+).checked =
+    settings.daily !== false;
+
+
+document.getElementById(
+    "weakNotification"
+).checked =
+    settings.weak !== false;
+
+
+document.getElementById(
+    "interviewNotification"
+).checked =
+    settings.interview !== false;
+
+
+/* =========================================
+   SAVE SETTINGS
+========================================= */
+
+function saveSettings(){
+
+    settings = {
+
+        streak:
+            document.getElementById(
+                "streakNotification"
+            ).checked,
+
+        daily:
+            document.getElementById(
+                "dailyNotification"
+            ).checked,
+
+        weak:
+            document.getElementById(
+                "weakNotification"
+            ).checked,
+
+        interview:
+            document.getElementById(
+                "interviewNotification"
+            ).checked
+
+    };
+
+
+    localStorage.setItem(
+        settingsKey,
+        JSON.stringify(settings)
+    );
+
+
+    generateNotifications();
+
+}
+
+
+/* =========================================
+   SETTINGS LISTENERS
+========================================= */
+
+document.getElementById(
+    "streakNotification"
+).addEventListener(
+    "change",
+    saveSettings
+);
+
+
+document.getElementById(
+    "dailyNotification"
+).addEventListener(
+    "change",
+    saveSettings
+);
+
+
+document.getElementById(
+    "weakNotification"
+).addEventListener(
+    "change",
+    saveSettings
+);
+
+
+document.getElementById(
+    "interviewNotification"
+).addEventListener(
+    "change",
+    saveSettings
+);
+
+
+/* =========================================
+   NEXORA DATA
+========================================= */
+
+const streak =
+    getNumber("nexoraStreak");
+
+
+const aptitude =
+    getNumber("nexoraAptitudeProgress") ||
+    getNumber("nexoraAptitudeScore");
+
+
+const dsa =
+    getNumber("nexoraDSAProgress") ||
+    getNumber("nexoraDSAScore") ||
+    getNumber("nexoraCodingProgress");
+
+
+const core =
+    getNumber("nexoraCoreProgress") ||
+    getNumber("nexoraCoreScore");
+
+
+const interview =
+    getNumber("nexoraInterviewScore");
+
+
+const recommendations =
+    readJSON(
+        "nexoraInterviewRecommendations",
+        {}
+    );
+
+
+const weakAreas =
+    readJSON(
+        "nexoraInterviewSkillGap",
+        {}
+    );
+
+
+/* =========================================
+   GENERATE NOTIFICATIONS
+========================================= */
+
+function generateNotifications(){
+
+    const box =
+        document.getElementById(
+            "notificationList"
+        );
+
+
+    box.innerHTML = "";
+
+
+    let notifications = [];
+
+
+    /* STREAK */
+
+    if(
+        settings.streak !== false &&
+        streak < 1
+    ){
+
+        notifications.push({
+
+            title:"🔥 Start Your Streak",
+
+            text:
+            "Complete a meaningful preparation activity today to start your NEXORA streak."
+
+        });
+
+    }
+
+
+    if(
+        settings.streak !== false &&
+        streak >= 1 &&
+        streak < 7
+    ){
+
+        notifications.push({
+
+            title:"🔥 Keep Your Streak Going",
+
+            text:
+            `Your current streak is ${streak} day(s). Keep preparing to reach the 7-day milestone.`
+
+        });
+
+    }
+
+
+    /* DAILY PREPARATION */
+
+    if(
+        settings.daily !== false
+    ){
+
+        notifications.push({
+
+            title:"📅 Daily Preparation",
+
+            text:
+            "Your daily preparation plan is ready. Complete today's tasks to keep your preparation consistent."
+
+        });
+
+    }
+
+
+    /* WEAK AREAS */
+
+    if(
+        settings.weak !== false
+    ){
+
+        let weakText = "";
+
+
+        if(
+            Array.isArray(
+                weakAreas.weakAreas
+            ) &&
+            weakAreas.weakAreas.length
+        ){
+
+            weakText =
+                weakAreas.weakAreas
+                .slice(0,3)
+                .join(", ");
+
+        }
+
+
+        if(!weakText){
+
+            if(aptitude < 40)
+                weakText += "Aptitude, ";
+
+            if(dsa < 40)
+                weakText += "DSA, ";
+
+            if(core < 40)
+                weakText += "Core CS, ";
+
+            if(interview < 40)
+                weakText += "Interview, ";
+
+        }
+
+
+        if(weakText){
+
+            weakText =
+                weakText.replace(/,\s*$/,"");
+
+
+            notifications.push({
+
+                title:"⚠️ Focus Areas",
+
+                text:
+                `Consider giving extra preparation time to: ${weakText}.`
+
+            });
+
+        }
+
+    }
+
+
+    /* INTERVIEW */
+
+    if(
+        settings.interview !== false &&
+        interview < 70
+    ){
+
+        notifications.push({
+
+            title:"🤖 Interview Practice",
+
+            text:
+            "Practice an AI Mock Interview to improve your interview readiness."
+
+        });
+
+    }
+
+
+    /* RECOMMENDATIONS */
+
+    if(
+        Array.isArray(
+            recommendations.recommendations
+        ) &&
+        recommendations.recommendations.length
+    ){
+
+        notifications.push({
+
+            title:"🧠 NEXORA Recommendation",
+
+            text:
+            recommendations.recommendations[0]
+
+        });
+
+    }
+
+
+    /* EMPTY STATE */
+
+    if(!notifications.length){
+
+        box.innerHTML = `
+
+            <p class="empty">
+
+                You're all caught up! 🎉
+
+                <br><br>
+
+                Keep working on your placement preparation.
+
+            </p>
+
+        `;
+
+        return;
+
+    }
+
+
+    /* RENDER */
+
+    notifications.forEach(
+        function(item){
+
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+
+            div.className =
+                "notification";
+
+
+            div.innerHTML = `
+
+                <h3>
+                    ${item.title}
+                </h3>
+
+                <p>
+                    ${item.text}
+                </p>
+
+            `;
+
+
+            box.appendChild(div);
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   INITIAL LOAD
+========================================= */
+
+generateNotifications();
+
+</script>
+
+
+</body>
+
+</html>

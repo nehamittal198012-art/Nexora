@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>NEXORA | Daily Tasks</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <button
+        onclick="window.location.href='dashboard.html'"
+        style="
+            width:auto;
+            margin:20px 0;
+            padding:8px 12px;
+            background:transparent;
+            color:#b8bac5;
+            border:none;
+            box-shadow:none;
+        "
+    >
+        ← Back
+    </button>
+
+
+    <h1>NEXORA 🤖</h1>
+
+
+    <div class="dashboard-card">
+
+        <h2>📋 Today's Tasks</h2>
+
+        <p>
+            Complete meaningful activities to
+            maintain your daily preparation streak.
+        </p>
+
+
+        <div class="task-item">
+
+            <label>
+
+                <input
+                    type="checkbox"
+                    class="task-checkbox"
+                    id="task0"
+                    onchange="updateTasks()"
+                >
+
+                Complete 10 Aptitude Questions
+
+            </label>
+
+        </div>
+
+
+        <div class="task-item">
+
+            <label>
+
+                <input
+                    type="checkbox"
+                    class="task-checkbox"
+                    id="task1"
+                    onchange="updateTasks()"
+                >
+
+                Solve 2 DSA Problems
+
+            </label>
+
+        </div>
+
+
+        <div class="task-item">
+
+            <label>
+
+                <input
+                    type="checkbox"
+                    class="task-checkbox"
+                    id="task2"
+                    onchange="updateTasks()"
+                >
+
+                Study Core CS Topic
+
+            </label>
+
+        </div>
+
+
+        <div class="task-item">
+
+            <label>
+
+                <input
+                    type="checkbox"
+                    class="task-checkbox"
+                    id="task3"
+                    onchange="updateTasks()"
+                >
+
+                Practice 1 Interview Question
+
+            </label>
+
+        </div>
+
+
+        <div class="task-item">
+
+            <label>
+
+                <input
+                    type="checkbox"
+                    class="task-checkbox"
+                    id="task4"
+                    onchange="updateTasks()"
+                >
+
+                Improve Resume
+
+            </label>
+
+        </div>
+
+
+        <p id="taskProgress">
+            Completed: 0 / 5
+        </p>
+
+    </div>
+
+
+    <script>
+
+
+        /* =========================
+           LOAD SAVED TASKS
+        ========================= */
+
+        for (let i = 0; i < 5; i++) {
+
+            const saved =
+                localStorage.getItem(
+                    "nexoraTask" + i
+                );
+
+            if (saved === "true") {
+
+                document.getElementById(
+                    "task" + i
+                ).checked = true;
+
+            }
+
+        }
+
+
+        /* =========================
+           STREAK
+        ========================= */
+
+        function updateStreak() {
+
+            const today =
+                new Date()
+                    .toISOString()
+                    .split("T")[0];
+
+            const lastDate =
+                localStorage.getItem(
+                    "nexoraLastActivityDate"
+                );
+
+            let current =
+                Number(
+                    localStorage.getItem(
+                        "nexoraCurrentStreak"
+                    ) || 0
+                );
+
+            let longest =
+                Number(
+                    localStorage.getItem(
+                        "nexoraLongestStreak"
+                    ) || 0
+                );
+
+
+            if (lastDate === today) {
+
+                return;
+
+            }
+
+
+            if (lastDate) {
+
+                const previous =
+                    new Date(lastDate);
+
+                const currentDate =
+                    new Date(today);
+
+                const difference =
+                    Math.floor(
+                        (
+                            currentDate -
+                            previous
+                        ) /
+                        (
+                            1000 *
+                            60 *
+                            60 *
+                            24
+                        )
+                    );
+
+
+                if (difference === 1) {
+
+                    current++;
+
+                } else {
+
+                    current = 1;
+
+                }
+
+            } else {
+
+                current = 1;
+
+            }
+
+
+            if (current > longest) {
+
+                longest = current;
+
+            }
+
+
+            localStorage.setItem(
+                "nexoraLastActivityDate",
+                today
+            );
+
+            localStorage.setItem(
+                "nexoraCurrentStreak",
+                current
+            );
+
+            localStorage.setItem(
+                "nexoraLongestStreak",
+                longest
+            );
+
+        }
+
+
+        /* =========================
+           UPDATE TASKS
+        ========================= */
+
+        function updateTasks() {
+
+            let completed = 0;
+
+
+            for (let i = 0; i < 5; i++) {
+
+                const checkbox =
+                    document.getElementById(
+                        "task" + i
+                    );
+
+
+                localStorage.setItem(
+                    "nexoraTask" + i,
+                    checkbox.checked
+                );
+
+
+                if (checkbox.checked) {
+
+                    completed++;
+
+                }
+
+            }
+
+
+            document.getElementById(
+                "taskProgress"
+            ).textContent =
+                "Completed: " +
+                completed +
+                " / 5";
+
+
+            /* Any meaningful completed task
+               maintains today's streak */
+
+            if (completed > 0) {
+
+                updateStreak();
+
+            }
+
+        }
+
+
+        /* =========================
+           INITIAL PROGRESS
+        ========================= */
+
+        let initialCompleted = 0;
+
+
+        for (let i = 0; i < 5; i++) {
+
+            if (
+                document.getElementById(
+                    "task" + i
+                ).checked
+            ) {
+
+                initialCompleted++;
+
+            }
+
+        }
+
+
+        document.getElementById(
+            "taskProgress"
+        ).textContent =
+            "Completed: " +
+            initialCompleted +
+            " / 5";
+
+
+    </script>
+
+
+</body>
+
+</html>
